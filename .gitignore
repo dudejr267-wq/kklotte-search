@@ -1,4 +1,10 @@
-images/안심찬/안심찬 26년 6월 신제품 및 추가홍보POP(수도권).PDF.pdf
-images/아워밀(설빙)/아워밀 6~8월 행사지all.PDF.pdf
-images/냠냐미/(수도권&경기)26년5~6월냠냐미POP_compressed.PDF.pdf
-images/올바른/올바른 26년도 6월 홍보지 출력용_compressed.PDF.pdf
+# 원본 PDF 파일은 git에 올리지 않음 (이미지로 변환된 jpg만 사용)
+*.pdf
+*.PDF
+
+# OS/에디터 메타파일
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/

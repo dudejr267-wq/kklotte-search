@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"/>
+<title>추가 매칭 시트</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #1a1a1a; padding: 18px; padding-bottom: 110px; }
+.header { background: #fff; padding: 16px 22px; border-radius: 12px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.header h1 { font-size: 22px; color: #D85A30; }
+.header .desc { font-size: 13px; color: #666; line-height: 1.5; margin-top: 4px; }
+.header .desc b { color: #D85A30; }
+.header .stats { font-size: 13px; color: #1a1a1a; margin-top: 8px; font-weight: 600; }
+.header .stats span { color: #D85A30; }
+.controls { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.btn { padding: 7px 14px; border-radius: 8px; border: 1.5px solid #ddd; background: #fff; color: #333; font-size: 12px; cursor: pointer; font-weight: 500; }
+.btn.active { background: #D85A30; color: #fff; border-color: #D85A30; }
+.btn:hover:not(.active) { border-color: #D85A30; color: #D85A30; }
+
+.row { background: #fff; border-radius: 10px; padding: 12px; margin-bottom: 10px; display: flex; gap: 14px; align-items: flex-start; }
+.row.matched { border-left: 4px solid #22c55e; background: #f0fdf4; }
+.row.skipped { border-left: 4px solid #94a3b8; background: #f8fafc; opacity: 0.65; }
+
+.product-info { width: 200px; flex-shrink: 0; padding: 4px 8px; border-right: 1px solid #eee; }
+.product-info .pid { font-size: 11px; color: #999; font-weight: 600; }
+.product-info .pname { font-size: 13px; font-weight: 700; line-height: 1.3; margin-top: 4px; }
+.product-info .brand { display: inline-block; font-size: 10px; padding: 2px 8px; background: #D85A30; color: #fff; border-radius: 4px; margin-top: 6px; font-weight: 600; }
+.product-info .meta { font-size: 11px; color: #888; margin-top: 6px; }
+.product-info .selected-preview { width: 100%; height: 100px; margin-top: 8px; border-radius: 6px; overflow: hidden; border: 2px solid #22c55e; }
+.product-info .selected-preview img { width: 100%; height: 100%; object-fit: cover; }
+.product-info .placeholder { width: 100%; height: 60px; margin-top: 8px; background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 30px; color: #cbd5e1; }
+
+.candidates { flex: 1; display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+.cand {
+  border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer;
+  padding: 4px; background: #fff; transition: all 0.15s;
+  display: flex; flex-direction: column; align-items: center;
+}
+.cand:hover { border-color: #D85A30; }
+.cand.selected { border-color: #22c55e; background: #f0fdf4; box-shadow: 0 0 0 3px rgba(34,197,94,0.15); }
+.cand img { width: 130px; height: 90px; object-fit: cover; border-radius: 4px; }
+.cand .label { font-size: 10px; color: #999; margin-top: 4px; }
+
+.skip-btn { padding: 8px 14px; border-radius: 8px; border: 2px solid #cbd5e1; background: #fff; color: #64748b; cursor: pointer; font-size: 12px; height: fit-content; align-self: center; }
+.skip-btn.active { background: #94a3b8; color: #fff; border-color: #94a3b8; }
+.skip-btn:hover:not(.active) { border-color: #64748b; }
+
+.page-link { font-size: 11px; color: #2563eb; text-decoration: underline; cursor: pointer; margin-left: 8px; }
+
+.no-cand { font-size: 13px; color: #94a3b8; padding: 14px; font-style: italic; }
+
+.bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a1a; color: #fff; padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); z-index: 100; }
+.bar .info { font-size: 13px; }
+.bar .info b { color: #4ade80; }
+.bar .actions { display: flex; gap: 8px; }
+.bar button { padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; }
+.bar .copy-btn { background: #22c55e; color: #fff; }
+.bar .reset-btn { background: #475569; color: #fff; }
+
+.toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #22c55e; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+</style></head><body>
+
+<div class="header">
+  <h1>추가 매칭 시트 — 사진 빠진 제품 채우기</h1>
+  <div class="desc">
+    각 제품 옆에 <b>그 행사지 페이지의 사진 후보들</b>이 표시돼요. 알맞은 사진을 <b>클릭</b>하면 매칭됩니다.<br>
+    적당한 사진이 없으면 <b>"사진 없음"</b> 버튼을 누르세요(이모지로 표시됨). 페이지 미리보기는 "페이지 보기" 링크로 새 탭에서 열어 확인 가능합니다.
+  </div>
+  <div class="stats" id="stats">로딩 중...</div>
+  <div class="controls">
+    <button class="btn active" data-mode="all" onclick="setMode('all')">전체</button>
+    <button class="btn" data-mode="todo" onclick="setMode('todo')">미처리만</button>
+    <button class="btn" data-mode="done" onclick="setMode('done')">매칭됨</button>
+    <button class="btn" data-mode="nocand" onclick="setMode('nocand')">후보 없음</button>
+  </div>
+</div>
+
+<div id="rows"></div>
+
+<div class="bar">
+  <div class="info">매칭됨: <b id="done-count">0</b>개 · 미처리: <span id="todo-count">0</span>개</div>
+  <div class="actions">
+    <button class="reset-btn" onclick="if(confirm('모든 선택을 초기화할까요?')){choices={};save();render();updateBar()}">초기화</button>
+    <button class="copy-btn" onclick="copyResult()">결과 복사</button>
+  </div>
+</div>
+<div class="toast" id="toast">복사됐어요!</div>
+
+<script>
+const DATA = [{"pid": 4, "name": "맛도리 쏘갈비 떡꼬치 (단품)", "brand": "냠냐미", "emoji": "🍡", "price": "9,000", "unit": "650g(130g×5ea)", "page_key": "NY_6", "page_num": 6, "page_brand": "NY", "candidates": [{"file": "cand_NY_p06_1.jpg", "w": 265, "h": 300, "area_ratio": 0.033}]}, {"pid": 8, "name": "(비가열)남산통등심돈까스 1.6Kg", "brand": "냠냐미", "emoji": "🍖", "price": "24,599", "unit": "1.6Kg(80g×20ea)", "page_key": "NY_16", "page_num": 16, "page_brand": "NY", "candidates": [{"file": "cand_NY_p16_1.jpg", "w": 300, "h": 203, "area_ratio": 0.044}, {"file": "cand_NY_p16_2.jpg", "w": 300, "h": 203, "area_ratio": 0.043}]}, {"pid": 16, "name": "대한민국밀 등심탕수육 (단품)", "brand": "냠냐미", "emoji": "🥘", "price": "14,000", "unit": "1Kg(12g×80ea)", "page_key": "NY_10", "page_num": 10, "page_brand": "NY", "candidates": [{"file": "cand_NY_p10_1.jpg", "w": 300, "h": 203, "area_ratio": 0.041}]}, {"pid": 24, "name": "남나미 고기잎새만두 (10%할인)", "brand": "냠냐미", "emoji": "🥟", "price": "35,000", "unit": "3Kg(24g×125ea)", "page_key": "NY_39", "page_num": 39, "page_brand": "NY", "candidates": [{"file": "cand_NY_p39_1.jpg", "w": 300, "h": 201, "area_ratio": 0.03}, {"file": "cand_NY_p39_2.jpg", "w": 300, "h": 201, "area_ratio": 0.03}, {"file": "cand_NY_p39_3.jpg", "w": 300, "h": 201, "area_ratio": 0.03}, {"file": "cand_NY_p39_4.jpg", "w": 300, "h": 201, "area_ratio": 0.03}]}, {"pid": 46, "name": "남나미 소시지 회오리감자 1.1Kg", "brand": "냠냐미", "emoji": "🌀", "price": "40,000", "unit": "1.1Kg(55g×20ea)", "page_key": "NY_28", "page_num": 28, "page_brand": "NY", "candidates": [{"file": "cand_NY_p28_1.jpg", "w": 300, "h": 78, "area_ratio": 0.026}]}, {"pid": 52, "name": "남나미 전통한우사골소고기국밥 세트 3Kg", "brand": "냠냐미", "emoji": "🍲", "price": "130,000", "unit": "3Kg(50인분)", "page_key": "NY_21", "page_num": 21, "page_brand": "NY", "candidates": [{"file": "cand_NY_p21_1.jpg", "w": 300, "h": 227, "area_ratio": 0.1}, {"file": "cand_NY_p21_2.jpg", "w": 300, "h": 255, "area_ratio": 0.022}, {"file": "cand_NY_p21_3.jpg", "w": 300, "h": 255, "area_ratio": 0.022}, {"file": "cand_NY_p21_4.jpg", "w": 300, "h": 216, "area_ratio": 0.015}, {"file": "cand_NY_p21_5.jpg", "w": 300, "h": 216, "area_ratio": 0.015}]}, {"pid": 56, "name": "(비가열)남나미 맛있는 미트볼 1Kg", "brand": "냠냐미", "emoji": "🥩", "price": "18,900", "unit": "1Kg(26g×40ea)", "page_key": "NY_19", "page_num": 19, "page_brand": "NY", "candidates": [{"file": "cand_NY_p19_1.jpg", "w": 300, "h": 202, "area_ratio": 0.041}, {"file": "cand_NY_p19_2.jpg", "w": 300, "h": 203, "area_ratio": 0.04}, {"file": "cand_NY_p19_3.jpg", "w": 300, "h": 204, "area_ratio": 0.04}]}, {"pid": 60, "name": "키요미 크로롱 딸기소르베 1.5Kg", "brand": "냠냐미", "emoji": "🍦", "price": "46,680", "unit": "1.5Kg(50g×30ea)", "page_key": "NY_3", "page_num": 3, "page_brand": "NY", "candidates": [{"file": "cand_NY_p03_1.jpg", "w": 300, "h": 300, "area_ratio": 0.256}, {"file": "cand_NY_p03_2.jpg", "w": 223, "h": 300, "area_ratio": 0.06}, {"file": "cand_NY_p03_3.jpg", "w": 298, "h": 300, "area_ratio": 0.014}]}, {"pid": 61, "name": "팥빙 큐브 1.4Kg", "brand": "냠냐미", "emoji": "🍧", "price": "47,000", "unit": "1.4Kg(70g×20ea)", "page_key": "NY_3", "page_num": 3, "page_brand": "NY", "candidates": [{"file": "cand_NY_p03_1.jpg", "w": 300, "h": 300, "area_ratio": 0.256}, {"file": "cand_NY_p03_2.jpg", "w": 223, "h": 300, "area_ratio": 0.06}, {"file": "cand_NY_p03_3.jpg", "w": 298, "h": 300, "area_ratio": 0.014}]}, {"pid": 65, "name": "파인애플 과일 개별컵 1Kg", "brand": "냠냐미", "emoji": "🍍", "price": "27,500", "unit": "1Kg(40g×25ea)", "page_key": "NY_40", "page_num": 40, "page_brand": "NY", "candidates": [{"file": "cand_NY_p40_1.jpg", "w": 300, "h": 236, "area_ratio": 0.013}]}, {"pid": 66, "name": "사과 과일 개별컵 1Kg", "brand": "냠냐미", "emoji": "🍎", "price": "34,000", "unit": "1Kg(40g×25ea)", "page_key": "NY_40", "page_num": 40, "page_brand": "NY", "candidates": [{"file": "cand_NY_p40_1.jpg", "w": 300, "h": 236, "area_ratio": 0.013}]}, {"pid": 67, "name": "포도 과일 개별컵 1Kg", "brand": "냠냐미", "emoji": "🍇", "price": "35,000", "unit": "1Kg(40g×25ea)", "page_key": "NY_40", "page_num": 40, "page_brand": "NY", "candidates": [{"file": "cand_NY_p40_1.jpg", "w": 300, "h": 236, "area_ratio": 0.013}]}, {"pid": 73, "name": "행운팡팡 버터가득수제포춘쿠키 1.3Kg", "brand": "Yoon's Cookie", "emoji": "🍪", "price": "200,000", "unit": "1.3Kg(13g×100ea)", "page_key": "NY_4", "page_num": 4, "page_brand": "NY", "candidates": [{"file": "cand_NY_p04_1.jpg", "w": 300, "h": 158, "area_ratio": 0.376}]}, {"pid": 75, "name": "성북당 미니십원빵 팥맛 1.35Kg", "brand": "성북당", "emoji": "🫓", "price": "42,000", "unit": "1.35Kg(45g×30ea)", "page_key": "NY_29", "page_num": 29, "page_brand": "NY", "candidates": []}, {"pid": 78, "name": "(특가) 레드벨벳마카롱 990g", "brand": "냠냐미", "emoji": "🍬", "price": "40,500", "unit": "990g(33g×30ea)", "page_key": "NY_32", "page_num": 32, "page_brand": "NY", "candidates": []}, {"pid": 81, "name": "남나미 유기농 느린식혜 4Kg", "brand": "냠냐미", "emoji": "🍶", "price": "26,000", "unit": "4Kg(100ml×40ea)", "page_key": "NY_30", "page_num": 30, "page_brand": "NY", "candidates": [{"file": "cand_NY_p30_1.jpg", "w": 300, "h": 202, "area_ratio": 0.041}, {"file": "cand_NY_p30_2.jpg", "w": 300, "h": 202, "area_ratio": 0.041}]}, {"pid": 83, "name": "남나미 맛단 서종브라우니약과 1.5Kg", "brand": "냠냐미", "emoji": "🍡", "price": "40,600", "unit": "1.5Kg(15g×100ea)", "page_key": "NY_31", "page_num": 31, "page_brand": "NY", "candidates": [{"file": "cand_NY_p31_1.jpg", "w": 300, "h": 170, "area_ratio": 0.079}, {"file": "cand_NY_p31_2.jpg", "w": 300, "h": 202, "area_ratio": 0.068}]}, {"pid": 84, "name": "삼색샌드위치 1.92Kg", "brand": "냠냐미", "emoji": "🥪", "price": "50,400", "unit": "1.92Kg(80g×24ea)", "page_key": "NY_33", "page_num": 33, "page_brand": "NY", "candidates": []}, {"pid": 85, "name": "트리플베리샌드 1.68Kg", "brand": "냠냐미", "emoji": "🥪", "price": "50,400", "unit": "1.68Kg(70g×24ea)", "page_key": "NY_33", "page_num": 33, "page_brand": "NY", "candidates": []}, {"pid": 87, "name": "감귤로쉐밀크볼 140g", "brand": "냠냐미", "emoji": "🍊", "price": "7,000", "unit": "140g(7g×20ea)", "page_key": "NY_34", "page_num": 34, "page_brand": "NY", "candidates": []}, {"pid": 89, "name": "(냉동,유탕) 찰츄러스 1Kg", "brand": "냠냐미", "emoji": "🥐", "price": "18,000", "unit": "1Kg(11g×90ea)", "page_key": "NY_35", "page_num": 35, "page_brand": "NY", "candidates": [{"file": "cand_NY_p35_1.jpg", "w": 300, "h": 202, "area_ratio": 0.041}]}, {"pid": 90, "name": "(냉동) 우리쌀도깨비핫도그 500g", "brand": "냠냐미", "emoji": "🌭", "price": "9,700", "unit": "500g(50g×10ea)", "page_key": "NY_36", "page_num": 36, "page_brand": "NY", "candidates": []}, {"pid": 94, "name": "당근케이크 1.05Kg", "brand": "안심찬", "emoji": "🥕", "price": "35,712", "unit": "1.05Kg(35g×30ea)", "page_key": "AS_1", "page_num": 1, "page_brand": "AS", "candidates": []}, {"pid": 99, "name": "맛쇼킹 순살치킨 1Kg", "brand": "안심찬", "emoji": "🍗", "price": "18,860", "unit": "1Kg(22g×46ea)", "page_key": "AS_4", "page_num": 4, "page_brand": "AS", "candidates": [{"file": "cand_AS_p04_1.jpg", "w": 300, "h": 119, "area_ratio": 0.276}, {"file": "cand_AS_p04_2.jpg", "w": 300, "h": 240, "area_ratio": 0.03}, {"file": "cand_AS_p04_3.jpg", "w": 300, "h": 241, "area_ratio": 0.029}, {"file": "cand_AS_p04_4.jpg", "w": 300, "h": 240, "area_ratio": 0.03}, {"file": "cand_AS_p04_5.jpg", "w": 300, "h": 241, "area_ratio": 0.029}, {"file": "cand_AS_p04_6.jpg", "w": 300, "h": 230, "area_ratio": 0.06}]}, {"pid": 108, "name": "Dole POP 3종 4.96L (피치/파인애플/망고)", "brand": "돌코리아", "emoji": "🧊", "price": "52,000", "unit": "4.96L(62ml×80ea)", "page_key": "AS_7", "page_num": 7, "page_brand": "AS", "candidates": []}, {"pid": 109, "name": "Dole 후룻볼 2종 2.712Kg (복숭아/트로피칼)", "brand": "돌코리아", "emoji": "🍑", "price": "36,000", "unit": "2.712Kg(113g×24ea)", "page_key": "AS_7", "page_num": 7, "page_brand": "AS", "candidates": []}, {"pid": 110, "name": "파스튀르 바른목장 요구르트 3L (플레인/사과당근)", "brand": "파스튀르", "emoji": "🥛", "price": "26,400", "unit": "3L(100ml×30ea)", "page_key": "AS_8", "page_num": 8, "page_brand": "AS", "candidates": [{"file": "cand_AS_p08_1.jpg", "w": 204, "h": 300, "area_ratio": 0.015}, {"file": "cand_AS_p08_2.jpg", "w": 235, "h": 300, "area_ratio": 0.016}, {"file": "cand_AS_p08_3.jpg", "w": 240, "h": 300, "area_ratio": 0.015}, {"file": "cand_AS_p08_4.jpg", "w": 300, "h": 239, "area_ratio": 0.058}, {"file": "cand_AS_p08_5.jpg", "w": 300, "h": 221, "area_ratio": 0.054}]}, {"pid": 111, "name": "파스튀르 장액티브 4.64L (사과/샤인머스캣)", "brand": "파스튀르", "emoji": "🥛", "price": "16,320", "unit": "4.64L(145ml×32ea)", "page_key": "AS_8", "page_num": 8, "page_brand": "AS", "candidates": [{"file": "cand_AS_p08_1.jpg", "w": 204, "h": 300, "area_ratio": 0.015}, {"file": "cand_AS_p08_2.jpg", "w": 235, "h": 300, "area_ratio": 0.016}, {"file": "cand_AS_p08_3.jpg", "w": 240, "h": 300, "area_ratio": 0.015}, {"file": "cand_AS_p08_4.jpg", "w": 300, "h": 239, "area_ratio": 0.058}, {"file": "cand_AS_p08_5.jpg", "w": 300, "h": 221, "area_ratio": 0.054}]}, {"pid": 119, "name": "K-말차 크림 쿠키슈 600g", "brand": "올바른", "emoji": "🍵", "price": "19,950", "unit": "600g(30g×20ea)", "page_key": "OB_2", "page_num": 2, "page_brand": "OB", "candidates": []}, {"pid": 127, "name": "통째로 딸기모찌 70g", "brand": "올바른", "emoji": "🍓", "price": "2,510", "unit": "70g×1ea", "page_key": "OB_8", "page_num": 8, "page_brand": "OB", "candidates": [{"file": "cand_OB_p08_1.jpg", "w": 300, "h": 300, "area_ratio": 0.016}]}, {"pid": 128, "name": "달달 홍시 찹쌀떡 100g", "brand": "올바른", "emoji": "🟠", "price": "4,180", "unit": "100g×1ea", "page_key": "OB_8", "page_num": 8, "page_brand": "OB", "candidates": [{"file": "cand_OB_p08_1.jpg", "w": 300, "h": 300, "area_ratio": 0.016}]}, {"pid": 131, "name": "미니 바스크 치즈케익 600g", "brand": "올바른", "emoji": "🧀", "price": "32,580", "unit": "600g(30g×20ea)", "page_key": "OB_6", "page_num": 6, "page_brand": "OB", "candidates": []}, {"pid": 132, "name": "톰&제리 옐로우 크림치즈케익 500g", "brand": "올바른", "emoji": "🎂", "price": "26,220", "unit": "500g(27~28g×18ea)", "page_key": "OB_6", "page_num": 6, "page_brand": "OB", "candidates": []}, {"pid": 133, "name": "오르쉐 쿠앤크 우리쌀 초코케익 500g", "brand": "올바른", "emoji": "🍫", "price": "26,220", "unit": "500g(27.8g×18ea)", "page_key": "OB_6", "page_num": 6, "page_brand": "OB", "candidates": []}, {"pid": 136, "name": "두바이 초코 마카롱 990g", "brand": "올바른", "emoji": "🍬", "price": "50,830", "unit": "990g(30~36g×30ea)", "page_key": "OB_7", "page_num": 7, "page_brand": "OB", "candidates": []}, {"pid": 137, "name": "초코 사랑 바나나 뚱카롱 900g", "brand": "올바른", "emoji": "🍬", "price": "46,290", "unit": "900g(30g×30ea)", "page_key": "OB_7", "page_num": 7, "page_brand": "OB", "candidates": []}, {"pid": 138, "name": "순수 우유 뚱카롱 900g", "brand": "올바른", "emoji": "🍬", "price": "46,290", "unit": "900g(30g×30ea)", "page_key": "OB_7", "page_num": 7, "page_brand": "OB", "candidates": []}, {"pid": 139, "name": "초코나무 숲 뚱카롱 900g", "brand": "올바른", "emoji": "🍬", "price": "46,290", "unit": "900g(30g×30ea)", "page_key": "OB_7", "page_num": 7, "page_brand": "OB", "candidates": []}, {"pid": 151, "name": "수제통살 치킨텐더 1Kg", "brand": "올바른", "emoji": "🍗", "price": "18,130", "unit": "1Kg(41~48g×21~24ea)", "page_key": "OB_19", "page_num": 19, "page_brand": "OB", "candidates": [{"file": "cand_OB_p19_1.jpg", "w": 300, "h": 278, "area_ratio": 0.067}, {"file": "cand_OB_p19_2.jpg", "w": 300, "h": 270, "area_ratio": 0.061}, {"file": "cand_OB_p19_3.jpg", "w": 300, "h": 203, "area_ratio": 0.059}, {"file": "cand_OB_p19_4.jpg", "w": 300, "h": 300, "area_ratio": 0.037}, {"file": "cand_OB_p19_5.jpg", "w": 300, "h": 300, "area_ratio": 0.039}]}, {"pid": 152, "name": "치킨 꿔바로우 1Kg", "brand": "올바른", "emoji": "🥘", "price": "19,020", "unit": "1Kg(30~35g×28~33ea)", "page_key": "OB_19", "page_num": 19, "page_brand": "OB", "candidates": [{"file": "cand_OB_p19_1.jpg", "w": 300, "h": 278, "area_ratio": 0.067}, {"file": "cand_OB_p19_2.jpg", "w": 300, "h": 270, "area_ratio": 0.061}, {"file": "cand_OB_p19_3.jpg", "w": 300, "h": 203, "area_ratio": 0.059}, {"file": "cand_OB_p19_4.jpg", "w": 300, "h": 300, "area_ratio": 0.037}, {"file": "cand_OB_p19_5.jpg", "w": 300, "h": 300, "area_ratio": 0.039}]}, {"pid": 156, "name": "토치 생오리 1Kg", "brand": "올바른", "emoji": "🦆", "price": "20,710", "unit": "1Kg", "page_key": "OB_14", "page_num": 14, "page_brand": "OB", "candidates": []}, {"pid": 157, "name": "오리불고기 (고추맛/간장맛) 1Kg", "brand": "올바른", "emoji": "🦆", "price": "21,470", "unit": "1Kg(3.6mm)", "page_key": "OB_14", "page_num": 14, "page_brand": "OB", "candidates": []}, {"pid": 158, "name": "치폴레에 빠진 오리훈제 1Kg", "brand": "올바른", "emoji": "🦆", "price": "27,120", "unit": "1Kg", "page_key": "OB_15", "page_num": 15, "page_brand": "OB", "candidates": []}, {"pid": 159, "name": "9無 어니언 훈제오리 1Kg", "brand": "올바른", "emoji": "🦆", "price": "27,120", "unit": "1Kg", "page_key": "OB_15", "page_num": 15, "page_brand": "OB", "candidates": []}, {"pid": 182, "name": "돈꼬츠라멘 세트 (무항생제 차슈)", "brand": "올바른", "emoji": "🍜", "price": "3,111", "unit": "1인세트/159g", "page_key": "OB_5", "page_num": 5, "page_brand": "OB", "candidates": []}, {"pid": 200, "name": "짜먹는 설빙 쿠키앤크림빙수맛 2.88Kg", "brand": "설빙", "emoji": "🧊", "price": "31,752", "unit": "2.88Kg(120ml×24ea)", "page_key": "AW_1", "page_num": 1, "page_brand": "AW", "candidates": []}, {"pid": 201, "name": "짜먹는 설빙 연유맛 2.88Kg", "brand": "설빙", "emoji": "🧊", "price": "27,648", "unit": "2.88Kg(120ml×24ea)", "page_key": "AW_1", "page_num": 1, "page_brand": "AW", "candidates": []}, {"pid": 202, "name": "짜먹는 설빙 팥빙수맛 2.88Kg", "brand": "설빙", "emoji": "🍧", "price": "31,752", "unit": "2.88Kg(120ml×24ea)", "page_key": "AW_1", "page_num": 1, "page_brand": "AW", "candidates": []}, {"pid": 203, "name": "짜먹는 설빙 망고빙수맛 2.88Kg", "brand": "설빙", "emoji": "🥭", "price": "27,648", "unit": "2.88Kg(120ml×24ea)", "page_key": "AW_1", "page_num": 1, "page_brand": "AW", "candidates": []}, {"pid": 204, "name": "설빙 초코 구슬아이스 3.36Kg", "brand": "설빙", "emoji": "🍫", "price": "85,920", "unit": "3.36Kg(70ml×48ea)", "page_key": "AW_2", "page_num": 2, "page_brand": "AW", "candidates": []}, {"pid": 205, "name": "설빙 딸기&멜론 구슬아이스 3.36Kg", "brand": "설빙", "emoji": "🍓", "price": "85,920", "unit": "3.36Kg(70ml×48ea)", "page_key": "AW_2", "page_num": 2, "page_brand": "AW", "candidates": []}, {"pid": 206, "name": "설빙 요거초코칩 컵 아이스크림 4.8Kg", "brand": "설빙", "emoji": "🍦", "price": "124,320", "unit": "4.8Kg(100ml×48ea)", "page_key": "AW_3", "page_num": 3, "page_brand": "AW", "candidates": []}, {"pid": 207, "name": "설빙 초코브라우니 컵 아이스크림 4.8Kg", "brand": "설빙", "emoji": "🍫", "price": "124,320", "unit": "4.8Kg(100ml×48ea)", "page_key": "AW_3", "page_num": 3, "page_brand": "AW", "candidates": []}, {"pid": 208, "name": "설빙 인절미 컵 아이스크림 4.8Kg", "brand": "설빙", "emoji": "🍡", "price": "124,320", "unit": "4.8Kg(100ml×48ea)", "page_key": "AW_3", "page_num": 3, "page_brand": "AW", "candidates": []}, {"pid": 209, "name": "설빙 인절미토스트(미니) 1.1Kg", "brand": "설빙", "emoji": "🍞", "price": "30,800", "unit": "1.1Kg(55g×20ea)", "page_key": "AW_4", "page_num": 4, "page_brand": "AW", "candidates": []}, {"pid": 210, "name": "설빙 망고스틱 900g (30%할인)", "brand": "설빙", "emoji": "🥭", "price": "9,660", "unit": "900g(60g×15ea)", "page_key": "AW_5", "page_num": 5, "page_brand": "AW", "candidates": []}, {"pid": 211, "name": "아워밀 세절망고 1Kg (30g×35ea)", "brand": "아워밀", "emoji": "🥭", "price": "9,900", "unit": "1Kg(30g×35ea)", "page_key": "AW_5", "page_num": 5, "page_brand": "AW", "candidates": []}, {"pid": 212, "name": "아워밀 세절망고 1Kg (40g×26ea)", "brand": "아워밀", "emoji": "🥭", "price": "7,430", "unit": "1Kg(40g×26ea)", "page_key": "AW_5", "page_num": 5, "page_brand": "AW", "candidates": []}, {"pid": 213, "name": "아워밀 애플망고다이스 1Kg (페루산)", "brand": "아워밀", "emoji": "🥭", "price": "10,340", "unit": "1Kg", "page_key": "AW_5", "page_num": 5, "page_brand": "AW", "candidates": []}, {"pid": 214, "name": "아워밀 애플망고다이스 1Kg (베트남산, 35%할인)", "brand": "아워밀", "emoji": "🥭", "price": "5,820", "unit": "1Kg", "page_key": "AW_5", "page_num": 5, "page_brand": "AW", "candidates": []}, {"pid": 215, "name": "스텔라st 별콕콕 국물떡볶이 세트 7.25Kg", "brand": "아워밀", "emoji": "🌶️", "price": "64,740", "unit": "7.25Kg(70인분기준)", "page_key": "AW_6", "page_num": 6, "page_brand": "AW", "candidates": []}, {"pid": 216, "name": "스텔라st 별콕콕 로제떡볶이 세트 7.25Kg", "brand": "아워밀", "emoji": "🌶️", "price": "67,830", "unit": "7.25Kg(70인분기준)", "page_key": "AW_6", "page_num": 6, "page_brand": "AW", "candidates": []}, {"pid": 217, "name": "별튀김 추가구매 250g", "brand": "아워밀", "emoji": "⭐", "price": "3,600", "unit": "250g", "page_key": "AW_6", "page_num": 6, "page_brand": "AW", "candidates": []}, {"pid": 218, "name": "설빙 두바이 쫀득볼 1Kg (10%할인)", "brand": "설빙", "emoji": "🍬", "price": "54,450", "unit": "1Kg(40g×25ea)", "page_key": "AW_7", "page_num": 7, "page_brand": "AW", "candidates": []}, {"pid": 219, "name": "설빙 마이리틀 소다팝 5.7Kg (10%할인)", "brand": "설빙", "emoji": "🥤", "price": "26,730", "unit": "5.7Kg(190ml×30ea)", "page_key": "AW_8", "page_num": 8, "page_brand": "AW", "candidates": []}, {"pid": 220, "name": "설빙 맛있는 딸기청 1Kg", "brand": "설빙", "emoji": "🍓", "price": "15,400", "unit": "1Kg", "page_key": "AW_13", "page_num": 13, "page_brand": "AW", "candidates": []}, {"pid": 221, "name": "설빙 초코몬스터 스모어 840g (30%할인)", "brand": "설빙", "emoji": "🍫", "price": "31,500", "unit": "840g(28g×30ea)", "page_key": "AW_13", "page_num": 13, "page_brand": "AW", "candidates": []}, {"pid": 222, "name": "설빙 참쌀꽃약과 900g", "brand": "설빙", "emoji": "🍡", "price": "17,160", "unit": "900g(30g×30ea)", "page_key": "AW_14", "page_num": 14, "page_brand": "AW", "candidates": []}, {"pid": 223, "name": "설빙 추억의 꽈배기 500g", "brand": "설빙", "emoji": "🥨", "price": "10,300", "unit": "500g(50g×10ea)", "page_key": "AW_14", "page_num": 14, "page_brand": "AW", "candidates": []}, {"pid": 224, "name": "설빙 떡이쏙 고기산적구이 1Kg", "brand": "설빙", "emoji": "🥩", "price": "13,420", "unit": "1Kg(16g×62ea)", "page_key": "AW_14", "page_num": 14, "page_brand": "AW", "candidates": []}, {"pid": 225, "name": "설빙 떡이쏙 어묵구이 1Kg", "brand": "설빙", "emoji": "🐟", "price": "13,420", "unit": "1Kg(18g×55ea)", "page_key": "AW_14", "page_num": 14, "page_brand": "AW", "candidates": []}, {"pid": 226, "name": "설빙 다크초코 프리미엄 너츠 150g", "brand": "설빙", "emoji": "🍫", "price": "9,060", "unit": "150g(15g×10ea)", "page_key": "AW_16", "page_num": 16, "page_brand": "AW", "candidates": []}, {"pid": 227, "name": "설빙 허니버터 프리미엄 너츠 150g", "brand": "설빙", "emoji": "🍯", "price": "9,060", "unit": "150g(15g×10ea)", "page_key": "AW_16", "page_num": 16, "page_brand": "AW", "candidates": []}, {"pid": 228, "name": "설빙 크리스피롤 인절미맛 500g", "brand": "설빙", "emoji": "🍡", "price": "11,000", "unit": "500g(10g×48ea)", "page_key": "AW_16", "page_num": 16, "page_brand": "AW", "candidates": []}, {"pid": 229, "name": "설빙 크리스피롤 우유맛 500g", "brand": "설빙", "emoji": "🥛", "price": "11,000", "unit": "500g(10g×48ea)", "page_key": "AW_16", "page_num": 16, "page_brand": "AW", "candidates": []}, {"pid": 230, "name": "아워밀 리얼딸기쇼트케이크 1.2Kg", "brand": "아워밀", "emoji": "🍓", "price": "54,000", "unit": "1.2Kg(30g×40ea)", "page_key": "AW_9", "page_num": 9, "page_brand": "AW", "candidates": []}, {"pid": 231, "name": "아워밀 미니비스켓슈(플레인) 520g", "brand": "아워밀", "emoji": "🍮", "price": "19,360", "unit": "520g(26g×20ea)", "page_key": "AW_9", "page_num": 9, "page_brand": "AW", "candidates": []}, {"pid": 232, "name": "아워밀 미니비스켓슈(초코) 520g", "brand": "아워밀", "emoji": "🍫", "price": "19,800", "unit": "520g(26g×20ea)", "page_key": "AW_9", "page_num": 9, "page_brand": "AW", "candidates": []}, {"pid": 233, "name": "아워밀 홍게그라탕 단품 1.4Kg", "brand": "아워밀", "emoji": "🦀", "price": "48,400", "unit": "1.4Kg(70g×20ea)", "page_key": "AW_10", "page_num": 10, "page_brand": "AW", "candidates": []}, {"pid": 234, "name": "아워밀 홍게그라탕 치즈세트 1.6Kg", "brand": "아워밀", "emoji": "🦀", "price": "52,400", "unit": "1.6Kg(80g×20ea)", "page_key": "AW_10", "page_num": 10, "page_brand": "AW", "candidates": []}, {"pid": 235, "name": "아워밀 독도홍게 레그 400g", "brand": "아워밀", "emoji": "🦀", "price": "32,000", "unit": "400g(7~10g×40ea)", "page_key": "AW_10", "page_num": 10, "page_brand": "AW", "candidates": []}, {"pid": 236, "name": "아워밀 칼슘플러스 한돈 츠쿠네 500g", "brand": "아워밀", "emoji": "🍢", "price": "14,000", "unit": "500g(50g×10ea)", "page_key": "AW_11", "page_num": 11, "page_brand": "AW", "candidates": []}, {"pid": 237, "name": "아워밀 사랑에 빠진 한우스테이크 900g", "brand": "아워밀", "emoji": "🥩", "price": "24,000", "unit": "900g(45g×20ea)", "page_key": "AW_11", "page_num": 11, "page_brand": "AW", "candidates": []}, {"pid": 238, "name": "아워밀 인절미 크림떡 1Kg", "brand": "아워밀", "emoji": "🍡", "price": "23,200", "unit": "1Kg(25g×40ea)", "page_key": "AW_12", "page_num": 12, "page_brand": "AW", "candidates": []}, {"pid": 239, "name": "아워밀 초코 크림떡 1Kg", "brand": "아워밀", "emoji": "🍫", "price": "22,000", "unit": "1Kg(25g×40ea)", "page_key": "AW_12", "page_num": 12, "page_brand": "AW", "candidates": []}, {"pid": 240, "name": "아워밀 모싯잎 양고 가래떡 1Kg", "brand": "아워밀", "emoji": "🎑", "price": "10,000", "unit": "1Kg(40g×25ea)", "page_key": "AW_12", "page_num": 12, "page_brand": "AW", "candidates": []}, {"pid": 241, "name": "아워밀 흰 양고 가래떡 1Kg", "brand": "아워밀", "emoji": "🎑", "price": "10,000", "unit": "1Kg(40g×25ea)", "page_key": "AW_12", "page_num": 12, "page_brand": "AW", "candidates": []}, {"pid": 242, "name": "아워밀 한입쏙 인절미 1Kg", "brand": "아워밀", "emoji": "🍡", "price": "15,500", "unit": "1Kg(8g×125ea)", "page_key": "AW_12", "page_num": 12, "page_brand": "AW", "candidates": []}, {"pid": 243, "name": "아워밀 지코바st 양념치킨 안심살 (무항생제1등급)", "brand": "아워밀", "emoji": "🍗", "price": "15,040", "unit": "1Kg", "page_key": "AW_19", "page_num": 19, "page_brand": "AW", "candidates": []}, {"pid": 244, "name": "아워밀 지코바st 양념치킨 절단육 (무항생제1등급)", "brand": "아워밀", "emoji": "🍗", "price": "13,940", "unit": "1Kg(30조각기준)", "page_key": "AW_19", "page_num": 19, "page_brand": "AW", "candidates": []}, {"pid": 245, "name": "아워밀 지코바st 양념치킨 안심살+다리살 (무항생제1등급)", "brand": "아워밀", "emoji": "🍗", "price": "23,950", "unit": "1Kg", "page_key": "AW_19", "page_num": 19, "page_brand": "AW", "candidates": []}, {"pid": 246, "name": "홍만당 쫀득 버터떡 오리지널 1.05Kg", "brand": "아워밀", "emoji": "🧈", "price": "49,000", "unit": "1.05Kg(21g×50ea)", "page_key": "AW_20", "page_num": 20, "page_brand": "AW", "candidates": []}, {"pid": 247, "name": "홍만당 쫀득 버터떡 초코 1.05Kg", "brand": "아워밀", "emoji": "🍫", "price": "49,000", "unit": "1.05Kg(21g×50ea)", "page_key": "AW_20", "page_num": 20, "page_brand": "AW", "candidates": []}, {"pid": 248, "name": "아워밀 먹킨_딸기 750g", "brand": "아워밀", "emoji": "🍓", "price": "27,000", "unit": "750g(15g×50ea)", "page_key": "AW_17", "page_num": 17, "page_brand": "AW", "candidates": []}, {"pid": 249, "name": "아워밀 먹킨_바바리안 750g", "brand": "아워밀", "emoji": "🍮", "price": "27,000", "unit": "750g(15g×50ea)", "page_key": "AW_17", "page_num": 17, "page_brand": "AW", "candidates": []}, {"pid": 250, "name": "알룰로스 달콤 페스츄리 600g", "brand": "아워밀", "emoji": "🥐", "price": "22,000", "unit": "600g(30g×20ea)", "page_key": "AW_17", "page_num": 17, "page_brand": "AW", "candidates": []}, {"pid": 251, "name": "아워밀 페스츄리봉어빵_팥 360g", "brand": "아워밀", "emoji": "🐟", "price": "9,540", "unit": "360g(60g×6ea)", "page_key": "AW_18", "page_num": 18, "page_brand": "AW", "candidates": []}, {"pid": 252, "name": "아워밀 페스츄리봉어빵_치즈 360g", "brand": "아워밀", "emoji": "🧀", "price": "9,720", "unit": "360g(60g×6ea)", "page_key": "AW_18", "page_num": 18, "page_brand": "AW", "candidates": []}, {"pid": 253, "name": "아워밀 커스터드 크림 미니 츄러스 1Kg", "brand": "아워밀", "emoji": "🥐", "price": "20,160", "unit": "1Kg(17g×59ea)", "page_key": "AW_15", "page_num": 15, "page_brand": "AW", "candidates": []}, {"pid": 254, "name": "아워밀 소시지 미니츄러스 1Kg", "brand": "아워밀", "emoji": "🌭", "price": "26,880", "unit": "1Kg(18g×56ea)", "page_key": "AW_15", "page_num": 15, "page_brand": "AW", "candidates": []}, {"pid": 255, "name": "아워밀 국산 프리미엄 미숫가루 1Kg", "brand": "아워밀", "emoji": "🥛", "price": "14,500", "unit": "1Kg(벌크)", "page_key": "AW_15", "page_num": 15, "page_brand": "AW", "candidates": []}, {"pid": 256, "name": "아워밀 돼지갈비맛 후라이드 1Kg", "brand": "아워밀", "emoji": "🍖", "price": "15,000", "unit": "1Kg(34g×29ea)", "page_key": "AW_15", "page_num": 15, "page_brand": "AW", "candidates": []}, {"pid": 257, "name": "마시는 설빙 초코 브라우니 4.56Kg", "brand": "설빙", "emoji": "🍫", "price": "26,400", "unit": "4.56Kg(190ml×24ea)", "page_key": "AW_15", "page_num": 15, "page_brand": "AW", "candidates": []}];
+const BRAND_DIR = {"AW": "images/아워밀(설빙)/아워밀 6~8월 행사지all/", "NY": "images/냠냐미/(수도권&경기)26년5~6월냠냐미POP_compressed (1)/", "AS": "images/안심찬/안심찬 26년 6월 신제품 및 추가홍보POP(수도권)/", "OB": "images/올바른/올바른 26년도 6월 홍보지 출력용_compressed/"};
+
+let choices = JSON.parse(localStorage.getItem('match_choices') || '{}'); // {pid: 'cand_filename' | 'skip'}
+let mode = 'all';
+
+function save() { localStorage.setItem('match_choices', JSON.stringify(choices)); }
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+  render();
+}
+
+function render() {
+  const root = document.getElementById('rows');
+  let list = DATA.slice();
+  if (mode === 'todo') list = list.filter(d => !choices[d.pid]);
+  else if (mode === 'done') list = list.filter(d => choices[d.pid] && choices[d.pid] !== 'skip');
+  else if (mode === 'nocand') list = list.filter(d => d.candidates.length === 0);
+  
+  root.innerHTML = '';
+  list.forEach(d => {
+    const choice = choices[d.pid];
+    const row = document.createElement('div');
+    row.className = 'row' + (choice === 'skip' ? ' skipped' : choice ? ' matched' : '');
+    
+    const pageHref = BRAND_DIR[d.page_brand] + 'page_' + String(d.page_num).padStart(2,'0') + '.jpg';
+    
+    // 왼쪽: 제품 정보 + 선택된 사진 미리보기
+    let preview;
+    if (choice && choice !== 'skip') {
+      preview = `<div class="selected-preview"><img src="candidates/${choice}" alt=""></div>`;
+    } else if (choice === 'skip') {
+      preview = `<div class="placeholder" style="background:#cbd5e1;color:#fff;font-size:14px;font-weight:600;">사진 없음</div>`;
+    } else {
+      preview = `<div class="placeholder">${d.emoji}</div>`;
+    }
+    
+    let candHtml;
+    if (d.candidates.length === 0) {
+      candHtml = `<div class="no-cand">이 페이지엔 사진 후보가 없어요. <a href="${pageHref}" target="_blank" class="page-link">페이지 직접 보기 →</a></div>`;
+    } else {
+      candHtml = d.candidates.map((c, i) =>
+        `<div class="cand ${choice === c.file ? 'selected' : ''}" data-pid="${d.pid}" data-file="${c.file}">
+          <img src="candidates/${c.file}" alt="">
+          <div class="label">#${i+1} (${c.w}×${c.h})</div>
+        </div>`
+      ).join('');
+    }
+    
+    row.innerHTML = `
+      <div class="product-info">
+        <div class="pid">#${d.pid}</div>
+        <div class="pname">${d.name}</div>
+        <div class="brand">${d.brand}</div>
+        <div class="meta">${d.price}원 / ${d.unit}</div>
+        <div class="meta">📄 page_${String(d.page_num).padStart(2,'0')} <a href="${pageHref}" target="_blank" class="page-link">페이지 보기 →</a></div>
+        ${preview}
+      </div>
+      <div class="candidates">${candHtml}</div>
+      <button class="skip-btn ${choice === 'skip' ? 'active' : ''}" data-pid="${d.pid}">사진 없음</button>
+    `;
+    
+    row.querySelectorAll('.cand').forEach(el => {
+      el.onclick = () => {
+        const pid = +el.dataset.pid;
+        const file = el.dataset.file;
+        if (choices[pid] === file) delete choices[pid]; // 다시 클릭하면 해제
+        else choices[pid] = file;
+        save(); render(); updateBar();
+      };
+    });
+    row.querySelector('.skip-btn').onclick = () => {
+      const pid = d.pid;
+      if (choices[pid] === 'skip') delete choices[pid];
+      else choices[pid] = 'skip';
+      save(); render(); updateBar();
+    };
+    
+    root.appendChild(row);
+  });
+}
+
+function updateBar() {
+  const done = Object.entries(choices).filter(([k,v]) => v && v !== 'skip').length;
+  const skip = Object.values(choices).filter(v => v === 'skip').length;
+  const todo = DATA.length - done - skip;
+  document.getElementById('done-count').textContent = done;
+  document.getElementById('todo-count').textContent = todo;
+  document.getElementById('stats').innerHTML =
+    `매칭 필요 <span>${DATA.length}</span>개 · 매칭됨 <span>${done}</span> · 사진없음 표시 <span>${skip}</span> · 미처리 <span>${todo}</span>`;
+}
+
+function copyResult() {
+  const out = {};
+  for (const [pid, val] of Object.entries(choices)) {
+    if (val !== 'skip') out[pid] = val;
+  }
+  const txt = JSON.stringify(out, null, 2);
+  navigator.clipboard.writeText(txt).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1800);
+  }).catch(() => {
+    alert('복사 안 됐어요. 아래 텍스트를 직접 복사해주세요:\n\n' + txt);
+  });
+  console.log('매칭 결과:', txt);
+}
+
+render();
+updateBar();
+</script>
+</body></html>
