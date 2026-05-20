@@ -132,7 +132,10 @@
     .product-name { font-size: 13px; font-weight: 600; color: #1a1a1a; line-height: 1.4; }
     .product-brand { font-size: 11px; color: #aaa; margin-top: 3px; }
     .product-price { font-size: 14px; font-weight: 700; color: #D85A30; margin-top: 7px; }
+    .product-kgprice { font-size: 11px; color: #888; font-weight: 600; margin-top: 2px; }
+    .product-kgprice b { color: #D85A30; font-weight: 700; }
     .product-unit { font-size: 11px; color: #aaa; font-weight: 400; }
+    .product-unit-info { font-size: 11px; color: #aaa; margin-top: 3px; line-height: 1.4; }
     .product-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 7px; }
     .ptag { font-size: 10px; padding: 2px 7px; border-radius: 6px; font-weight: 500; }
     .empty { grid-column: 1/-1; text-align: center; padding: 3rem; color: #bbb; font-size: 15px; }
@@ -916,6 +919,48 @@ let currentSort = 'default';
 
 function parsePrice(str) {
   return parseInt((str || '0').replace(/,/g, ''), 10);
+}
+
+// unit 문자열에서 kg당 단가 추출
+function extractKgPrice(unit, price) {
+  if (!unit) return null;
+  // "kg당 7,065" / "kg 7,065" / "kg단가 7,065" 패턴
+  let m = unit.match(/kg\s*(?:당|단가)?\s*([\d,]+)\s*(?:원)?/i);
+  if (m) return m[1];
+  // unit에 "kg" 자체가 단위로 들어가있고 (예: "1kg", "2kg") kg단가 별도 없음
+  // 이 경우 봉단가/kg = kg단가 가능 (1kg면 동일)
+  const m2 = unit.match(/^([\d.]+)\s*(?:k|K)g/);
+  if (m2) {
+    const kg = parseFloat(m2[1]);
+    if (kg > 0 && price) {
+      const p = parsePrice(price);
+      if (p > 0) return Math.round(p / kg).toLocaleString();
+    }
+  }
+  // 그램 단위 (예: 500g, 800g)
+  const m3 = unit.match(/^([\d,]+)\s*g/i);
+  if (m3) {
+    const g = parseInt(m3[1].replace(/,/g, ''), 10);
+    if (g > 0 && price) {
+      const p = parsePrice(price);
+      if (p > 0) return Math.round(p * 1000 / g).toLocaleString();
+    }
+  }
+  return null;
+}
+
+// unit 문자열에서 "kg당 X" 같은 단가 정보 제거하여 깔끔하게
+function cleanUnit(unit) {
+  if (!unit) return '';
+  return unit
+    .replace(/,?\s*kg\s*(?:당|단가)?\s*[\d,]+\s*(?:원)?/gi, '')
+    .replace(/,?\s*봉\s*[\d,]+\s*(?:원)?/gi, '')
+    .replace(/,?\s*\d+%\s*할인/g, '')
+    .replace(/\s*\(\s*\)\s*/g, '')
+    .replace(/,\s*,/g, ',')
+    .replace(/\(\s*,/g, '(')
+    .replace(/,\s*\)/g, ')')
+    .trim().replace(/^,|,$/g, '').trim();
 }
 
 function doSearch(kw) {
