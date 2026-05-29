@@ -1408,7 +1408,9 @@ function renderResults() {
       <div class="product-img" style="background:${p.color}22">
         ${hasPhoto
           ? `<img class="product-photo" src="products_clean/${p.id}.jpg" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<span class=\\'product-img-inner\\'>${p.emoji}</span>'">`
-          : `<span class="product-img-inner">${p.emoji}</span>`}
+          : hasImg
+            ? `<img class="product-photo" src="${imgPath}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<span class=\\'product-img-inner\\'>${p.emoji}</span>'">`
+            : `<span class="product-img-inner">${p.emoji}</span>`}
         <span class="brand-badge" style="background:${p.color};color:${p.tcolor}">${p.brand}</span>
         ${p.isNew ? '<span class="new-badge">NEW</span>' : ''}
         ${p.isSale && !p.isNew ? '<span class="sale-badge">SALE</span>' : ''}
