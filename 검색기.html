@@ -195,6 +195,58 @@
     .has-img { cursor: pointer; }
     .has-img:hover { border-color: #D85A30; box-shadow: 0 2px 14px rgba(216,90,48,0.18); }
     .has-img:hover .view-img-hint { opacity: 1; }
+
+    /* ── 담당자 문의 버튼 ── */
+    .contact-btn {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      width: 100%; margin-top: 9px; padding: 8px;
+      border: 1.5px solid #e0e0e0; border-radius: 9px;
+      background: #fafafa; font-size: 12px; font-weight: 600; color: #555;
+      cursor: pointer; transition: background 0.15s, border-color 0.15s;
+    }
+    .contact-btn:hover { background: #fff3ef; border-color: #D85A30; color: #D85A30; }
+
+    /* ── 담당자 팝업 ── */
+    .contact-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.65); z-index: 1100;
+      align-items: center; justify-content: center;
+    }
+    .contact-overlay.active { display: flex; }
+    .contact-popup {
+      background: #fff; border-radius: 22px;
+      padding: 30px 26px 26px; width: 290px;
+      text-align: center; position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    .contact-close {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none; font-size: 20px;
+      cursor: pointer; color: #aaa; line-height: 1;
+    }
+    .contact-close:hover { color: #555; }
+    .contact-photo-wrap {
+      width: 90px; height: 90px; border-radius: 50%;
+      margin: 0 auto 14px; overflow: hidden;
+      background: #f0f0f0;
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid #f5e8e3;
+    }
+    .contact-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .contact-photo-placeholder { font-size: 40px; line-height: 1; }
+    .contact-name { font-size: 21px; font-weight: 800; color: #1a1a1a; margin-bottom: 3px; }
+    .contact-role { font-size: 12px; color: #999; margin-bottom: 18px; }
+    .contact-tel {
+      font-size: 19px; font-weight: 700; color: #333;
+      letter-spacing: 0.5px; margin-bottom: 18px;
+    }
+    .call-btn {
+      display: block; width: 100%; padding: 14px;
+      background: #D85A30; color: #fff; border: none; border-radius: 12px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .call-btn:hover { background: #c04e28; }
   </style>
 </head>
 <body>
@@ -1423,6 +1475,7 @@ function renderResults() {
         <div class="product-tags">
           ${p.tags.map(t => `<span class="ptag" style="background:${p.color};color:${p.tcolor}">${t}</span>`).join('')}
         </div>
+        ${CONTACTS[p.brand] ? `<button class="contact-btn" onclick="event.stopPropagation();showContact('${p.brand}')">📞 담당자 문의</button>` : ''}
       </div>`;
     return card;
   }).forEach(el => grid.appendChild(el));
@@ -1912,8 +1965,55 @@ function closeImgPopup(e) {
   document.body.style.overflow = '';
 }
 
+// ── 담당자 연락처 ──────────────────────────────────────────────────
+const CONTACTS = {
+  '올바른':        { name: '이영덕', tel: '010-8827-3316', photo: null },
+  '아워밀(설빙)':  { name: '이영덕', tel: '010-8827-3316', photo: null },
+  '안심찬':        { name: '이영덕', tel: '010-8827-3316', photo: null },
+  '냠냐미':        { name: '이영덕', tel: '010-8827-3316', photo: null },
+  '맛샘':          { name: '김효경', tel: '010-8603-1973', photo: null },
+  '면사랑':        { name: '김효경', tel: '010-8603-1973', photo: null },
+  '세미원':        { name: '김효경', tel: '010-8603-1973', photo: null },
+  '슬로우메이드':  { name: '김효경', tel: '010-8603-1973', photo: null },
+  '식탁요정':      { name: '김효경', tel: '010-8603-1973', photo: null },
+  '웅진 어니스트': { name: '김효경', tel: '010-8603-1973', photo: null },
+  '착한치킨':      { name: '김효경', tel: '010-8603-1973', photo: null },
+  '푸드쿠키':      { name: '김효경', tel: '010-8603-1973', photo: null },
+  '단비':          { name: '남연정', tel: '010-5651-2740', photo: null },
+  '비락':          { name: '남연정', tel: '010-5651-2740', photo: null },
+  '자담선':        { name: '남연정', tel: '010-5651-2740', photo: null },
+  '코주부':        { name: '남연정', tel: '010-5651-2740', photo: null },
+  '푸르나이':      { name: '남연정', tel: '010-5651-2740', photo: null },
+};
+
+function showContact(brand) {
+  const c = CONTACTS[brand];
+  if (!c) return;
+  const photoHtml = c.photo
+    ? `<img src="${c.photo}" alt="${c.name}">`
+    : `<span class="contact-photo-placeholder">👤</span>`;
+  document.getElementById('contact-photo-wrap').innerHTML = photoHtml;
+  document.getElementById('contact-name').textContent = c.name;
+  document.getElementById('contact-role').textContent = brand + ' 담당';
+  document.getElementById('contact-tel').textContent = c.tel;
+  document.getElementById('contact-call-btn').href = 'tel:' + c.tel.replace(/-/g, '');
+  document.getElementById('contact-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContactPopup(e) {
+  const overlay = document.getElementById('contact-overlay');
+  if (e && e.target !== overlay && !e.target.classList.contains('contact-close')) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { document.getElementById('img-overlay').classList.remove('active'); document.body.style.overflow=''; }
+  if (e.key === 'Escape') {
+    document.getElementById('img-overlay').classList.remove('active');
+    document.getElementById('contact-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
 });
 
 document.getElementById('main-search-btn').onclick = () => doSearch();
@@ -1935,6 +2035,20 @@ document.getElementById('header-input').addEventListener('keydown', e => {
   }
 });
 </script>
+
+<!-- 담당자 팝업 오버레이 -->
+<div class="contact-overlay" id="contact-overlay" onclick="closeContactPopup(event)">
+  <div class="contact-popup">
+    <button class="contact-close" onclick="closeContactPopup(event)">✕</button>
+    <div class="contact-photo-wrap" id="contact-photo-wrap">
+      <span class="contact-photo-placeholder">👤</span>
+    </div>
+    <div class="contact-name" id="contact-name"></div>
+    <div class="contact-role" id="contact-role"></div>
+    <div class="contact-tel" id="contact-tel"></div>
+    <a class="call-btn" id="contact-call-btn" href="#">☎️ 전화하기</a>
+  </div>
+</div>
 
 <!-- 이미지 팝업 오버레이 -->
 <div class="img-overlay" id="img-overlay" onclick="closeImgPopup(event)">
