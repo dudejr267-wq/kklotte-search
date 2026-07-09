@@ -256,7 +256,7 @@
     <div class="logo-area">
       <div class="logo-kr">경기롯데 상품 검색</div>
       <div class="logo-main">경기<span>롯데</span></div>
-      <div class="logo-sub">18개 브랜드 · 학교급식 전문 공산품 · 2026년 5~8월</div>
+      <div class="logo-sub">18개 브랜드 · 학교급식 전문 공산품 · 2026년 9~12월</div>
     </div>
     <div class="search-box-wrap">
       <input class="search-input" id="main-input" type="text" placeholder="제품명, 브랜드, 카테고리 검색..." />
@@ -1638,7 +1638,7 @@ function renderResults() {
   );
 
   document.getElementById('result-meta').innerHTML =
-    `<span class="result-keyword">"${kw}"</span> 검색결과 · 총 ${filtered.length}개 제품 (냠냐미·안심찬·올바른·아워밀·설빙 외 2026년 5~8월 기준)`;
+    `<span class="result-keyword">"${kw}"</span> 검색결과 · 총 ${filtered.length}개 제품 (냠냐미·안심찬·올바른·아워밀·설빙 외 2026년 9~12월 기준)`;
 
   const cats = ['전체', ...new Set(filtered.map(p => p.category))];
   document.getElementById('filter-row').innerHTML = cats.map(c =>
