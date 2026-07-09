@@ -1,0 +1,1657 @@
+﻿
+const PRODUCTS = [
+  // ===== 냠냐미 =====
+  { id:1,  name:"남나미 소떡소떡 800g (소시지2+떡2)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍢", price:"12,000", unit:"800g(80g×10ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"소떡 떡 소시지" },
+  { id:2,  name:"남나미 소떡소떡 1Kg (소시지2+떡3)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍢", price:"13,000", unit:"1Kg(100g×10ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"소떡 떡 소시지" },
+  { id:3,  name:"남나미 소떡소떡 1.2Kg (소시지3+떡3)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍢", price:"15,000", unit:"1.2Kg(120g×10ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"소떡 떡 소시지" },
+  { id:4,  name:"맛도리 쏘갈비 떡꼬치 (단품)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍡", price:"9,000", unit:"650g(130g×5ea)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡꼬치 떡 갈비" },
+  { id:5,  name:"맛도리 갈떡꼬치 (단품)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍡", price:"8,300", unit:"650g(130g×5ea)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡꼬치 떡 갈비" },
+  { id:6,  name:"문어닮은 소떡 (10%할인)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🐙", price:"18,000", unit:"1Kg(28g×35ea)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"소떡 떡 문어" },
+  { id:7,  name:"회오리 베이컨떡말이", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🥓", price:"27,000", unit:"1.2Kg(60g×20ea)", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"떡 베이컨 말이" },
+  { id:8,  name:"(비가열)남산통등심돈까스 1.6Kg", brand:"냠냐미", category:"돈까스/함박", emoji:"🍖", price:"24,599", unit:"1.6Kg(80g×20ea)", tags:["베스트"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"돈까스 등심 통등심" },
+  { id:9,  name:"(비가열)남산통등심돈까스 1Kg", brand:"냠냐미", category:"돈까스/함박", emoji:"🍖", price:"14,797", unit:"1Kg(100g×10ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"돈까스 등심 통등심" },
+  { id:10, name:"(비가열)남산통등심돈까스 1.3Kg", brand:"냠냐미", category:"돈까스/함박", emoji:"🍖", price:"20,700", unit:"1.3Kg(130g×10ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"돈까스 등심 통등심" },
+  { id:11, name:"두물머리 연근함박스테이크 1.6Kg", brand:"냠냐미", category:"돈까스/함박", emoji:"🥩", price:"25,400", unit:"1.6Kg(80g×20ea)", tags:["베스트"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"함박 스테이크 연근" },
+  { id:12, name:"맛통통 순살치킨 1Kg (단품)", brand:"냠냐미", category:"치킨/닭강정", emoji:"🍗", price:"12,400", unit:"1Kg(19g×55ea)", tags:["할인10%"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨 순살 닭 튀김" },
+  { id:13, name:"바사삭 통안심 치킨텐더 1Kg", brand:"냠냐미", category:"치킨/닭강정", emoji:"🍗", price:"12,000", unit:"1Kg(50g×19ea)", tags:["할인20%"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨텐더 안심 닭 튀김" },
+  { id:14, name:"대한민국쌀가루 순살치킨닭강정", brand:"냠냐미", category:"치킨/닭강정", emoji:"🍗", price:"15,000", unit:"1Kg(32g×31ea)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"닭강정 치킨 쌀가루" },
+  { id:15, name:"쫄깃 찹쌀 꿔바로우 1Kg", brand:"냠냐미", category:"치킨/닭강정", emoji:"🥘", price:"11,500", unit:"1Kg(18g×56ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"꿔바로우 돼지 찹쌀 튀김" },
+  { id:16, name:"대한민국밀 등심탕수육 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"14,000", unit:"1Kg(12g×80ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 등심 돼지" },
+  { id:17, name:"대한민국찹쌀 등심탕수육 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"14,900", unit:"1Kg(12g×80ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 찹쌀 등심 돼지" },
+  { id:18, name:"대한민국찹쌀 등심꿔바로우 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"15,200", unit:"1Kg(22g×40ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"꿔바로우 등심 찹쌀" },
+  { id:19, name:"남나미쑥쑥 대파탕수육 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"14,300", unit:"1Kg(18g×53ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 대파 돼지" },
+  { id:20, name:"남나미 우리쌀 숙성탕수육 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"15,000", unit:"1Kg(14g×75ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 쌀 돼지" },
+  { id:21, name:"뚸룽지 탕수육 (단품)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"12,700", unit:"1Kg(15g×70ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 돼지" },
+  { id:22, name:"탐라도 통살탕수육 (10%할인)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"10,350", unit:"1Kg(13g×80ea)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 제주 통살 돼지" },
+  { id:23, name:"제주찹쌀탕수육 (10%할인)", brand:"냠냐미", category:"탕수육", emoji:"🥘", price:"11,250", unit:"1Kg(13g×80ea)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"탕수육 제주 찹쌀" },
+  { id:24, name:"남나미 고기잎새만두 (10%할인)", brand:"냠냐미", category:"만두", emoji:"🥟", price:"35,000", unit:"3Kg(24g×125ea)", tags:["할인10%"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"만두 고기 잎새" },
+  { id:25, name:"남나미 갈비잎새만두 (10%할인)", brand:"냠냐미", category:"만두", emoji:"🥟", price:"20,000", unit:"1.6Kg(24g×66ea)", tags:["할인10%"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"만두 갈비 잎새" },
+  { id:26, name:"남나미 감자찐만두 (10%할인)", brand:"냠냐미", category:"만두", emoji:"🥟", price:"12,000", unit:"1.4Kg(30g×50ea)", tags:["할인10%"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"만두 감자 찐만두" },
+  { id:27, name:"중화군만두 (10%할인)", brand:"냠냐미", category:"만두", emoji:"🥟", price:"7,800", unit:"1.4Kg(28g×50ea)", tags:["할인10%"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"만두 군만두 중화" },
+  { id:28, name:"1등급 무항생제 생오리 1Kg", brand:"냠냐미", category:"오리", emoji:"🦆", price:"18,500", unit:"1Kg", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 생오리 무항생제" },
+  { id:29, name:"1등급 무항생제 간장양념오리주물럭", brand:"냠냐미", category:"오리", emoji:"🦆", price:"21,000", unit:"1Kg", tags:["신제품"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 주물럭 간장양념" },
+  { id:30, name:"1등급 무항생제 고추장양념오리주물럭", brand:"냠냐미", category:"오리", emoji:"🦆", price:"21,000", unit:"1Kg", tags:["신제품"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 주물럭 고추장" },
+  { id:31, name:"9無 연잎훈제오리슬라이스", brand:"냠냐미", category:"오리", emoji:"🦆", price:"24,000", unit:"1Kg", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 훈제 슬라이스 연잎" },
+  { id:32, name:"9無 라즈베리훈제오리슬라이스", brand:"냠냐미", category:"오리", emoji:"🦆", price:"24,000", unit:"1Kg", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 훈제 라즈베리 슬라이스" },
+  { id:33, name:"대한민국쌀가루 깐쇼새우 1Kg", brand:"냠냐미", category:"새우/수산", emoji:"🦐", price:"23,400", unit:"1Kg(12g×85ea)", tags:["할인10%"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 깐쇼 쌀가루 튀김" },
+  { id:34, name:"대한민국오곡 대왕깐쇼새우", brand:"냠냐미", category:"새우/수산", emoji:"🦐", price:"27,000", unit:"1Kg(25g×40ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 깐쇼 오곡" },
+  { id:35, name:"브래디드쉬림프 300g", brand:"냠냐미", category:"새우/수산", emoji:"🦐", price:"6,300", unit:"300g(30g×10ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 브래디드 쉬림프 튀김" },
+  { id:36, name:"통살버터플라이새우 250g", brand:"냠냐미", category:"새우/수산", emoji:"🦐", price:"5,400", unit:"250g(25g×10ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 버터플라이 통살" },
+  { id:37, name:"새우에비(새우)카츠 720g", brand:"냠냐미", category:"새우/수산", emoji:"🦐", price:"18,000", unit:"720g(60g×12ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우카츠 에비카츠 튀김" },
+  { id:38, name:"대한민국쌀가루 오징어바 1Kg", brand:"냠냐미", category:"새우/수산", emoji:"🦑", price:"16,200", unit:"1Kg(17g×60ea)", tags:["할인10%"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"오징어바 쌀가루 튀김 수산" },
+  { id:39, name:"하늘바다엔 꼬치어묵 30g×25ea", brand:"냠냐미", category:"새우/수산", emoji:"🐟", price:"11,000", unit:"750g(30g×25ea)", tags:["할인10%"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"어묵 꼬치어묵 수산" },
+  { id:40, name:"해외바다 10종해물모음 800g", brand:"냠냐미", category:"새우/수산", emoji:"🦞", price:"15,000", unit:"800g", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"해물 해물모음 수산 오징어 조개" },
+  { id:41, name:"홍야직화오징어짬뽕탕 5Kg", brand:"냠냐미", category:"새우/수산", emoji:"🦑", price:"49,392", unit:"5Kg(20인분)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"짬뽕 오징어 홍야 탕" },
+  { id:42, name:"슈스트링 막대감자 2Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🍟", price:"13,500", unit:"2Kg(7×7mm)", tags:["할인10%"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"감자 프렌치프라이 슈스트링 튀김" },
+  { id:43, name:"클링클컷 줄무늬감자 2Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🍟", price:"13,000", unit:"2Kg(12×12mm)", tags:["할인10%"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"감자 프렌치프라이 클링클컷 튀김" },
+  { id:44, name:"맛감자 2Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🍟", price:"15,500", unit:"2Kg(8g×220ea)", tags:["할인10%"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"감자 맛감자 튀김" },
+  { id:45, name:"미니하트감자 2Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🍟", price:"17,000", unit:"2Kg(8g×220ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"감자 하트감자 미니 튀김" },
+  { id:46, name:"남나미 소시지 회오리감자 1.1Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🌀", price:"40,000", unit:"1.1Kg(55g×20ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"회오리감자 소시지 감자" },
+  { id:47, name:"회오리감자 600g (단품)", brand:"냠냐미", category:"감자/튀김", emoji:"🌀", price:"13,500", unit:"600g(60g×10ea)", tags:["할인"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"회오리감자 감자 튀김" },
+  { id:48, name:"남나미 매콤 고추튀김 1Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🌶️", price:"13,860", unit:"1Kg(53g×19ea)", tags:["할인10%"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"고추튀김 튀김 매콤" },
+  { id:49, name:"바삭연근튀김 1Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🌿", price:"16,650", unit:"1Kg", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"연근튀김 튀김 연근" },
+  { id:50, name:"남나미 꼬마 찰김말이 1Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🌿", price:"7,650", unit:"1Kg(16g×65ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"김말이 튀김 찰 당면" },
+  { id:51, name:"바삭야채튀김 1.2Kg", brand:"냠냐미", category:"감자/튀김", emoji:"🥕", price:"13,050", unit:"1.2Kg(60g×20ea)", tags:["할인10%"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"야채튀김 야채 채소 튀김" },
+  { id:52, name:"남나미 전통한우사골소고기국밥 세트 3Kg", brand:"냠냐미", category:"국밥/탕", emoji:"🍲", price:"130,000", unit:"3Kg(50인분)", tags:["5월한정","베스트"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"국밥 한우 소고기 사골 탕" },
+  { id:53, name:"한돈부산식 돼지국밥세트 3.4Kg", brand:"냠냐미", category:"국밥/탕", emoji:"🍲", price:"86,400", unit:"3.4Kg(80인분)", tags:["5월한정"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"국밥 돼지 순대 탕" },
+  { id:54, name:"남나미 전통순대국 세트 7.4Kg", brand:"냠냐미", category:"국밥/탕", emoji:"🍲", price:"95,000", unit:"7.4Kg(50인분)", tags:["인기메뉴"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"순대국 국밥 순대 탕" },
+  { id:55, name:"남나미 야채순대국 세트 7.4Kg", brand:"냠냐미", category:"국밥/탕", emoji:"🍲", price:"100,000", unit:"7.4Kg(50인분)", tags:["신제품"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"야채순대국 국밥 야채 순대" },
+  { id:56, name:"(비가열)남나미 맛있는 미트볼 1Kg", brand:"냠냐미", category:"미트볼/갈비", emoji:"🥩", price:"18,900", unit:"1Kg(26g×40ea)", tags:["할인10%"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"미트볼 고기 돼지" },
+  { id:57, name:"육즙담은 떡산적스테이크 2Kg", brand:"냠냐미", category:"미트볼/갈비", emoji:"🥩", price:"16,200", unit:"2Kg(62g×33ea)", tags:["할인10%"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"떡산적 스테이크 고기 떡" },
+  { id:58, name:"갈릭쌀떡갈비 1Kg", brand:"냠냐미", category:"미트볼/갈비", emoji:"🥩", price:"11,700", unit:"1Kg(20g×50ea)", tags:["할인10%"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"떡갈비 갈비 갈릭 쌀" },
+  { id:59, name:"(반죽)정통수제 한돈 生떡갈비 1Kg", brand:"냠냐미", category:"미트볼/갈비", emoji:"🥩", price:"18,000", unit:"1Kg", tags:["신제품","할인10%"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"떡갈비 갈비 한돈 수제" },
+  { id:60, name:"키요미 크로롱 딸기소르베 1.5Kg", brand:"냠냐미", category:"아이스크림/빙수", emoji:"🍦", price:"46,680", unit:"1.5Kg(50g×30ea)", tags:["할인행사"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"아이스크림 소르베 딸기 빙수" },
+  { id:61, name:"팥빙 큐브 1.4Kg", brand:"냠냐미", category:"아이스크림/빙수", emoji:"🍧", price:"47,000", unit:"1.4Kg(70g×20ea)", tags:["할인행사"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"팥빙 빙수 팥 아이스" },
+  { id:62, name:"냉동망고슬라이스 1Kg", brand:"냠냐미", category:"아이스크림/빙수", emoji:"🥭", price:"8,000", unit:"1Kg(40g×25ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"망고 망고슬라이스 냉동 과일" },
+  { id:63, name:"냉동망고스틱바 2Kg", brand:"냠냐미", category:"아이스크림/빙수", emoji:"🥭", price:"28,000", unit:"2Kg(40g×50ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"망고 망고바 냉동 아이스" },
+  { id:64, name:"냉동망고청크(다이스) 1Kg", brand:"냠냐미", category:"아이스크림/빙수", emoji:"🥭", price:"8,000", unit:"1Kg(13g×80ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"망고 다이스 냉동 과일" },
+  { id:65, name:"파인애플 과일 개별컵 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍍", price:"27,500", unit:"1Kg(40g×25ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 파인애플 컵 디저트" },
+  { id:66, name:"사과 과일 개별컵 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍎", price:"34,000", unit:"1Kg(40g×25ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 사과 컵 디저트" },
+  { id:67, name:"포도 과일 개별컵 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍇", price:"35,000", unit:"1Kg(40g×25ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 포도 컵 디저트" },
+  { id:68, name:"멜론 과일 개별컵 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍈", price:"29,000", unit:"1Kg(40g×25ea)", tags:["15%할인","6~10월"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 멜론 컵 디저트" },
+  { id:69, name:"모듬과일컵 (파인+키위+방울토마토) 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍓", price:"30,000", unit:"1Kg(40g×25ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 모듬 컵 디저트 키위 파인애플" },
+  { id:70, name:"골드파인애플조각 벌크 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🍍", price:"20,000", unit:"1Kg(20g×50ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 파인애플 벌크 디저트" },
+  { id:71, name:"그린키위조각 벌크 1Kg", brand:"냠냐미", category:"과일디저트", emoji:"🥝", price:"24,720", unit:"1Kg(40g×25ea)", tags:["15%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"과일 키위 벌크 디저트" },
+  { id:72, name:"두쫀쿠 Dubai Chewy Cookie 600g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍪", price:"43,000", unit:"600g(30g×20ea)", tags:["5월한정","어린이날"], color:"#FFF3E0", tcolor:"#E65100", keywords:"두바이 쿠키 디저트 과자 두쫀쿠" },
+  { id:73, name:"행운팡팡 버터가득수제포춘쿠키 1.3Kg", brand:"Yoon's Cookie", category:"쿠키/디저트", emoji:"🍪", price:"200,000", unit:"1.3Kg(13g×100ea)", tags:["어린이날"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"쿠키 포춘쿠키 버터 어린이날" },
+  { id:74, name:"성북당 미니십원빵 슈크림맛 1.35Kg", brand:"성북당", category:"쿠키/디저트", emoji:"🫓", price:"42,000", unit:"1.35Kg(45g×30ea)", tags:["15%할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"십원빵 성북당 슈크림 빵" },
+  { id:75, name:"성북당 미니십원빵 팥맛 1.35Kg", brand:"성북당", category:"쿠키/디저트", emoji:"🫓", price:"42,000", unit:"1.35Kg(45g×30ea)", tags:["15%할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"십원빵 성북당 팥 빵" },
+  { id:76, name:"성북당 미니십원빵 모짜치즈맛 1.35Kg", brand:"성북당", category:"쿠키/디저트", emoji:"🫓", price:"54,000", unit:"1.35Kg(45g×30ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"십원빵 성북당 모짜렐라 치즈 빵" },
+  { id:77, name:"(특가) 돼지핑크마카롱 990g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍬", price:"49,500", unit:"990g(33g×30ea)", tags:["베스트","인기"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"마카롱 디저트 핑크" },
+  { id:78, name:"(특가) 레드벨벳마카롱 990g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍬", price:"40,500", unit:"990g(33g×30ea)", tags:["베스트","한정수량"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"마카롱 디저트 레드벨벳" },
+  { id:79, name:"남나미 유과쿠키크런처 600g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍘", price:"26,000", unit:"600g(12g×50ea)", tags:["개별포장"], color:"#FFF3E0", tcolor:"#E65100", keywords:"유과 쿠키 한과 크런처 디저트" },
+  { id:80, name:"남나미 초코유과크런처 600g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍫", price:"26,000", unit:"600g(12g×50ea)", tags:["개별포장"], color:"#FFF3E0", tcolor:"#E65100", keywords:"초코유과 쿠키 한과 초코 디저트" },
+  { id:81, name:"남나미 유기농 느린식혜 4Kg", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍶", price:"26,000", unit:"4Kg(100ml×40ea)", tags:["유기농"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"식혜 음료 유기농 한과" },
+  { id:82, name:"남나미 맛단 서종호박약과 1.5Kg", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍡", price:"40,600", unit:"1.5Kg(15g×100ea)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"약과 호박 디저트 한과" },
+  { id:83, name:"남나미 맛단 서종브라우니약과 1.5Kg", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍡", price:"40,600", unit:"1.5Kg(15g×100ea)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"약과 브라우니 디저트 한과" },
+  { id:84, name:"삼색샌드위치 1.92Kg", brand:"냠냐미", category:"쿠키/디저트", emoji:"🥪", price:"50,400", unit:"1.92Kg(80g×24ea)", tags:["신제품","10일전예약"], isNew:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"샌드위치 빵 디저트" },
+  { id:85, name:"트리플베리샌드 1.68Kg", brand:"냠냐미", category:"쿠키/디저트", emoji:"🥪", price:"50,400", unit:"1.68Kg(70g×24ea)", tags:["신제품","10일전예약"], isNew:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"샌드위치 베리 빵 디저트" },
+  { id:86, name:"딸기로쉐밀크볼 140g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍓", price:"7,000", unit:"140g(7g×20ea)", tags:["신제품","개별포장"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"밀크볼 딸기 디저트 과자" },
+  { id:87, name:"감귤로쉐밀크볼 140g", brand:"냠냐미", category:"쿠키/디저트", emoji:"🍊", price:"7,000", unit:"140g(7g×20ea)", tags:["신제품","개별포장"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"밀크볼 감귤 디저트 과자" },
+  { id:88, name:"(냉동,생지) 우리쌀링츄러스 1Kg", brand:"냠냐미", category:"츄러스/핫도그", emoji:"🥐", price:"14,500", unit:"1Kg(25g×40ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"츄러스 쌀 간식 디저트" },
+  { id:89, name:"(냉동,유탕) 찰츄러스 1Kg", brand:"냠냐미", category:"츄러스/핫도그", emoji:"🥐", price:"18,000", unit:"1Kg(11g×90ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"츄러스 찰 간식 디저트" },
+  { id:90, name:"(냉동) 우리쌀도깨비핫도그 500g", brand:"냠냐미", category:"츄러스/핫도그", emoji:"🌭", price:"9,700", unit:"500g(50g×10ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"핫도그 소시지 쌀 간식" },
+  { id:91, name:"(냉동,생지) 모짜쫀득치즈볼 1Kg", brand:"냠냐미", category:"츄러스/핫도그", emoji:"🧀", price:"16,500", unit:"1Kg(31g×33ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"치즈볼 모짜렐라 간식 디저트" },
+  { id:92, name:"퓨어포커스 브레인 집중에너지 5.76Kg", brand:"냠냐미", category:"음료", emoji:"🥤", price:"36,000", unit:"5.76Kg(240ml×24ea)", tags:["8살이상"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"음료 집중 에너지 드링크 퓨어포커스" },
+
+  // ===== 안심찬 =====
+  { id:93,  name:"초코티라미슈케이크 1.12Kg", brand:"안심찬", category:"케이크", emoji:"🎂", price:"44,100", unit:"1.12Kg(32g×35ea)", tags:["10%할인","월드컵"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"케이크 초코 티라미슈 디저트" },
+  { id:94,  name:"당근케이크 1.05Kg", brand:"안심찬", category:"케이크", emoji:"🥕", price:"35,712", unit:"1.05Kg(35g×30ea)", tags:["10%할인","월드컵"], isSale:true, color:"#E65100", tcolor:"#FFF3E0", keywords:"케이크 당근 디저트" },
+  { id:95,  name:"바질순살가자미까스 1.2Kg (60g×20ea)", brand:"안심찬", category:"생선/수산", emoji:"🐟", price:"28,800", unit:"1.2Kg(60g×20ea)", tags:["10%할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"가자미 까스 생선 수산 튀김 바질" },
+  { id:96,  name:"바질순살가자미까스 1.2Kg (80g×15ea)", brand:"안심찬", category:"생선/수산", emoji:"🐟", price:"28,800", unit:"1.2Kg(80g×15ea)", tags:["10%할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"가자미 까스 생선 수산 튀김 바질" },
+  { id:97,  name:"원조소떡소떡 SET 1.2Kg", brand:"안심찬", category:"소떡/떡꼬치", emoji:"🍢", price:"12,300", unit:"1.2Kg(120g×10ea)", tags:["시크릿소스포함"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"소떡 떡 소시지 원조" },
+  { id:98,  name:"깻잎솜솜 고기완자전 0.98Kg", brand:"안심찬", category:"완자/전", emoji:"🥩", price:"12,775", unit:"0.98Kg(28g×35ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"완자전 고기완자 깻잎 전 돼지" },
+  { id:99,  name:"맛쇼킹 순살치킨 1Kg", brand:"안심찬", category:"치킨/닭강정", emoji:"🍗", price:"18,860", unit:"1Kg(22g×46ea)", tags:["강정소스포함"], color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨 순살 맛쇼킹 강정 파닭" },
+  { id:100, name:"맛쇼킹 꿔바로우강정 1Kg", brand:"안심찬", category:"탕수육", emoji:"🥘", price:"19,000", unit:"1Kg(20g×50ea)", tags:["강정소스포함"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"꿔바로우 강정 탕수육 맛쇼킹 돼지" },
+  { id:101, name:"맛쇼킹 우리쌀깐쇼새우 1Kg", brand:"안심찬", category:"새우/수산", emoji:"🦐", price:"28,500", unit:"1Kg(11g×90ea)", tags:["강정소스포함"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 깐쇼새우 쌀 맛쇼킹 강정" },
+  { id:102, name:"맛쇼킹 깐쇼새우 1Kg", brand:"안심찬", category:"새우/수산", emoji:"🦐", price:"27,000", unit:"1Kg(11g×90ea)", tags:["강정소스포함"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 깐쇼새우 맛쇼킹 강정" },
+  { id:103, name:"델리큐브치즈 인 스노우 파닭순살치킨 SET", brand:"안심찬", category:"치킨/닭강정", emoji:"🧀", price:"226,800", unit:"12.72Kg(100인분)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨 파닭 델리큐브 치즈 순살 스노우" },
+
+  // ===== 돌코리아 =====
+  { id:104, name:"Dole 하이애플/하이머스캣 2.88L", brand:"돌코리아", category:"음료", emoji:"🧃", price:"18,000", unit:"2.88L(120ml×24ea)", tags:["리뉴얼"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"음료 주스 돌 dole 사과 머스캣 포도" },
+  { id:105, name:"Dole 하이피치 3.84L", brand:"돌코리아", category:"음료", emoji:"🧃", price:"24,000", unit:"3.84L(120ml×32ea)", tags:["리뉴얼"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"음료 주스 돌 dole 복숭아 피치" },
+  { id:106, name:"Dole 파라다이스 3종 3.84L", brand:"돌코리아", category:"음료", emoji:"🧃", price:"27,840", unit:"3.84L(120ml×32ea)", tags:["피치/블러드오렌지/머스캣"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"음료 주스 돌 dole 파라다이스 오렌지 머스캣" },
+  { id:107, name:"Dole 주스 3종 3.84L (망고/포도/파인애플)", brand:"돌코리아", category:"음료", emoji:"🧃", price:"27,520", unit:"3.84L(120ml×32ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"음료 주스 돌 dole 망고 포도 파인애플" },
+  { id:108, name:"Dole POP 3종 4.96L (피치/파인애플/망고)", brand:"돌코리아", category:"음료", emoji:"🧊", price:"52,000", unit:"4.96L(62ml×80ea)", tags:["리뉴얼"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"돌팝 아이스팝 dole 복숭아 망고 파인애플 음료" },
+  { id:109, name:"Dole 후룻볼 2종 2.712Kg (복숭아/트로피칼)", brand:"돌코리아", category:"음료", emoji:"🍑", price:"36,000", unit:"2.712Kg(113g×24ea)", tags:["10%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"후룻볼 과일컵 돌 dole 복숭아 트로피칼" },
+
+  // ===== 파스튀르 =====
+  { id:110, name:"파스튀르 바른목장 요구르트 3L (플레인/사과당근)", brand:"파스튀르", category:"유제품/요구르트", emoji:"🥛", price:"26,400", unit:"3L(100ml×30ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"요구르트 유제품 파스튀르 바른목장 플레인 사과" },
+  { id:111, name:"파스튀르 장액티브 4.64L (사과/샤인머스캣)", brand:"파스튀르", category:"유제품/요구르트", emoji:"🥛", price:"16,320", unit:"4.64L(145ml×32ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"요구르트 유제품 파스튀르 장액티브 샤인머스캣" },
+
+  // ===== 동서식품 =====
+  { id:112, name:"포스트 오레오 오즈 500g", brand:"동서식품", category:"시리얼/간식", emoji:"🥣", price:"18,427", unit:"500g", tags:["지퍼백"], color:"#3E2723", tcolor:"#D7CCC8", keywords:"시리얼 오레오 오즈 동서 포스트 아침" },
+  { id:113, name:"포스트 콘후레이크 500g", brand:"동서식품", category:"시리얼/간식", emoji:"🥣", price:"10,129", unit:"500g", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"시리얼 콘후레이크 동서 포스트 아침 옥수수" },
+  { id:114, name:"포스트 아몬드 후레이크 1Kg", brand:"동서식품", category:"시리얼/간식", emoji:"🥣", price:"25,170", unit:"1Kg", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"시리얼 아몬드 후레이크 동서 포스트 아침" },
+  { id:115, name:"포스트 오곡 코코볼 1Kg", brand:"동서식품", category:"시리얼/간식", emoji:"🥣", price:"21,212", unit:"1Kg", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"시리얼 코코볼 오곡 동서 포스트 초코" },
+  { id:116, name:"포스트 콘푸라이트 1.1Kg", brand:"동서식품", category:"시리얼/간식", emoji:"🥣", price:"20,283", unit:"1.1Kg", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"시리얼 콘푸라이트 동서 포스트 아침 옥수수" },
+  { id:117, name:"델리큐브 치즈 (판) 1.22Kg", brand:"안심찬", category:"유제품/요구르트", emoji:"🧀", price:"54,568", unit:"1.22Kg(3.76g×324ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"치즈 델리큐브 크림치즈 유제품" },
+
+  // ===== 올바른 =====
+  { id:118, name:"강릉 쫀득 시리즈 (밤/고구마/감자) 1.25Kg", brand:"올바른", category:"떡/한과", emoji:"🍠", price:"42,240", unit:"1.25Kg(50g×25ea)", tags:["호국보훈"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"떡 강릉 쫀득 밤 고구마 감자 간식" },
+  { id:119, name:"K-말차 크림 쿠키슈 600g", brand:"올바른", category:"쿠키/디저트", emoji:"🍵", price:"19,950", unit:"600g(30g×20ea)", tags:["신제품","2주전발주"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"말차 크림슈 쿠키슈 디저트" },
+  { id:120, name:"상하이 왕홍밤 버터떡 750g", brand:"올바른", category:"떡/한과", emoji:"🍮", price:"26,780", unit:"750g(30g×25ea)", tags:["신제품","2주전발주"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"버터떡 밤 떡 디저트 왕홍" },
+  { id:121, name:"굳지않는 납작절편 1Kg", brand:"올바른", category:"떡/한과", emoji:"🎑", price:"12,350", unit:"1Kg(28~32g×30~34ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"절편 떡 한과" },
+  { id:122, name:"오색 반달떡 1Kg", brand:"올바른", category:"떡/한과", emoji:"🎑", price:"12,350", unit:"1Kg(28~32g×31~33ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"반달떡 떡 한과 오색" },
+  { id:123, name:"사색 구슬사탕떡 1Kg", brand:"올바른", category:"떡/한과", emoji:"🍡", price:"12,140", unit:"1Kg(16~18g×55~58ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"구슬떡 사탕떡 떡 한과" },
+  { id:124, name:"삼색 방울꿀떡 1Kg", brand:"올바른", category:"떡/한과", emoji:"🍡", price:"11,980", unit:"1Kg(16~18g×55~58ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"꿀떡 방울떡 떡 한과" },
+  { id:125, name:"제주 팥오메기떡 500g", brand:"올바른", category:"떡/한과", emoji:"🎑", price:"13,860", unit:"500g(50g×10ea)", tags:["개별포장"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오메기떡 제주 팥 떡" },
+  { id:126, name:"딸기 과일찹쌀떡 (통) 40g", brand:"올바른", category:"떡/한과", emoji:"🍓", price:"2,660", unit:"40g×1ea", tags:["2주전발주"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"딸기 찹쌀떡 떡 과일" },
+  { id:127, name:"통째로 딸기모찌 70g", brand:"올바른", category:"떡/한과", emoji:"🍓", price:"2,510", unit:"70g×1ea", tags:["2주전발주"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"딸기모찌 떡 모찌 딸기" },
+  { id:128, name:"달달 홍시 찹쌀떡 100g", brand:"올바른", category:"떡/한과", emoji:"🟠", price:"4,180", unit:"100g×1ea", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"홍시 찹쌀떡 떡 홍시" },
+  { id:129, name:"깨먹는 티라미슈 컵케익 570g", brand:"올바른", category:"케이크", emoji:"🧁", price:"35,410", unit:"570g(30g×19ea)", tags:["2주전발주","단가인하"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"티라미슈 컵케익 케이크 디저트" },
+  { id:130, name:"나무결 바움쿠헨 700g", brand:"올바른", category:"케이크", emoji:"🎂", price:"29,570", unit:"700g(35g×20ea)", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"바움쿠헨 케이크 디저트" },
+  { id:131, name:"미니 바스크 치즈케익 600g", brand:"올바른", category:"케이크", emoji:"🧀", price:"32,580", unit:"600g(30g×20ea)", tags:["2주전발주"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"바스크 치즈케이크 케이크 디저트" },
+  { id:132, name:"톰&제리 옐로우 크림치즈케익 500g", brand:"올바른", category:"케이크", emoji:"🎂", price:"26,220", unit:"500g(27~28g×18ea)", tags:["2주전발주"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"크림치즈 케이크 디저트 톰제리" },
+  { id:133, name:"오르쉐 쿠앤크 우리쌀 초코케익 500g", brand:"올바른", category:"케이크", emoji:"🍫", price:"26,220", unit:"500g(27.8g×18ea)", tags:["2주전발주"], color:"#3E2723", tcolor:"#D7CCC8", keywords:"초코케이크 쌀 케이크 디저트 오레오" },
+  { id:134, name:"올바른 공주밤 티라미수 컵케익 360g", brand:"올바른", category:"케이크", emoji:"🧁", price:"18,600", unit:"360g(30g×12ea)", tags:["2주전발주","단가인하"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"공주밤 티라미수 컵케익 케이크" },
+  { id:135, name:"공주밤 크림슈 600g", brand:"올바른", category:"케이크", emoji:"🍮", price:"17,390", unit:"600g(24g×25ea)", tags:["2주전발주","단가인하"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"공주밤 크림슈 슈 디저트" },
+  { id:136, name:"두바이 초코 마카롱 990g", brand:"올바른", category:"쿠키/디저트", emoji:"🍬", price:"50,830", unit:"990g(30~36g×30ea)", tags:["6월파격할인","개별포장"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"마카롱 두바이 초코 디저트" },
+  { id:137, name:"초코 사랑 바나나 뚱카롱 900g", brand:"올바른", category:"쿠키/디저트", emoji:"🍬", price:"46,290", unit:"900g(30g×30ea)", tags:["6월파격할인","개별포장"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"마카롱 뚱카롱 바나나 초코 디저트" },
+  { id:138, name:"순수 우유 뚱카롱 900g", brand:"올바른", category:"쿠키/디저트", emoji:"🍬", price:"46,290", unit:"900g(30g×30ea)", tags:["6월파격할인","개별포장"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"마카롱 뚱카롱 우유 디저트" },
+  { id:139, name:"초코나무 숲 뚱카롱 900g", brand:"올바른", category:"쿠키/디저트", emoji:"🍬", price:"46,290", unit:"900g(30g×30ea)", tags:["6월파격할인","개별포장"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"마카롱 뚱카롱 초코 디저트" },
+  { id:140, name:"K-FOOD 홍국쌀 고구마치즈 핫도그 600g", brand:"올바른", category:"츄러스/핫도그", emoji:"🌭", price:"11,970", unit:"600g(60g×10ea)", tags:["단가인하"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"핫도그 고구마 치즈 홍국쌀" },
+  { id:141, name:"新 블랙 큐브감자핫도그70 700g", brand:"올바른", category:"츄러스/핫도그", emoji:"🌭", price:"11,870", unit:"700g(70g×10ea)", tags:["단가인하"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"핫도그 감자 큐브 블랙" },
+  { id:142, name:"두물머리 연잎 핫도그 1000g", brand:"올바른", category:"츄러스/핫도그", emoji:"🌭", price:"15,980", unit:"1Kg(50g×20ea)", tags:["단가인하"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"핫도그 연잎 두물머리" },
+  { id:143, name:"글레이즈 도넛 1.872Kg", brand:"올바른", category:"츄러스/핫도그", emoji:"🍩", price:"44,570", unit:"1.872Kg(52g×36ea)", tags:["1주전발주","단가인하"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"도넛 글레이즈 디저트 빵" },
+  { id:144, name:"다크 초코 퐁당 도넛 2.16Kg", brand:"올바른", category:"츄러스/핫도그", emoji:"🍩", price:"50,150", unit:"2.16Kg(60g×36ea)", tags:["1주전발주","단가인하"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"도넛 초코 퐁당 디저트 빵" },
+  { id:145, name:"버터크로플 550g", brand:"올바른", category:"빵류", emoji:"🥐", price:"23,620", unit:"550g(55g×10ea)", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"크로플 버터 빵 디저트" },
+  { id:146, name:"하드롤 소금빵 2.52Kg", brand:"올바른", category:"빵류", emoji:"🥖", price:"82,760", unit:"2.52Kg(70g×36ea)", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"소금빵 하드롤 빵" },
+  { id:147, name:"잉글리쉬머핀샌드 2.4Kg", brand:"올바른", category:"빵류", emoji:"🥪", price:"61,450", unit:"2.4Kg(120g×20ea)", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"머핀 샌드위치 빵 잉글리쉬" },
+  { id:148, name:"갈릭스틱(생지) 3Kg", brand:"올바른", category:"빵류", emoji:"🥖", price:"78,380", unit:"3Kg(50g×60ea)", tags:["2주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"갈릭 마늘빵 스틱 빵" },
+  { id:149, name:"파니바오 대만식 딸기크림 샌드위치 684g", brand:"올바른", category:"빵류", emoji:"🥪", price:"26,610", unit:"684g(57g×12ea)", tags:["2주전발주"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"샌드위치 딸기 대만 빵 파니바오" },
+  { id:150, name:"파니바오 대만식 햄치즈 샌드위치 900g", brand:"올바른", category:"빵류", emoji:"🥪", price:"26,610", unit:"900g(75g×12ea)", tags:["2주전발주"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"샌드위치 햄치즈 대만 빵 파니바오" },
+  { id:151, name:"수제통살 치킨텐더 1Kg", brand:"올바른", category:"치킨/닭강정", emoji:"🍗", price:"18,130", unit:"1Kg(41~48g×21~24ea)", tags:["단가인하"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨텐더 닭안심 수제 치킨" },
+  { id:152, name:"치킨 꿔바로우 1Kg", brand:"올바른", category:"탕수육", emoji:"🥘", price:"19,020", unit:"1Kg(30~35g×28~33ea)", tags:["단가인하"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"꿔바로우 치킨 닭안심 탕수육" },
+  { id:153, name:"피카피카부 떡갈비 900g", brand:"올바른", category:"미트볼/갈비", emoji:"🥩", price:"14,580", unit:"900g(63~65g×14ea)", tags:["베스트"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"떡갈비 피카피카부 갈비 돼지" },
+  { id:154, name:"블루베리 우리고기 갈비살 스테이크 900g", brand:"올바른", category:"미트볼/갈비", emoji:"🥩", price:"16,340", unit:"900g(60g×15ea)", tags:["단가인하"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"스테이크 갈비살 블루베리 돼지" },
+  { id:155, name:"미니 큐브 치즈카츠 700g", brand:"올바른", category:"돈까스/함박", emoji:"🧀", price:"18,610", unit:"700g(70g×10ea)", tags:["단가인하"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"치즈카츠 돼지 치즈 돈까스" },
+  { id:156, name:"토치 생오리 1Kg", brand:"올바른", category:"오리", emoji:"🦆", price:"20,710", unit:"1Kg", tags:["1주전발주"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리 생오리 토치" },
+  { id:157, name:"오리불고기 (고추맛/간장맛) 1Kg", brand:"올바른", category:"오리", emoji:"🦆", price:"21,470", unit:"1Kg(3.6mm)", tags:["1주전발주"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리불고기 고추 간장 오리" },
+  { id:158, name:"치폴레에 빠진 오리훈제 1Kg", brand:"올바른", category:"오리", emoji:"🦆", price:"27,120", unit:"1Kg", tags:["베스트셀러","1주전발주"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"오리훈제 치폴레 훈제오리" },
+  { id:159, name:"9無 어니언 훈제오리 1Kg", brand:"올바른", category:"오리", emoji:"🦆", price:"27,120", unit:"1Kg", tags:["1주전발주"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"훈제오리 어니언 오리" },
+  { id:160, name:"꼬친 마늘간장 닭꼬치 (다리살) 50g", brand:"올바른", category:"닭꼬치", emoji:"🍡", price:"2,399", unit:"개당/1.5Kg(50g×30ea)", tags:["1주전발주"], color:"#FFF3E0", tcolor:"#E65100", keywords:"닭꼬치 마늘간장 다리살 꼬치" },
+  { id:161, name:"꼬친 숯불매콤 닭꼬치 (다리살) 50g", brand:"올바른", category:"닭꼬치", emoji:"🍡", price:"2,399", unit:"개당/1.5Kg(50g×30ea)", tags:["1주전발주"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"닭꼬치 숯불 매콤 다리살 꼬치" },
+  { id:162, name:"꼬친 파닭꼬치 (다리살) 50g", brand:"올바른", category:"닭꼬치", emoji:"🍡", price:"2,446", unit:"개당/1.5Kg(50g×30ea)", tags:["1주전발주"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"파닭꼬치 파닭 꼬치 닭꼬치" },
+  { id:163, name:"꼬친 누드닭꼬치 (다리살) 50g", brand:"올바른", category:"닭꼬치", emoji:"🍡", price:"2,291", unit:"개당/1.5Kg(50g×30ea)", tags:["1주전발주"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"누드닭꼬치 닭꼬치 꼬치" },
+  { id:164, name:"올바른 대구 명물 납작만두 455g", brand:"올바른", category:"만두", emoji:"🥟", price:"7,440", unit:"455g(13g×35ea)", tags:["베스트"], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"납작만두 대구 만두 부추" },
+  { id:165, name:"통새우 수정만두(용미하가우) 400g", brand:"올바른", category:"만두", emoji:"🥟", price:"12,380", unit:"400g(20g×20ea)", tags:["단가인하"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"새우만두 딤섬 수정만두 하가우" },
+  { id:166, name:"포시즌 하가우 300g", brand:"올바른", category:"만두", emoji:"🥟", price:"7,950", unit:"300g(13~17g×18~23ea)", tags:["단가인하"], isSale:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"하가우 딤섬 새우 만두" },
+  { id:167, name:"모듬 딤섬 280g", brand:"올바른", category:"만두", emoji:"🥟", price:"10,560", unit:"280g(17~18g×15~17ea)", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"딤섬 모듬 새우 만두" },
+  { id:168, name:"비건 채식만두 1Kg", brand:"올바른", category:"만두", emoji:"🥟", price:"7,780", unit:"1Kg(21~22g×46~48ea)", tags:["비건"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"비건만두 채식 만두 할랄" },
+  { id:169, name:"부산어묵 사각 1Kg", brand:"올바른", category:"어묵/수산", emoji:"🐟", price:"6,690", unit:"1Kg(40g×25ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"어묵 부산어묵 사각어묵 수산" },
+  { id:170, name:"우리쌀골드어묵 사각 1Kg", brand:"올바른", category:"어묵/수산", emoji:"🐟", price:"9,410", unit:"1Kg(50g×20ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"어묵 쌀어묵 골드 수산" },
+  { id:171, name:"매콤오징어 어묵바 500g", brand:"올바른", category:"어묵/수산", emoji:"🐟", price:"8,570", unit:"500g(50g×10ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"어묵바 오징어 매콤 수산" },
+  { id:172, name:"스트링치즈 어묵바 500g", brand:"올바른", category:"어묵/수산", emoji:"🧀", price:"9,410", unit:"500g(50g×10ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"어묵바 치즈 스트링 수산" },
+  { id:173, name:"소고기찹쌀육전 1Kg", brand:"올바른", category:"완자/전", emoji:"🥩", price:"32,730", unit:"1Kg(18~28g×35~55ea)", tags:["베스트"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"육전 소고기 전 찹쌀" },
+  { id:174, name:"닭가슴살 두부전 500g", brand:"올바른", category:"완자/전", emoji:"🍳", price:"6,750", unit:"500g(48~62g×8~11ea)", tags:["베스트"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"두부전 닭가슴살 전 두부" },
+  { id:175, name:"청파래 대구 생선까스 1.2Kg", brand:"올바른", category:"생선/수산", emoji:"🐟", price:"13,990", unit:"1.2Kg(60g×20ea)", tags:["단가인하"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"생선까스 대구 청파래 생선 튀김" },
+  { id:176, name:"오징어링 1Kg", brand:"올바른", category:"새우/수산", emoji:"🦑", price:"18,660", unit:"1Kg(19~22g×50~52ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"오징어링 오징어 튀김 수산" },
+  { id:177, name:"새우살이 통통 새우링 900g", brand:"올바른", category:"새우/수산", emoji:"🦐", price:"19,730", unit:"900g(30g×30ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우링 새우 튀김 수산" },
+  { id:178, name:"프리미엄 타코야끼 900g", brand:"올바른", category:"새우/수산", emoji:"🐙", price:"12,040", unit:"900g(30g×28~30ea)", tags:["베스트"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"타코야끼 문어 튀김 수산" },
+  { id:179, name:"청년 밀 떡볶이 세트 (사각어묵) 160g", brand:"올바른", category:"소떡/떡꼬치", emoji:"🌶️", price:"891", unit:"세트당/160g", tags:["세트할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡볶이 밀떡 어묵 세트" },
+  { id:180, name:"청년 연근분모자 떡볶이 세트 160g", brand:"올바른", category:"소떡/떡꼬치", emoji:"🌶️", price:"1,242", unit:"세트당/160g", tags:["세트할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡볶이 분모자 연근 어묵 세트" },
+  { id:181, name:"영국식 인도풍 탄두리 닭세트 (단품)", brand:"올바른", category:"세계음식", emoji:"🫓", price:"2,672", unit:"1인세트/116.6g", tags:["신제품","단가인하"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"탄두리 닭 인도 커리 세계음식" },
+  { id:182, name:"돈꼬츠라멘 세트 (무항생제 차슈)", brand:"올바른", category:"세계음식", emoji:"🍜", price:"3,111", unit:"1인세트/159g", tags:["세트할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"라멘 돈코츠 차슈 일본 세계음식" },
+  { id:183, name:"인도 난&마카니 커리세트", brand:"올바른", category:"세계음식", emoji:"🫓", price:"1,511", unit:"1세트/68g", tags:["세트할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"난 커리 인도 마카니 세계음식" },
+  { id:184, name:"베트남 쌀국수 세트 125g", brand:"올바른", category:"세계음식", emoji:"🍜", price:"1,363", unit:"1세트/125g", tags:["단가인하","세트할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"쌀국수 베트남 면 세계음식" },
+  { id:185, name:"태국 팟타이 세트 125g", brand:"올바른", category:"세계음식", emoji:"🍜", price:"1,292", unit:"1세트/125g", tags:["단가인하","세트할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"팟타이 태국 면 세계음식" },
+  { id:186, name:"귀여운 한입호떡 1Kg", brand:"올바른", category:"떡/한과", emoji:"🥞", price:"14,370", unit:"1Kg(30g×33ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"호떡 한입 간식 디저트" },
+  { id:187, name:"길쭉이 꿀호떡 1.2Kg", brand:"올바른", category:"떡/한과", emoji:"🥞", price:"13,860", unit:"1.2Kg(120g×10ea)", tags:["단가인하","1주전발주"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"호떡 꿀호떡 길쭉이 간식" },
+  { id:188, name:"길쭉이 치즈호떡 1.2Kg", brand:"올바른", category:"떡/한과", emoji:"🥞", price:"21,450", unit:"1.2Kg(120g×10ea)", tags:["1주전발주"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"호떡 치즈호떡 길쭉이 간식" },
+  { id:189, name:"사각사각 과일주스 3종 1.5Kg (망고키위/배레몬/파인애플)", brand:"올바른", category:"음료", emoji:"🧃", price:"14,440", unit:"1.5Kg(150g×10ea)", tags:["신제품"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"주스 음료 과일 사각사각 망고 키위 파인애플" },
+  { id:190, name:"제주도 갈아만든 청귤 2Kg", brand:"올바른", category:"음료", emoji:"🍊", price:"17,880", unit:"2Kg(40g×50인분)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"청귤 음료 제주 과일주스" },
+  { id:191, name:"갈아만든 레몬/라임/자몽/유자 2Kg", brand:"올바른", category:"음료", emoji:"🍋", price:"17,880", unit:"2Kg(40g×50인분)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"레몬 라임 자몽 유자 음료 과일주스" },
+  { id:192, name:"요거트 파르페 세트 (망고/과일)", brand:"올바른", category:"유제품/요구르트", emoji:"🍨", price:"1,748", unit:"1세트/150g", tags:["신제품","세트할인"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"요거트 파르페 그래놀라 디저트 과일" },
+  { id:193, name:"망고 요거트 세트 120g", brand:"올바른", category:"유제품/요구르트", emoji:"🥭", price:"1,089", unit:"1세트/120g", tags:["세트할인","단가인하"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"요거트 망고 세트 유제품" },
+  { id:194, name:"올바른 보라빛 우베 롤케익 750g", brand:"올바른", category:"케이크", emoji:"🟣", price:"41,580", unit:"750g(25g×30ea)", tags:["신제품","2주전발주"], isNew:true, color:"#EDE7F6", tcolor:"#4527A0", keywords:"우베 롤케익 케이크 보라빛 자색 디저트" },
+
+  // ===== 아워밀 & 설빙 (6~8월) =====
+  { id:200, name:"짜먹는 설빙 쿠키앤크림빙수맛 2.88Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🧊", price:"31,752", unit:"2.88Kg(120ml×24ea)", tags:["신제품","10%할인"], isNew:true, isSale:true, color:"#1A237E", tcolor:"#E8EAF6", keywords:"설빙 빙수 쿠키 아이스 짜먹는 크림" },
+  { id:201, name:"짜먹는 설빙 연유맛 2.88Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🧊", price:"27,648", unit:"2.88Kg(120ml×24ea)", tags:["10%할인"], isSale:true, color:"#1A237E", tcolor:"#E8EAF6", keywords:"설빙 빙수 연유 아이스 짜먹는" },
+  { id:202, name:"짜먹는 설빙 팥빙수맛 2.88Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍧", price:"31,752", unit:"2.88Kg(120ml×24ea)", tags:["10%할인"], isSale:true, color:"#1A237E", tcolor:"#E8EAF6", keywords:"설빙 빙수 팥빙수 아이스 짜먹는" },
+  { id:203, name:"짜먹는 설빙 망고빙수맛 2.88Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🥭", price:"27,648", unit:"2.88Kg(120ml×24ea)", tags:["10%할인"], isSale:true, color:"#1A237E", tcolor:"#E8EAF6", keywords:"설빙 빙수 망고 아이스 짜먹는" },
+  { id:204, name:"설빙 초코 구슬아이스 3.36Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍫", price:"85,920", unit:"3.36Kg(70ml×48ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 구슬아이스 초코 아이스크림" },
+  { id:205, name:"설빙 딸기&멜론 구슬아이스 3.36Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍓", price:"85,920", unit:"3.36Kg(70ml×48ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"설빙 구슬아이스 딸기 멜론 아이스크림" },
+  { id:206, name:"설빙 요거초코칩 컵 아이스크림 4.8Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍦", price:"124,320", unit:"4.8Kg(100ml×48ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 컵아이스 요거트 초코칩 아이스크림" },
+  { id:207, name:"설빙 초코브라우니 컵 아이스크림 4.8Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍫", price:"124,320", unit:"4.8Kg(100ml×48ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 컵아이스 초코브라우니 아이스크림" },
+  { id:208, name:"설빙 인절미 컵 아이스크림 4.8Kg", brand:"설빙", category:"아이스크림/빙수", emoji:"🍡", price:"124,320", unit:"4.8Kg(100ml×48ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"설빙 컵아이스 인절미 아이스크림" },
+  { id:209, name:"설빙 인절미토스트(미니) 1.1Kg", brand:"설빙", category:"쿠키/디저트", emoji:"🍞", price:"30,800", unit:"1.1Kg(55g×20ea)", tags:["신제품"], isNew:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"설빙 인절미토스트 토스트 인절미 빵" },
+  { id:210, name:"설빙 망고스틱 900g (30%할인)", brand:"설빙", category:"과일디저트", emoji:"🥭", price:"9,660", unit:"900g(60g×15ea)", tags:["30%할인"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"설빙 망고스틱 망고 아이스 과일" },
+  { id:211, name:"아워밀 세절망고 1Kg (30g×35ea)", brand:"아워밀", category:"과일디저트", emoji:"🥭", price:"9,900", unit:"1Kg(30g×35ea)", tags:["25%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 세절망고 망고 과일 냉동" },
+  { id:212, name:"아워밀 세절망고 1Kg (40g×26ea)", brand:"아워밀", category:"과일디저트", emoji:"🥭", price:"7,430", unit:"1Kg(40g×26ea)", tags:["25%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 세절망고 망고 과일 냉동" },
+  { id:213, name:"아워밀 애플망고다이스 1Kg (페루산)", brand:"아워밀", category:"과일디저트", emoji:"🥭", price:"10,340", unit:"1Kg", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 애플망고 다이스 망고 과일" },
+  { id:214, name:"아워밀 애플망고다이스 1Kg (베트남산, 35%할인)", brand:"아워밀", category:"과일디저트", emoji:"🥭", price:"5,820", unit:"1Kg", tags:["35%할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 애플망고 다이스 베트남 과일" },
+  { id:215, name:"스텔라st 별콕콕 국물떡볶이 세트 7.25Kg", brand:"아워밀", category:"소떡/떡꼬치", emoji:"🌶️", price:"64,740", unit:"7.25Kg(70인분기준)", tags:["별튀김증정"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡볶이 국물 아워밀 스텔라 소스 어묵" },
+  { id:216, name:"스텔라st 별콕콕 로제떡볶이 세트 7.25Kg", brand:"아워밀", category:"소떡/떡꼬치", emoji:"🌶️", price:"67,830", unit:"7.25Kg(70인분기준)", tags:["별튀김증정"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"떡볶이 로제 아워밀 스텔라 소스 어묵" },
+  { id:217, name:"별튀김 추가구매 250g", brand:"아워밀", category:"소떡/떡꼬치", emoji:"⭐", price:"3,600", unit:"250g", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"별튀김 튀김 아워밀" },
+  { id:218, name:"설빙 두바이 쫀득볼 1Kg (10%할인)", brand:"설빙", category:"쿠키/디저트", emoji:"🍬", price:"54,450", unit:"1Kg(40g×25ea)", tags:["10%할인","개별포장"], isSale:true, color:"#FFF9C4", tcolor:"#F57F17", keywords:"설빙 두바이 쫀득볼 피스타치오 찹쌀 디저트" },
+  { id:219, name:"설빙 마이리틀 소다팝 5.7Kg (10%할인)", brand:"설빙", category:"음료", emoji:"🥤", price:"26,730", unit:"5.7Kg(190ml×30ea)", tags:["10%할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"설빙 소다 음료 탄산 밀키스 소다팝" },
+  { id:220, name:"설빙 맛있는 딸기청 1Kg", brand:"설빙", category:"음료", emoji:"🍓", price:"15,400", unit:"1Kg", tags:["딸기50%"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"설빙 딸기청 딸기 시럽 음료" },
+  { id:221, name:"설빙 초코몬스터 스모어 840g (30%할인)", brand:"설빙", category:"쿠키/디저트", emoji:"🍫", price:"31,500", unit:"840g(28g×30ea)", tags:["30%할인","개별포장"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 스모어 초코몬스터 초코 과자 간식" },
+  { id:222, name:"설빙 참쌀꽃약과 900g", brand:"설빙", category:"쿠키/디저트", emoji:"🍡", price:"17,160", unit:"900g(30g×30ea)", tags:["개별포장"], color:"#FFF3E0", tcolor:"#E65100", keywords:"설빙 약과 찹쌀 한과 디저트" },
+  { id:223, name:"설빙 추억의 꽈배기 500g", brand:"설빙", category:"츄러스/핫도그", emoji:"🥨", price:"10,300", unit:"500g(50g×10ea)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"설빙 꽈배기 빵 간식" },
+  { id:224, name:"설빙 떡이쏙 고기산적구이 1Kg", brand:"설빙", category:"미트볼/갈비", emoji:"🥩", price:"13,420", unit:"1Kg(16g×62ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"설빙 고기산적 산적 돼지 쌀가루 튀김" },
+  { id:225, name:"설빙 떡이쏙 어묵구이 1Kg", brand:"설빙", category:"어묵/수산", emoji:"🐟", price:"13,420", unit:"1Kg(18g×55ea)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"설빙 어묵구이 어묵 수산" },
+  { id:226, name:"설빙 다크초코 프리미엄 너츠 150g", brand:"설빙", category:"시리얼/간식", emoji:"🍫", price:"9,060", unit:"150g(15g×10ea)", tags:["개별포장"], color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 너츠 아몬드 헤이즐넛 초코 간식" },
+  { id:227, name:"설빙 허니버터 프리미엄 너츠 150g", brand:"설빙", category:"시리얼/간식", emoji:"🍯", price:"9,060", unit:"150g(15g×10ea)", tags:["개별포장"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"설빙 너츠 허니버터 견과 간식" },
+  { id:228, name:"설빙 크리스피롤 인절미맛 500g", brand:"설빙", category:"시리얼/간식", emoji:"🍡", price:"11,000", unit:"500g(10g×48ea)", tags:["개별포장"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"설빙 크리스피롤 인절미 롤 간식" },
+  { id:229, name:"설빙 크리스피롤 우유맛 500g", brand:"설빙", category:"시리얼/간식", emoji:"🥛", price:"11,000", unit:"500g(10g×48ea)", tags:["개별포장"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"설빙 크리스피롤 우유 롤 간식" },
+  { id:230, name:"아워밀 리얼딸기쇼트케이크 1.2Kg", brand:"아워밀", category:"케이크", emoji:"🍓", price:"54,000", unit:"1.2Kg(30g×40ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 딸기케이크 쇼트케이크 케이크 디저트" },
+  { id:231, name:"아워밀 미니비스켓슈(플레인) 520g", brand:"아워밀", category:"쿠키/디저트", emoji:"🍮", price:"19,360", unit:"520g(26g×20ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 비스켓슈 슈크림 디저트" },
+  { id:232, name:"아워밀 미니비스켓슈(초코) 520g", brand:"아워밀", category:"쿠키/디저트", emoji:"🍫", price:"19,800", unit:"520g(26g×20ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"아워밀 비스켓슈 초코 슈크림 디저트" },
+  { id:233, name:"아워밀 홍게그라탕 단품 1.4Kg", brand:"아워밀", category:"새우/수산", emoji:"🦀", price:"48,400", unit:"1.4Kg(70g×20ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 홍게그라탕 홍게 그라탕 게 수산" },
+  { id:234, name:"아워밀 홍게그라탕 치즈세트 1.6Kg", brand:"아워밀", category:"새우/수산", emoji:"🦀", price:"52,400", unit:"1.6Kg(80g×20ea)", tags:["치즈포함"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 홍게그라탕 홍게 그라탕 치즈 게 수산" },
+  { id:235, name:"아워밀 독도홍게 레그 400g", brand:"아워밀", category:"새우/수산", emoji:"🦀", price:"32,000", unit:"400g(7~10g×40ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 독도홍게 게 수산 홍게" },
+  { id:236, name:"아워밀 칼슘플러스 한돈 츠쿠네 500g", brand:"아워밀", category:"미트볼/갈비", emoji:"🍢", price:"14,000", unit:"500g(50g×10ea)", tags:["냉장육사용"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 츠쿠네 한돈 꼬치 미트볼" },
+  { id:237, name:"아워밀 사랑에 빠진 한우스테이크 900g", brand:"아워밀", category:"미트볼/갈비", emoji:"🥩", price:"24,000", unit:"900g(45g×20ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 한우스테이크 스테이크 한우 떡갈비" },
+  { id:238, name:"아워밀 인절미 크림떡 1Kg", brand:"아워밀", category:"떡/한과", emoji:"🍡", price:"23,200", unit:"1Kg(25g×40ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 인절미 크림떡 떡 한과" },
+  { id:239, name:"아워밀 초코 크림떡 1Kg", brand:"아워밀", category:"떡/한과", emoji:"🍫", price:"22,000", unit:"1Kg(25g×40ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"아워밀 초코 크림떡 떡 한과" },
+  { id:240, name:"아워밀 모싯잎 양고 가래떡 1Kg", brand:"아워밀", category:"떡/한과", emoji:"🎑", price:"10,000", unit:"1Kg(40g×25ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 모싯잎 가래떡 떡 한과" },
+  { id:241, name:"아워밀 흰 양고 가래떡 1Kg", brand:"아워밀", category:"떡/한과", emoji:"🎑", price:"10,000", unit:"1Kg(40g×25ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 흰 가래떡 떡 한과" },
+  { id:242, name:"아워밀 한입쏙 인절미 1Kg", brand:"아워밀", category:"떡/한과", emoji:"🍡", price:"15,500", unit:"1Kg(8g×125ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 한입인절미 인절미 떡 한과" },
+  { id:243, name:"아워밀 지코바st 양념치킨 안심살 (무항생제1등급)", brand:"아워밀", category:"치킨/닭강정", emoji:"🍗", price:"15,040", unit:"1Kg", tags:["발주20kg이상"], color:"#FFF3E0", tcolor:"#E65100", keywords:"아워밀 지코바 양념치킨 안심살 닭 치킨" },
+  { id:244, name:"아워밀 지코바st 양념치킨 절단육 (무항생제1등급)", brand:"아워밀", category:"치킨/닭강정", emoji:"🍗", price:"13,940", unit:"1Kg(30조각기준)", tags:["발주20kg이상"], color:"#FFF3E0", tcolor:"#E65100", keywords:"아워밀 지코바 양념치킨 절단육 닭 치킨" },
+  { id:245, name:"아워밀 지코바st 양념치킨 안심살+다리살 (무항생제1등급)", brand:"아워밀", category:"치킨/닭강정", emoji:"🍗", price:"23,950", unit:"1Kg", tags:["발주20kg이상"], color:"#FFF3E0", tcolor:"#E65100", keywords:"아워밀 지코바 양념치킨 안심 다리 닭 치킨" },
+  { id:246, name:"홍만당 쫀득 버터떡 오리지널 1.05Kg", brand:"아워밀", category:"떡/한과", emoji:"🧈", price:"49,000", unit:"1.05Kg(21g×50ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 홍만당 버터떡 떡 간식 쫀득" },
+  { id:247, name:"홍만당 쫀득 버터떡 초코 1.05Kg", brand:"아워밀", category:"떡/한과", emoji:"🍫", price:"49,000", unit:"1.05Kg(21g×50ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"아워밀 홍만당 버터떡 초코 떡 간식" },
+  { id:248, name:"아워밀 먹킨_딸기 750g", brand:"아워밀", category:"쿠키/디저트", emoji:"🍓", price:"27,000", unit:"750g(15g×50ea)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"아워밀 먹킨 딸기 도넛 디저트" },
+  { id:249, name:"아워밀 먹킨_바바리안 750g", brand:"아워밀", category:"쿠키/디저트", emoji:"🍮", price:"27,000", unit:"750g(15g×50ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 먹킨 바바리안 도넛 디저트" },
+  { id:250, name:"알룰로스 달콤 페스츄리 600g", brand:"아워밀", category:"쿠키/디저트", emoji:"🥐", price:"22,000", unit:"600g(30g×20ea)", tags:["알룰로스"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 페스츄리 알룰로스 빵 디저트" },
+  { id:251, name:"아워밀 페스츄리봉어빵_팥 360g", brand:"아워밀", category:"쿠키/디저트", emoji:"🐟", price:"9,540", unit:"360g(60g×6ea)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"아워밀 붕어빵 페스츄리 팥 디저트 빵" },
+  { id:252, name:"아워밀 페스츄리봉어빵_치즈 360g", brand:"아워밀", category:"쿠키/디저트", emoji:"🧀", price:"9,720", unit:"360g(60g×6ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 붕어빵 페스츄리 치즈 디저트 빵" },
+  { id:253, name:"아워밀 커스터드 크림 미니 츄러스 1Kg", brand:"아워밀", category:"츄러스/핫도그", emoji:"🥐", price:"20,160", unit:"1Kg(17g×59ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 츄러스 커스터드 크림 미니 간식" },
+  { id:254, name:"아워밀 소시지 미니츄러스 1Kg", brand:"아워밀", category:"츄러스/핫도그", emoji:"🌭", price:"26,880", unit:"1Kg(18g×56ea)", tags:[], color:"#FFF9C4", tcolor:"#F57F17", keywords:"아워밀 츄러스 소시지 미니 간식" },
+  { id:255, name:"아워밀 국산 프리미엄 미숫가루 1Kg", brand:"아워밀", category:"음료", emoji:"🥛", price:"14,500", unit:"1Kg(벌크)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 미숫가루 선식 음료 분말" },
+  { id:256, name:"아워밀 돼지갈비맛 후라이드 1Kg", brand:"아워밀", category:"돈까스/함박", emoji:"🍖", price:"15,000", unit:"1Kg(34g×29ea)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아워밀 돼지갈비 후라이드 튀김 돈까스" },
+  { id:257, name:"마시는 설빙 초코 브라우니 4.56Kg", brand:"설빙", category:"음료", emoji:"🍫", price:"26,400", unit:"4.56Kg(190ml×24ea)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"설빙 초코브라우니 음료 마시는 브라우니" },
+
+  // ===== 면사랑 (300~350) =====
+  { id:300, name:"댕글한 통새우 멘보샤", brand:"면사랑", category:"만두/튀김", emoji:"🦐", price:"20,080", unit:"1kg(25g×40개)", tags:["NEW"], isNew:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"멘보샤 새우 만두 통새우" },
+  { id:301, name:"스위트칠리소스", brand:"면사랑", category:"소스", emoji:"🌶️", price:"12,310", unit:"2L(L당 6,155)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"칠리소스 스위트" },
+  { id:302, name:"크리미양파소스", brand:"면사랑", category:"소스", emoji:"🧅", price:"12,290", unit:"2kg(kg당 6,145)", tags:["NEW"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"양파소스 크리미" },
+  { id:303, name:"통살가득 새우까스", brand:"면사랑", category:"만두/튀김", emoji:"🍤", price:"14,130", unit:"800g(80g×10개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우까스 새우" },
+  { id:304, name:"통영산 굴소스", brand:"면사랑", category:"소스", emoji:"🦪", price:"14,130", unit:"2kg(kg당 7,065)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"굴소스 통영" },
+  { id:305, name:"통영산 매운맛 굴소스", brand:"면사랑", category:"소스", emoji:"🌶️", price:"14,130", unit:"2kg(kg당 7,065)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"굴소스 매운맛" },
+  { id:306, name:"크림소스(분말)", brand:"면사랑", category:"분말소스", emoji:"🥛", price:"15,900", unit:"1kg", tags:["NEW"], isNew:true, color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"크림소스 분말" },
+  { id:307, name:"매콤로제소스(분말)", brand:"면사랑", category:"분말소스", emoji:"🌶️", price:"15,900", unit:"1kg", tags:["NEW"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"로제소스 매콤 분말" },
+  { id:308, name:"짜장소스(분말)", brand:"면사랑", category:"분말소스", emoji:"🥘", price:"13,740", unit:"1kg", tags:["NEW"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"짜장소스 분말" },
+  { id:309, name:"학교용(냉동) 프리미엄 스파게티", brand:"면사랑", category:"면류", emoji:"🍝", price:"2,820", unit:"850g(kg당 3,318)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"스파게티 프리미엄" },
+  { id:310, name:"누들밀떡", brand:"면사랑", category:"떡류", emoji:"🍡", price:"6,990", unit:"2kg(kg당 3,495)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"밀떡 누들" },
+  { id:311, name:"학교용 밀떡볶이", brand:"면사랑", category:"떡류", emoji:"🍢", price:"2,680", unit:"1kg", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"밀떡볶이 떡볶이" },
+  { id:312, name:"학교용 가는면발 우동", brand:"면사랑", category:"면류", emoji:"🍜", price:"2,820", unit:"1.15kg(230g×5ea, kg당 2,452)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"우동 가는면발 학교용" },
+  { id:313, name:"학교용 프리미엄 메밀장국", brand:"면사랑", category:"소스", emoji:"🥢", price:"13,380", unit:"2.1kg(kg당 6,372)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"메밀장국 학교용" },
+  { id:314, name:"튀김볼(덴까스)", brand:"면사랑", category:"만두/튀김", emoji:"🍘", price:"5,950", unit:"500g(kg당 11,900)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"튀김볼 덴까스" },
+  { id:315, name:"프리미얼 튀김새우 40%", brand:"면사랑", category:"만두/튀김", emoji:"🍤", price:"5,060", unit:"300g(30g×10개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"튀김새우 새우 프리미얼" },
+  { id:316, name:"페투치네(냉동)", brand:"면사랑", category:"면류", emoji:"🍝", price:"2,980", unit:"850g(kg당 3,506)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"페투치네 파스타" },
+  { id:317, name:"투움바 소스", brand:"면사랑", category:"파스타소스", emoji:"🍝", price:"8,180", unit:"2kg(kg당 4,090)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"투움바 소스 파스타" },
+  { id:318, name:"로제(파스타)소스", brand:"면사랑", category:"파스타소스", emoji:"🍝", price:"11,750", unit:"2kg(kg당 5,875)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"로제 파스타소스" },
+  { id:319, name:"토마토(파스타)소스", brand:"면사랑", category:"파스타소스", emoji:"🍝", price:"7,880", unit:"2kg(kg당 3,940)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"토마토 파스타소스" },
+  { id:320, name:"크림(파스타)소스", brand:"면사랑", category:"파스타소스", emoji:"🍝", price:"8,480", unit:"2kg(kg당 4,240)", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"크림 파스타소스" },
+  { id:321, name:"학교용 크림베이스소스", brand:"면사랑", category:"파스타소스", emoji:"🥛", price:"12,500", unit:"2kg(kg당 6,250)", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"크림베이스 학교용" },
+  { id:322, name:"매콤로제소스", brand:"면사랑", category:"소스", emoji:"🌶️", price:"13,680", unit:"2kg(kg당 6,840)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"매콤로제소스 로제" },
+  { id:323, name:"쌀우동면", brand:"면사랑", category:"면류", emoji:"🍜", price:"4,460", unit:"1.15kg(230g×5ea, kg당 3,878)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"쌀우동면 우동" },
+  { id:324, name:"우리쌀100% 우동면", brand:"면사랑", category:"면류", emoji:"🍜", price:"5,500", unit:"1.15kg(kg당 4,783)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"우동면 우리쌀" },
+  { id:325, name:"바삭한 잡채 납작만두", brand:"면사랑", category:"만두/튀김", emoji:"🥟", price:"6,690", unit:"1.2kg(kg당 5,575)", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"납작만두 잡채" },
+  { id:326, name:"과일로 맛을 낸 떡볶이 액상소스", brand:"면사랑", category:"소스", emoji:"🍓", price:"9,840", unit:"2kg(kg당 4,920)", tags:["NEW"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"떡볶이 액상소스" },
+  { id:327, name:"야채김말이튀김", brand:"면사랑", category:"만두/튀김", emoji:"🍙", price:"5,500", unit:"1kg(25g×40개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"야채김말이 튀김" },
+  { id:328, name:"매콤달콤 떡볶이 분말소스", brand:"면사랑", category:"분말소스", emoji:"🍢", price:"9,670", unit:"1kg", tags:["NEW"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"떡볶이 분말소스" },
+  { id:329, name:"학교용 라멘", brand:"면사랑", category:"면류", emoji:"🍜", price:"3,270", unit:"1.1kg(kg당 2,973)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"라멘 학교용" },
+  { id:330, name:"돈코츠 라멘소스", brand:"면사랑", category:"소스", emoji:"🍜", price:"31,240", unit:"2kg(kg당 15,620)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"돈코츠 라멘소스" },
+  { id:331, name:"옥수수면사리", brand:"면사랑", category:"면류", emoji:"🌽", price:"5,200", unit:"2kg(kg당 2,600)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"옥수수 면사리 마라탕" },
+  { id:332, name:"마라소스", brand:"면사랑", category:"소스", emoji:"🌶️", price:"26,780", unit:"2kg(kg당 13,390)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"마라소스 마라탕" },
+  { id:333, name:"쇠고기맛 냉면육수", brand:"면사랑", category:"육수", emoji:"🥩", price:"7,580", unit:"5kg(kg당 1,516)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"냉면육수 쇠고기" },
+  { id:334, name:"냉면장", brand:"면사랑", category:"소스", emoji:"🌶️", price:"11,160", unit:"2kg(kg당 5,580)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"냉면장" },
+  { id:335, name:"밀면", brand:"면사랑", category:"면류", emoji:"🍜", price:"4,570", unit:"2kg(kg당 2,285)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"밀면" },
+  { id:336, name:"학교용 메밀면", brand:"면사랑", category:"면류", emoji:"🌾", price:"3,120", unit:"1.25kg(kg당 2,496)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"메밀면 학교용" },
+  { id:337, name:"프리미엄 김장동치미 냉면육수", brand:"면사랑", category:"육수", emoji:"🥒", price:"9,070", unit:"5kg(kg당 1,814)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"동치미 냉면육수" },
+  { id:338, name:"학교용 자른 평양냉면", brand:"면사랑", category:"면류", emoji:"🍜", price:"2,820", unit:"kg당 2,820", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"평양냉면 자른 학교용" },
+  { id:339, name:"쌀풍화면", brand:"면사랑", category:"면류", emoji:"🍜", price:"4,460", unit:"1.15kg(230g×5ea, kg당 3,878)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"쌀풍화면 풍화면" },
+  { id:340, name:"우리쌀100% 풍화면", brand:"면사랑", category:"면류", emoji:"🍜", price:"5,500", unit:"1.15kg(kg당 4,783)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"풍화면 우리쌀" },
+  { id:341, name:"저당 덜한 가쓰오 우동장국", brand:"면사랑", category:"소스", emoji:"🥢", price:"16,360", unit:"2.1kg(1.8L, kg당 7,790)", tags:["저당"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"가쓰오 우동장국 저당" },
+  { id:342, name:"덜짠 멸치육수", brand:"면사랑", category:"육수", emoji:"🐟", price:"6,890", unit:"2.1kg(1.8L)", tags:["저염"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"멸치육수 덜짠" },
+  { id:343, name:"몰리자나 스파게티 1.7mm (테프론)", brand:"면사랑", category:"면류", emoji:"🍝", price:"1,930", unit:"500g(kg당 3,860) / 3kg 11,610원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"몰리자나 스파게티 테프론" },
+  { id:344, name:"몰리자나 스파게티니 1.75mm (브론즈)", brand:"면사랑", category:"면류", emoji:"🍝", price:"2,230", unit:"500g(kg당 4,460) / 3kg 13,080원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"몰리자나 스파게티니 브론즈" },
+  { id:345, name:"앙카라 스파게티 (테프론)", brand:"면사랑", category:"면류", emoji:"🍝", price:"1,630", unit:"500g(kg당 3,260) / 5kg 14,430원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"앙카라 스파게티 테프론" },
+  { id:346, name:"O.C 토마토 페이스트", brand:"면사랑", category:"페이스트", emoji:"🍅", price:"17,550", unit:"3.15kg(kg당 5,571)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"토마토 페이스트" },
+  { id:347, name:"투움바파스타 SET (페투치네8+소스4)", brand:"면사랑", category:"세트", emoji:"🍝", price:"89,280", unit:"14.8kg(kg당 6,032)", tags:["SET"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"투움바파스타 세트 페투치네" },
+  { id:348, name:"돈코츠라멘 SET (라멘16+소스1)", brand:"면사랑", category:"세트", emoji:"🍜", price:"83,560", unit:"19.6kg(kg당 4,263)", tags:["SET"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"돈코츠라멘 세트" },
+  { id:349, name:"마라탕 주찬 SET (옥수수면18+마라소스5)", brand:"면사랑", category:"세트", emoji:"🌶️", price:"227,500", unit:"46kg(kg당 4,945)", tags:["SET"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"마라탕 세트 주찬" },
+  { id:350, name:"마라탕 부찬 SET (옥수수면6+마라소스3)", brand:"면사랑", category:"세트", emoji:"🌶️", price:"111,540", unit:"18kg(kg당 6,196)", tags:["SET"], color:"#FCE4EC", tcolor:"#AD1457", keywords:"마라탕 세트 부찬" },
+
+  // ===== 세미원 (500~554) =====
+  { id:500, name:"새우완탕", brand:"세미원", category:"딤섬/만두", emoji:"🥟", price:"26,000", unit:"300g(15g×20개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"새우완탕 딤섬" },
+  { id:501, name:"왕하가우", brand:"세미원", category:"딤섬/만두", emoji:"🦐", price:"22,650", unit:"1kg(25g×40개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"하가우 딤섬 새우" },
+  { id:502, name:"관자쇼마이", brand:"세미원", category:"딤섬/만두", emoji:"🦪", price:"24,250", unit:"1kg(25g×40개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"관자 쇼마이 딤섬" },
+  { id:503, name:"새우쇼마이", brand:"세미원", category:"딤섬/만두", emoji:"🦐", price:"24,250", unit:"1kg(25g×40개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 쇼마이 딤섬" },
+  { id:504, name:"왕어혈교", brand:"세미원", category:"딤섬/만두", emoji:"🐟", price:"22,650", unit:"1kg(25g×40개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"어혈교 딤섬" },
+  { id:505, name:"복주머니새우딤섬", brand:"세미원", category:"딤섬/만두", emoji:"🥟", price:"10,500", unit:"500g(25g×20개)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"복주머니 새우 딤섬" },
+  { id:506, name:"갈릭버터 난", brand:"세미원", category:"빵류", emoji:"🧄", price:"14,400", unit:"1kg(50g×20개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"갈릭 버터 난" },
+  { id:507, name:"데루소레 플레인 난", brand:"세미원", category:"빵류", emoji:"🫓", price:"6,500", unit:"350g(70g×5개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"데루소레 플레인 난" },
+  { id:508, name:"미션 피타브레드", brand:"세미원", category:"빵류", emoji:"🫓", price:"5,400", unit:"400g(80g×5개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"미션 피타브레드" },
+  { id:509, name:"미션 콘토르티아", brand:"세미원", category:"빵류", emoji:"🌯", price:"9,650", unit:"851g(약4.18g×60개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"콘토르티아 미션 토르티야" },
+  { id:510, name:"중화번", brand:"세미원", category:"빵류", emoji:"🥯", price:"8,100", unit:"1.05kg(35g×30개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"중화번 빵 만두" },
+  { id:511, name:"수제꽃빵", brand:"세미원", category:"빵류", emoji:"🌸", price:"8,100", unit:"900g(30g×30개)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"수제 꽃빵" },
+  { id:512, name:"이슈찐빵", brand:"세미원", category:"빵류", emoji:"🥟", price:"15,750", unit:"1kg(25g×40개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"이슈 찐빵" },
+  { id:513, name:"숲속친구들 찐빵", brand:"세미원", category:"빵류", emoji:"🐻", price:"15,750", unit:"1kg(25g×40개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"숲속 친구들 찐빵" },
+  { id:514, name:"바다친구들 찐빵", brand:"세미원", category:"빵류", emoji:"🐠", price:"15,750", unit:"1kg(25g×40개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"바다 친구들 찐빵" },
+  { id:515, name:"랍스터향 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🦞", price:"7,900", unit:"500g(13.5g×37개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"랍스터 피쉬볼" },
+  { id:516, name:"새우 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🦐", price:"8,500", unit:"500g(15g×33개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"새우 피쉬볼" },
+  { id:517, name:"샤브샤브 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🍢", price:"5,300", unit:"500g(12.5g×40개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"샤브샤브 피쉬볼" },
+  { id:518, name:"두부모양 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🧈", price:"7,900", unit:"500g(14g×36개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"두부 모양 피쉬볼" },
+  { id:519, name:"샌드위치치즈 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🧀", price:"8,500", unit:"500g(17g×29개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"샌드위치 치즈 피쉬볼" },
+  { id:520, name:"물고기모양 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🐠", price:"10,870", unit:"500g(25g×20개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"물고기 피쉬볼" },
+  { id:521, name:"치즈 피쉬볼", brand:"세미원", category:"만두/튀김", emoji:"🧀", price:"9,880", unit:"500g(25g×20개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"치즈 피쉬볼" },
+  { id:522, name:"튀겨나온 멘보샤", brand:"세미원", category:"만두/튀김", emoji:"🦐", price:"10,500", unit:"400g(20g×20개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"튀겨나온 멘보샤" },
+  { id:523, name:"생선까스", brand:"세미원", category:"만두/튀김", emoji:"🐟", price:"24,100", unit:"3kg(60g×50개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"생선까스" },
+  { id:524, name:"해물 오코노미야끼", brand:"세미원", category:"전/부침", emoji:"🦑", price:"13,800", unit:"1.04kg(약260g×4개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"해물 오코노미야끼" },
+  { id:525, name:"오코노미야끼", brand:"세미원", category:"전/부침", emoji:"🥞", price:"17,800", unit:"1.4kg(약350g×4개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"오코노미야끼" },
+  { id:526, name:"미니 오코노미야끼", brand:"세미원", category:"전/부침", emoji:"🥞", price:"12,800", unit:"1kg(약20g×50개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"미니 오코노미야끼" },
+  { id:527, name:"땡초해물파전", brand:"세미원", category:"전/부침", emoji:"🌶️", price:"10,900", unit:"900g(약30g×30개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"땡초 해물 파전" },
+  { id:528, name:"김치전", brand:"세미원", category:"전/부침", emoji:"🥬", price:"10,200", unit:"900g(약30g×30개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"김치전" },
+  { id:529, name:"깻잎애호박전", brand:"세미원", category:"전/부침", emoji:"🌿", price:"9,400", unit:"900g(약30g×30개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"깻잎 애호박 전" },
+  { id:530, name:"감자전", brand:"세미원", category:"전/부침", emoji:"🥔", price:"11,600", unit:"800g(약100g×8개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"감자전" },
+  { id:531, name:"풍미동그랑땡", brand:"세미원", category:"전/부침", emoji:"🍖", price:"5,800", unit:"1kg(11g×92개)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"풍미 동그랑땡" },
+  { id:532, name:"오색오미전", brand:"세미원", category:"전/부침", emoji:"🌈", price:"11,150", unit:"500g(약20g×25개)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"오색 오미전" },
+  { id:533, name:"일본풍 감자고로케", brand:"세미원", category:"만두/튀김", emoji:"🥔", price:"5,500", unit:"600g(약30g×20개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"감자 고로케" },
+  { id:534, name:"야채 고로케", brand:"세미원", category:"만두/튀김", emoji:"🥬", price:"8,200", unit:"720g(약60g×12개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"야채 고로케" },
+  { id:535, name:"호박 고로케", brand:"세미원", category:"만두/튀김", emoji:"🎃", price:"8,300", unit:"720g(약60g×12개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"호박 고로케" },
+  { id:536, name:"치즈 고로케", brand:"세미원", category:"만두/튀김", emoji:"🧀", price:"10,350", unit:"720g(약60g×12개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"치즈 고로케" },
+  { id:537, name:"고추잡채김말이튀김", brand:"세미원", category:"만두/튀김", emoji:"🌶️", price:"7,750", unit:"1kg(약25g×40개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"고추잡채 김말이 튀김" },
+  { id:538, name:"김말이튀김", brand:"세미원", category:"만두/튀김", emoji:"🍙", price:"7,750", unit:"1kg(약25g×40개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"김말이 튀김" },
+  { id:539, name:"고구마야채튀김", brand:"세미원", category:"만두/튀김", emoji:"🍠", price:"27,290", unit:"3kg(약55g×57개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"고구마 야채 튀김" },
+  { id:540, name:"프리미엄 동심찹쌀탕수육", brand:"세미원", category:"탕수육", emoji:"🥘", price:"11,600", unit:"1kg(약77g×27개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"동심 찹쌀 탕수육" },
+  { id:541, name:"북경식 찹쌀탕수육", brand:"세미원", category:"탕수육", emoji:"🥘", price:"9,350", unit:"1kg(약12g×27개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"북경식 찹쌀 탕수육" },
+  { id:542, name:"북경식 찹쌀꿔바로우", brand:"세미원", category:"탕수육", emoji:"🥘", price:"12,850", unit:"1kg(약57g×5개)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"북경식 찹쌀 꿔바로우" },
+  { id:543, name:"맛탕 고구마", brand:"세미원", category:"디저트", emoji:"🍠", price:"7,200", unit:"1kg(약7g×58개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"맛탕 고구마" },
+  { id:544, name:"맛감자튀김", brand:"세미원", category:"만두/튀김", emoji:"🥔", price:"10,200", unit:"1kg(약18g×5개)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛 감자 튀김" },
+  { id:545, name:"구워먹는 치즈떡", brand:"세미원", category:"떡류", emoji:"🧀", price:"8,450", unit:"1kg(약23g×7개)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"구워먹는 치즈떡" },
+  { id:546, name:"치즈 떡볶이", brand:"세미원", category:"떡류", emoji:"🧀", price:"7,100", unit:"1kg(약12g×82±1개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"치즈 떡볶이" },
+  { id:547, name:"야채춘권", brand:"세미원", category:"만두/튀김", emoji:"🌯", price:"5,050", unit:"900g(약15g×60개)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"야채 춘권" },
+  { id:548, name:"월남짜조", brand:"세미원", category:"만두/튀김", emoji:"🌯", price:"22,450", unit:"1.3kg(약65g×20개)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"월남짜조" },
+  { id:549, name:"냉동 호박", brand:"세미원", category:"냉동과일", emoji:"🎃", price:"19,250", unit:"5kg(5kg×2팩)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"냉동 호박" },
+  { id:550, name:"냉동 딸기", brand:"세미원", category:"냉동과일", emoji:"🍓", price:"4,250", unit:"1kg(1kg×10팩)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"냉동 딸기" },
+  { id:551, name:"냉동 블루베리", brand:"세미원", category:"냉동과일", emoji:"🫐", price:"12,150", unit:"1kg(1kg×10팩)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"냉동 블루베리" },
+  { id:552, name:"냉동 망고하프컷", brand:"세미원", category:"냉동과일", emoji:"🥭", price:"4,500", unit:"500g(500g×20팩)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"냉동 망고 하프" },
+  { id:553, name:"냉동 망고다이스", brand:"세미원", category:"냉동과일", emoji:"🥭", price:"8,550", unit:"1kg(1kg×10팩)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"냉동 망고 다이스" },
+  { id:554, name:"냉동 4종과일혼합", brand:"세미원", category:"냉동과일", emoji:"🍓", price:"7,700", unit:"1kg(1kg×10팩)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"냉동 4종 과일 혼합" },
+
+  // ===== 웅진어니스트 (750~784) =====
+  { id:750, name:"야채모양 친구들 찐빵", brand:"웅진어니스트", category:"빵류", emoji:"🥦", price:"4,760", unit:"280g(약40g×7ea, kg 17,000, 개당 680)", tags:["NEW"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"야채모양 친구들 찐빵 채소" },
+  { id:751, name:"잔망루피 오뚝이 캔디", brand:"웅진어니스트", category:"디저트", emoji:"🍬", price:"39,111", unit:"1.08kg(45g×24ea, 개당 1,760)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"잔망루피 오뚝이 캔디" },
+  { id:752, name:"뽀로로 슈크림 붕어빵", brand:"웅진어니스트", category:"디저트", emoji:"🐟", price:"17,500", unit:"1kg(약25g×43~44ea, 개당 390)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"뽀로로 슈크림 붕어빵" },
+  { id:753, name:"뽀로로 팥 붕어빵", brand:"웅진어니스트", category:"디저트", emoji:"🐟", price:"17,500", unit:"1kg(약25g×44~46ea, 개당 390)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"뽀로로 팥 붕어빵" },
+  { id:754, name:"뽀로로 한입약과", brand:"웅진어니스트", category:"디저트", emoji:"🍪", price:"14,385", unit:"1.3kg(약7.5~8g×170ea, kg 14,385, 봉 18,700, 개 110)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"뽀로로 한입약과" },
+  { id:755, name:"뽀로로 한입딸기약과", brand:"웅진어니스트", category:"디저트", emoji:"🍓", price:"14,385", unit:"1.3kg(약7.5~8g×170ea, kg 14,385, 봉 18,700, 개 110)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"뽀로로 한입딸기약과" },
+  { id:756, name:"뽀로로 직화떡갈비", brand:"웅진어니스트", category:"디저트", emoji:"🍖", price:"21,000", unit:"500g(약22~25ea, 개당 466)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"뽀로로 직화 떡갈비" },
+  { id:757, name:"뽀로로 한입돈까스", brand:"웅진어니스트", category:"만두/튀김", emoji:"🍖", price:"16,400", unit:"500g(약18g×24~27ea, 개당 328)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"뽀로로 한입돈까스" },
+  { id:758, name:"뽀로로 치킨너겟", brand:"웅진어니스트", category:"만두/튀김", emoji:"🍗", price:"16,400", unit:"500g(약12g×25~26ea, 개당 328)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"뽀로로 치킨너겟" },
+  { id:759, name:"잔망루피 달콤약과 도넛", brand:"웅진어니스트", category:"디저트", emoji:"🍩", price:"22,250", unit:"400g(약40g×10ea, 개당 890)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"잔망루피 달콤약과 도넛" },
+  { id:760, name:"잔망루피 미니약과 도넛", brand:"웅진어니스트", category:"디저트", emoji:"🍩", price:"25,555", unit:"360g(약38g×20ea, 개당 460)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"잔망루피 미니약과 도넛" },
+  { id:761, name:"잔망루피 미니약과 도넛 (초코맛)", brand:"웅진어니스트", category:"디저트", emoji:"🍫", price:"31,111", unit:"400g(약20g×20ea, 개당 566)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"잔망루피 미니약과 도넛 초코" },
+  { id:762, name:"뽀로로 삼각츄러스 (초코맛)", brand:"웅진어니스트", category:"디저트", emoji:"🥐", price:"35,385", unit:"260g(13g×20ea, 개당 460)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"뽀로로 삼각츄러스 초코" },
+  { id:763, name:"뽀로로 23곡곡물간식", brand:"웅진어니스트", category:"디저트", emoji:"🥨", price:"30,000", unit:"1kg(10g×100ea, 개당 300)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"뽀로로 23곡 곡물 간식" },
+  { id:764, name:"뽀로로 츄러스 (치즈크림/초코크림)", brand:"웅진어니스트", category:"디저트", emoji:"🥐", price:"25,555", unit:"210g(17.5g×12ea, 개당 555)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"뽀로로 츄러스 치즈크림 초코크림" },
+  { id:765, name:"캐치티니핑 (애플망고/샤인머스켓)", brand:"웅진어니스트", category:"음료", emoji:"🧃", price:"1,122", unit:"200ml", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"캐치티니핑 애플망고 샤인머스켓" },
+  { id:766, name:"캐치티니핑 (유기능보리차펫)", brand:"웅진어니스트", category:"음료", emoji:"🧃", price:"1,122", unit:"200ml", tags:["NEW"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"캐치티니핑 유기능 보리차" },
+  { id:767, name:"캐치티니핑 (딸기펫/사과펫/복숭아펫/밀크펫)", brand:"웅진어니스트", category:"음료", emoji:"🧃", price:"1,122", unit:"200ml", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"캐치티니핑 딸기 사과 복숭아 밀크" },
+  { id:768, name:"자연은 토마토", brand:"웅진어니스트", category:"음료", emoji:"🍅", price:"465", unit:"180ml(kg 2,580)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"자연은 토마토" },
+  { id:769, name:"워터젤로 망고", brand:"웅진어니스트", category:"음료", emoji:"🥭", price:"580", unit:"100ml(kg 5,800)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"워터젤로 망고" },
+  { id:770, name:"요거상큼 젤로 복숭아", brand:"웅진어니스트", category:"음료", emoji:"🍑", price:"580", unit:"100ml", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"요거상큼 젤로 복숭아" },
+  { id:771, name:"요거풋풋 젤로 사과", brand:"웅진어니스트", category:"음료", emoji:"🍎", price:"580", unit:"100ml", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"요거풋풋 젤로 사과" },
+  { id:772, name:"솔브앤고 아이튼튼 (초코/딸기)", brand:"웅진어니스트", category:"음료", emoji:"🥤", price:"825", unit:"단백질 보충 음료", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"솔브앤고 아이튼튼 초코 딸기 단백질" },
+  { id:773, name:"내사랑 (포도/오렌지/사과)", brand:"웅진어니스트", category:"음료", emoji:"🧃", price:"375", unit:"185ml", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"내사랑 포도 오렌지 사과" },
+  { id:774, name:"빅토리아 스파클링음료", brand:"웅진어니스트", category:"음료", emoji:"💧", price:"540", unit:"500ml (플레인/자몽/레몬/라임/청포도/파인애플/키위)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"빅토리아 스파클링 탄산수" },
+  { id:775, name:"빅토리아 (캔)", brand:"웅진어니스트", category:"음료", emoji:"💧", price:"360", unit:"190ml", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"빅토리아 캔" },
+  { id:776, name:"자연은 배", brand:"웅진어니스트", category:"음료", emoji:"🍐", price:"3,107", unit:"1.5L (180ml 465원)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"자연은 배" },
+  { id:777, name:"자연은 망고", brand:"웅진어니스트", category:"음료", emoji:"🥭", price:"462", unit:"180ml", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"자연은 망고" },
+  { id:778, name:"샤인머스캣", brand:"웅진어니스트", category:"음료", emoji:"🍇", price:"462", unit:"180ml", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"샤인머스캣" },
+  { id:779, name:"고칼슘 오렌지", brand:"웅진어니스트", category:"음료", emoji:"🍊", price:"430", unit:"180ml", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"고칼슘 오렌지" },
+  { id:780, name:"초록매실", brand:"웅진어니스트", category:"음료", emoji:"🍏", price:"465", unit:"180ml", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"초록매실" },
+  { id:781, name:"유기농 하늘보리", brand:"웅진어니스트", category:"음료", emoji:"🌾", price:"750", unit:"200ml", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"유기농 하늘보리" },
+  { id:782, name:"코코몽 딸기", brand:"웅진어니스트", category:"음료", emoji:"🍓", price:"750", unit:"200ml", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"코코몽 딸기" },
+  { id:783, name:"코코몽 포도", brand:"웅진어니스트", category:"음료", emoji:"🍇", price:"750", unit:"200ml", tags:[], color:"#F3E5F5", tcolor:"#6A1B9A", keywords:"코코몽 포도" },
+  { id:784, name:"코코몽 사과", brand:"웅진어니스트", category:"음료", emoji:"🍎", price:"750", unit:"200ml", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"코코몽 사과" },
+
+  // ===== 식탁요정 (700~727) =====
+  { id:700, name:"살짝콩수리취찹쌀떡", brand:"식탁요정", category:"떡류", emoji:"🍡", price:"23,000", unit:"1kg(약40g×25ea, 개당 920)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"수리취 찹쌀떡 단오" },
+  { id:701, name:"수리취구슬떡", brand:"식탁요정", category:"떡류", emoji:"🟢", price:"11,400", unit:"1kg(약19.6g×51±3ea, 개당 224)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"수리취 구슬떡" },
+  { id:702, name:"행운말수리취납작꿀떡", brand:"식탁요정", category:"떡류", emoji:"🐴", price:"14,310", unit:"1kg(약36.8g×27±2ea, 개당 530)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"수리취 납작꿀떡 행운말" },
+  { id:703, name:"싱싱 아이스망고바", brand:"식탁요정", category:"디저트", emoji:"🥭", price:"6,300", unit:"600g(약60g×10ea, 행사가 kg 10,500, 개당 630)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"아이스망고바 망고" },
+  { id:704, name:"내가 진짜 버터떡", brand:"식탁요정", category:"떡류", emoji:"🧈", price:"26,000", unit:"600g(약30g×20ea, kg 43,333, 개당 1,300)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"버터떡 내가진짜" },
+  { id:705, name:"내가 진짜 두쫀쿠 (벌크포장)", brand:"식탁요정", category:"디저트", emoji:"🍪", price:"54,000", unit:"768g(약32g×24ea, kg 70,313, 개당 2,250)", tags:["NEW"], isNew:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"두쫀쿠 두바이 쫀득쿠키 벌크" },
+  { id:706, name:"내가 진짜 두쫀쿠 (개별포장)", brand:"식탁요정", category:"디저트", emoji:"🍪", price:"64,800", unit:"768g(약32g×24ea, kg 84,375, 개당 2,700)", tags:["NEW"], isNew:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"두쫀쿠 두바이 쫀득쿠키 개별" },
+  { id:707, name:"빨강구슬떡", brand:"식탁요정", category:"떡류", emoji:"🔴", price:"9,700", unit:"1kg(약19.6g×51±3ea, 개당 190)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"빨강 구슬떡" },
+  { id:708, name:"노랑구슬떡", brand:"식탁요정", category:"떡류", emoji:"🟡", price:"9,700", unit:"1kg(약19.6g×51±3ea, 개당 190)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"노랑 구슬떡" },
+  { id:709, name:"비프스테이크 도시락 세트", brand:"식탁요정", category:"세트", emoji:"🥩", price:"145,000", unit:"1세트 9kg(50인분) (할인 후 156,000 → 145,000)", tags:["SET", "할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"비프스테이크 도시락 세트" },
+  { id:710, name:"쁘띠 빠네 불고기피자", brand:"식탁요정", category:"피자", emoji:"🍕", price:"19,980", unit:"1.02kg(약85g×12ea, NEW 10%할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"빠네 불고기 피자 쁘띠" },
+  { id:711, name:"학생디방 오다리떡복이 세트", brand:"식탁요정", category:"세트", emoji:"🐙", price:"138,600", unit:"1세트 15kg(100인분, 10% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"오다리떡복이 세트 학생" },
+  { id:712, name:"꼬치오 순살 파닭꼬치 + 소스세트", brand:"식탁요정", category:"세트", emoji:"🍢", price:"23,120", unit:"닭정육 1kg / 소스 380g(닭꼬치 3kg 이상 주문)", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"꼬치오 파닭꼬치 닭꼬치 세트" },
+  { id:713, name:"불닭 치즈퀘사디아 세트", brand:"식탁요정", category:"세트", emoji:"🌯", price:"125,100", unit:"1세트 8.83kg(100인분, NEW 7%할인)", tags:["NEW", "SET", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"불닭 치즈퀘사디아 세트" },
+  { id:714, name:"한입한돈등심육전", brand:"식탁요정", category:"전/부침", emoji:"🥩", price:"24,770", unit:"1kg(비정형) 30,960 → 24,770 (20%할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"한입한돈 등심육전 전" },
+  { id:715, name:"타이 뿌팟퐁커리 세트", brand:"식탁요정", category:"세트", emoji:"🍛", price:"92,250", unit:"1세트 7kg(50인분) → 14,640 (10%할인 후)", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"타이 뿌팟퐁 커리 세트" },
+  { id:716, name:"밥도독코다리시래기조림", brand:"식탁요정", category:"반찬", emoji:"🐟", price:"28,480", unit:"1.5kg(비정형, 15%할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코다리 시래기 조림 밥도독" },
+  { id:717, name:"속이꽉찬 만두카츠", brand:"식탁요정", category:"만두/튀김", emoji:"🥟", price:"12,870", unit:"1.2kg(약 60g × 20ea, 15% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"만두카츠 속이꽉찬" },
+  { id:718, name:"달콤구리 고구마 & 떡맛탕 세트", brand:"식탁요정", category:"세트", emoji:"🍠", price:"74,590", unit:"1세트 6.5kg(135인분, 15% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"달콤구리 고구마 떡맛탕 세트" },
+  { id:719, name:"트로피칼 과일샐러드/과일4종 단품", brand:"식탁요정", category:"디저트", emoji:"🍓", price:"10,170", unit:"1kg(소스 250g 제공, 10% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"트로피칼 과일샐러드 4종" },
+  { id:720, name:"코코 파인애플에이드 세트", brand:"식탁요정", category:"음료", emoji:"🍍", price:"27,000", unit:"1세트 3kg(50인분) 친환경음료(10잔×300ml), 10% 할인", tags:["NEW", "SET", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"코코 파인애플 에이드 세트" },
+  { id:721, name:"골든번/블랙번 치킨버거 세트", brand:"식탁요정", category:"세트", emoji:"🍔", price:"291,600", unit:"1세트 20kg(100인분, 10% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"골든번 블랙번 치킨버거 세트" },
+  { id:722, name:"톡톡 소다바다 케익", brand:"식탁요정", category:"디저트", emoji:"🎂", price:"35,990", unit:"900g(약30g×30ea, 10% 할인)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"톡톡 소다바다 케익" },
+  { id:723, name:"토끼도 반한 당근케익", brand:"식탁요정", category:"디저트", emoji:"🥕", price:"17,710", unit:"480g(약30g×16ea, 10% 할인)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"토끼 당근 케익" },
+  { id:724, name:"연유크림 화이트롤", brand:"식탁요정", category:"디저트", emoji:"🥖", price:"16,610", unit:"720g(약45g×16ea, 10% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"연유크림 화이트롤" },
+  { id:725, name:"하추핑의 슈크림만쥬", brand:"식탁요정", category:"디저트", emoji:"🥮", price:"21,870", unit:"500g(약15.6g×32×2ea, 10% 할인)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"하추핑 슈크림만쥬" },
+  { id:726, name:"레몬맛 브라우니쿠키 (개별포장)", brand:"식탁요정", category:"디저트", emoji:"🍋", price:"22,770", unit:"900g(약30g×30ea, 10% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"레몬맛 브라우니 쿠키" },
+  { id:727, name:"스페니쉬 츄러스 세트", brand:"식탁요정", category:"세트", emoji:"🥐", price:"59,400", unit:"1세트 3.9kg(50인분, 10% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"스페니쉬 츄러스 세트" },
+
+  // ===== 식탁요정 7~8월 신제품 =====
+  // page_00
+  { id:1072, name:"하노이 매콤토마토쌀국수", brand:"식탁요정", category:"면류", emoji:"🍜", price:"10,132", unit:"1kg / 세트 7.6kg 77,000원 / 1인 152g 1,540원", tags:["NEW"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"하노이 매콤 토마토 쌀국수" },
+  // page_01
+  { id:1073, name:"리얼비프 LA갈비", brand:"식탁요정", category:"불고기/스테이크", emoji:"🥩", price:"42,000", unit:"1kg(비성형)", tags:["NEW"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"리얼비프 LA갈비" },
+  // page_03: 솥밥/곰탕 세트
+  { id:1074, name:"맑은 닭곰탕 세트", brand:"식탁요정", category:"세트", emoji:"🍲", price:"21,400", unit:"kg가 / 1세트 3kg(60인분) 64,200원 / 개당 1,070원", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"맑은 닭곰탕 세트 60인분" },
+  { id:1075, name:"소문난 순대국밥 세트", brand:"식탁요정", category:"세트", emoji:"🍖", price:"13,143", unit:"kg가 / 1세트 7kg(50인분) 92,000원 / 개당 1,840원", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"소문난 순대국밥 세트 50인분" },
+  { id:1076, name:"문어 버터솥밥 세트", brand:"식탁요정", category:"세트", emoji:"🐙", price:"29,787", unit:"kg가 / 1세트 2.35kg(50인분) 70,000원 / 개당 1,400원", tags:["SET"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"문어 버터솥밥 세트 50인분" },
+  { id:1077, name:"전복 버터솥밥 세트", brand:"식탁요정", category:"세트", emoji:"🐚", price:"74,043", unit:"kg가 / 1세트 2.35kg(50인분) 174,000원 / 개당 3,480원", tags:["SET"], color:"#E3F2FD", tcolor:"#1565C0", keywords:"전복 버터솥밥 세트 50인분" },
+  // page_04: 세트메뉴 신규 2종 (기존 709·713 포함)
+  { id:1078, name:"멕시칸 아보카도 칠리타코 세트", brand:"식탁요정", category:"세트", emoji:"🌮", price:"14,642", unit:"kg가 / 1세트(100인분) 133,200원 / 개당 1,480원", tags:["SET"], color:"#FFEBEE", tcolor:"#C62828", keywords:"멕시칸 아보카도 칠리타코 세트" },
+  { id:1079, name:"멕시칸 불고기 웨사비 세트", brand:"식탁요정", category:"세트", emoji:"🌯", price:"14,147", unit:"kg가 / 1세트(100인분) 112,600원 / 개당 1,400원", tags:["SET"], color:"#FFEBEE", tcolor:"#C62828", keywords:"멕시칸 불고기 웨사비 세트" },
+  // page_05: 삼바로우·탕수육 소스세트
+  { id:1080, name:"올통볼통 숙성동심삼바로우 소스세트", brand:"식탁요정", category:"탕수육", emoji:"🍖", price:"20,200", unit:"kg가 / 5kg(5봉) / 개당 721원", tags:["SET"], color:"#FFF3E0", tcolor:"#E65100", keywords:"올통볼통 숙성동심 삼바로우 소스세트" },
+  { id:1081, name:"정경식삼바로우 소스세트", brand:"식탁요정", category:"탕수육", emoji:"🥩", price:"17,700", unit:"kg가 / 개당 295원", tags:["SET"], color:"#FFF3E0", tcolor:"#E65100", keywords:"식탁요정 정경식삼바로우 소스세트" },
+  { id:1082, name:"바바깐든 숙성동심탕수육 소스세트", brand:"식탁요정", category:"탕수육", emoji:"🍖", price:"19,000", unit:"kg가 / 개당 345원", tags:["SET"], color:"#FFF3E0", tcolor:"#E65100", keywords:"바바깐든 탕수육 소스세트" },
+  { id:1083, name:"프라잉 두성한방탕수육 소스세트", brand:"식탁요정", category:"탕수육", emoji:"🌿", price:"15,900", unit:"kg가 / 개당 176원", tags:["SET"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"프라잉 두성 한방탕수육 소스세트" },
+  // page_06: 꿔바로우·텐동·고로케·가지튀김
+  { id:1084, name:"인절미 통통심 꿔바로우 세트", brand:"식탁요정", category:"탕수육", emoji:"🍡", price:"14,621", unit:"kg가 / 1세트 7.25kg(50인분) 106,000원 / 개당 2,120원", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"인절미 통통심 꿔바로우 세트 50인분" },
+  { id:1085, name:"동경텐동 세트", brand:"식탁요정", category:"만두/튀김", emoji:"🍤", price:"15,000", unit:"kg가 / 1세트 8.5kg(50인분) 127,500원 / 개당 2,550원", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"동경텐동 세트 50인분" },
+  { id:1086, name:"국산감자 치즈베이컨 고로케 소스세트", brand:"식탁요정", category:"만두/튀김", emoji:"🥐", price:"15,083", unit:"kg가 / 고로케 3.6kg(3봉) 18,100원 / 개당 905원", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"국산감자 치즈베이컨 고로케 소스세트" },
+  { id:1087, name:"바사삭 가지튀김 소스세트", brand:"식탁요정", category:"만두/튀김", emoji:"🍆", price:"18,200", unit:"kg가 / 가지튀김 3kg(3봉) 18,200원 / 개당 350원", tags:["SET"], color:"#E8EAF6", tcolor:"#283593", keywords:"바사삭 가지튀김 소스세트" },
+  // page_07: 갈빗·함박·미트볼 스테이크 세트
+  { id:1088, name:"갈빗스테이크 소스세트", brand:"식탁요정", category:"불고기/스테이크", emoji:"🥩", price:"17,600", unit:"kg가 / 1세트 4kg(4SET) / 개당 1,760원", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"갈빗스테이크 소스세트" },
+  { id:1089, name:"우리한우응함박 스테이크 소스세트", brand:"식탁요정", category:"불고기/스테이크", emoji:"🥩", price:"21,700", unit:"kg가 / 1세트(40인분) / 개당 2,170원", tags:["SET", "NEW"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"우리한우응함박 스테이크 소스세트" },
+  { id:1090, name:"그릴드 자이언트미트볼 소스세트", brand:"식탁요정", category:"전/부침", emoji:"🍖", price:"17,300", unit:"kg가 / 미트볼 3kg(3봉) / 개당 558원", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"그릴드 자이언트미트볼 소스세트" },
+  { id:1091, name:"72로크미트볼 소스세트", brand:"식탁요정", category:"전/부침", emoji:"🍖", price:"18,020", unit:"kg가 / 5kg(5봉) / 개당 200원", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"72로크미트볼 소스세트" },
+  // page_08: 커리·분카 세트 (기존 715 포함)
+  { id:1092, name:"고메버터 치킨아크니커리 세트", brand:"식탁요정", category:"세트", emoji:"🍛", price:"11,962", unit:"kg가 / 1세트 1.25kg(40인분) 이상 86,000원 / 개당 2,150원", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"고메버터 치킨 아크니커리 세트 40인분" },
+  { id:1093, name:"스쿨 분카 세트", brand:"식탁요정", category:"세트", emoji:"🍗", price:"13,086", unit:"kg가 / 1세트 7kg(40인분) 91,600원 / 개당 2,290원", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"스쿨 분카 세트 40인분" },
+  { id:1094, name:"스몰타이아 세트", brand:"식탁요정", category:"세트", emoji:"🌶️", price:"7,147", unit:"kg가 / 1세트 3.4kg(20인분) 24,300원 / 개당 608원", tags:["SET"], color:"#FFEBEE", tcolor:"#C62828", keywords:"스몰타이아 세트 20인분" },
+  // page_09: 미트파이·페이스트리 스프
+  { id:1095, name:"수제 미트파이 세트", brand:"식탁요정", category:"세트", emoji:"🥧", price:"15,312", unit:"kg가 / 1세트 10.58kg(90인분) 162,000원 / 개당 1,800원", tags:["SET"], color:"#FFF3E0", tcolor:"#E65100", keywords:"수제 미트파이 세트 90인분" },
+  { id:1096, name:"페이스트리 스프 세트", brand:"식탁요정", category:"세트", emoji:"🫕", price:"13,061", unit:"kg가 / 1세트 7.58kg(90인분) 99,000원 / 개당 1,100원", tags:["SET"], color:"#FFF3E0", tcolor:"#E65100", keywords:"페이스트리 스프 세트 90인분" },
+  // page_10: 흑당 인절미토스트
+  { id:1097, name:"흑당 인절미토스트 세트", brand:"식탁요정", category:"세트", emoji:"🍞", price:"18,226", unit:"kg가 / 1세트 6.65kg(120인분) 121,200원 / 개당 1,010원", tags:["SET"], color:"#5D4037", tcolor:"#D7CCC8", keywords:"흑당 인절미 토스트 세트 120인분" },
+  // page_11: 크로플·토스트 (기존 711·718 포함)
+  { id:1098, name:"수제 버터크로플", brand:"식탁요정", category:"디저트", emoji:"🧇", price:"31,250", unit:"kg가 / 400g(약40g×10ea) 12,500원 / 개당 1,250원", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"수제 버터크로플" },
+  { id:1099, name:"톡톡 콘치즈마요토스트", brand:"식탁요정", category:"디저트", emoji:"🥪", price:"19,944", unit:"kg가 / 360g(60g×6ea) 6,100원 / 개당 1,017원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"톡톡 콘치즈 마요토스트" },
+  { id:1100, name:"파송송 크림치즈탁 토스트", brand:"식탁요정", category:"디저트", emoji:"🥪", price:"17,333", unit:"kg가 / 300g(50g×6ea) 5,200원 / 개당 867원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"파송송 크림치즈탁 토스트" },
+  // page_13: 망고·에이드 (기존 703 포함)
+  { id:1101, name:"달달연유 망고소르베", brand:"식탁요정", category:"디저트", emoji:"🥭", price:"13,333", unit:"kg가 / 1세트 6kg(50인분) 80,000원 / 개당 1,600원", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"달달연유 망고소르베 50인분" },
+  { id:1102, name:"레존그라스 정글화채", brand:"식탁요정", category:"음료", emoji:"🍹", price:"9,133", unit:"kg가 / 1세트 6kg(50인분) 54,800원 / 개당 1,096원", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"레존그라스 정글화채 50인분" },
+  { id:1103, name:"사인머스켓 에이드", brand:"식탁요정", category:"음료", emoji:"🍇", price:"16,500", unit:"kg가 / 1세트 2kg(50인분) 이상 32,400원", tags:["NEW", "SET"], isNew:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"사인머스켓 에이드 50인분" },
+  { id:1104, name:"트로피칼과일 에이드", brand:"식탁요정", category:"음료", emoji:"🍍", price:"14,850", unit:"kg가 / 1세트 2kg(50인분) 이상 29,700원", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"트로피칼과일 에이드 50인분" },
+  // page_14: 7·8월 행사 단품/소스세트 (기존 1087·1090 포함)
+  { id:1105, name:"스쿨본짜 세트", brand:"식탁요정", category:"세트", emoji:"🍖", price:"11,777", unit:"kg가(세트) / 1세트 7kg(40인분) 62,440원 / 개당 2,061원", tags:["SET", "할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"스쿨본짜 세트 40인분" },
+  { id:1106, name:"튀겨나온주먹인돈카츠 단품/소스세트", brand:"식탁요정", category:"만두/튀김", emoji:"🍱", price:"15,900", unit:"단품 kg가 / 소스세트 17,000원 / 개당 1,780원", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"튀겨나온 주먹인 돈카츠 소스세트" },
+  { id:1107, name:"톡톡 칼집바비미니탕김 단품/소스세트", brand:"식탁요정", category:"반찬", emoji:"🐟", price:"16,000", unit:"단품 kg가 / 소스세트 / 개당 238원", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"톡톡 칼집바비 미니탕김 소스세트" },
+  { id:1108, name:"스노우 빅깐소새우 단품/소스세트", brand:"식탁요정", category:"만두/튀김", emoji:"🦐", price:"31,200", unit:"단품 kg가 / 소스세트 26,520원 / 개당 624원", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"스노우 빅깐소새우 단품 소스세트" },
+  // page_15: 7·8월 행사 디저트·빵 (기존 704·1099 포함)
+  { id:1109, name:"샤르톡 오레오/딸기크림 치즈케익", brand:"식탁요정", category:"디저트", emoji:"🎂", price:"35,990", unit:"1kg(33g×30ea) / 개당 1,333원", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"샤르톡 오레오 딸기크림 치즈케익" },
+  { id:1110, name:"달콤 마늘크림토스트", brand:"식탁요정", category:"디저트", emoji:"🧄", price:"16,071", unit:"kg가 / 840g(70g×12ea) 13,500원 / 개당 1,125원", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"달콤 마늘크림 토스트" },
+  { id:1111, name:"(개별포장) 즉촉한 레드벨벳쿠키", brand:"식탁요정", category:"디저트", emoji:"🍪", price:"26,000", unit:"kg가 / 개당 889원", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"개별포장 즉촉한 레드벨벳 쿠키" },
+  { id:1112, name:"우리밀 9곡미수가루 단품/세트", brand:"식탁요정", category:"음료", emoji:"🌾", price:"16,600", unit:"단품 kg가 / 30인분 세트 18,280원 / 개당 430원", tags:["할인", "SET"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"우리밀 9곡미수가루 단품 세트" },
+
+  // ===== // 착한치킨 (800~810) =====
+{ id:800, name:"아이올리 칠리 치킨 (오븐/유탕)", brand:"착한치킨", category:"치킨", emoji:"🌶️", price:"11,670", unit:"염지닭 1kg + 칠리소스 + 아이올리소스 (절단육 30g 기준)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"아이올리 칠리 치킨" },
+  { id:801, name:"닷치킨 (오븐/유탕)", brand:"착한치킨", category:"치킨", emoji:"🍗", price:"14,440", unit:"로스트염지닭 1kg + 닷소스 + 새맛마늘간장소스 (오븐 14,440 / 유탕 14,680)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"닷치킨" },
+  { id:802, name:"달콤허니갈릭치킨 (유탕)", brand:"착한치킨", category:"치킨", emoji:"🍯", price:"12,220", unit:"후라이드염지닭 1kg + 누룽지파우더 + 달콤허니갈릭소스", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"달콤 허니갈릭 치킨" },
+  { id:803, name:"버터맛 킹 (오븐)", brand:"착한치킨", category:"치킨", emoji:"🧈", price:"11,530", unit:"로스트염지닭 1kg + 버터맛소스", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"버터맛 킹 치킨" },
+  { id:804, name:"고추마요치킨 (오븐/유탕)", brand:"착한치킨", category:"치킨", emoji:"🌶️", price:"13,160", unit:"로스트염지닭 1kg + 청양마요소스(디핑) / 후라이드용은 누룽지파우더+청마요소스", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"고추마요 치킨" },
+  { id:805, name:"샤르르 뿌링치킨 (허니버터/치토스/뿌링클)", brand:"착한치킨", category:"치킨", emoji:"🧀", price:"11,920", unit:"후라이드염지닭 1kg + 누룽지파우더 + 시즈닐(3종 선택)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"샤르르 뿌링치킨 허니버터 치토스 뿌링클" },
+  { id:806, name:"저크자메이카 치킨 (오븐)", brand:"착한치킨", category:"치킨", emoji:"🌴", price:"11,600", unit:"로스트염지닭 1kg + 저크자메이카소스", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"저크 자메이카 치킨" },
+  { id:807, name:"달콤바사삭 숯불바베큐 치킨 (오븐)", brand:"착한치킨", category:"치킨", emoji:"🔥", price:"11,820", unit:"로스트염지닭 1kg + 숯불바베큐소스", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"숯불 바베큐 치킨 달콤바사삭" },
+  { id:808, name:"로스트 치킨 (오븐)", brand:"착한치킨", category:"치킨", emoji:"🍗", price:"10,410", unit:"로스트염지닭 1kg (절단육 30g 기준)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"로스트 치킨" },
+  { id:809, name:"오리지날 크리스피 치킨 (유탕)", brand:"착한치킨", category:"치킨", emoji:"🍗", price:"10,420", unit:"후라이드염지닭 1kg + 누룽지파우더 (절단육 30g 기준)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"오리지날 크리스피 치킨" },
+  { id:810, name:"K-옛날양념치킨 (유탕)", brand:"착한치킨", category:"치킨", emoji:"🍗", price:"12,340", unit:"후라이드염지닭 1kg + 누룽지파우더 + 옛날풍치킨양념소스", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"K-옛날 양념 치킨" },
+
+  // ===== // 푸드쿠키 (850~878) =====
+{ id:850, name:"불향솔솔 간장/매콤직화 불고기", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🔥", price:"24,750", unit:"kg 단가, 100% 수제 석쇠불 직접 구이, 불고기 수율 90% 양념 10%", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"불향솔솔 직화 불고기 간장 매콤" },
+  { id:851, name:"퀸덕 연탄불만난 돈후지불고기", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"12,500", unit:"1kg (매콤/간장 맛)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"퀸덕 연탄불 돈후지 불고기" },
+  { id:852, name:"퀸덕 연탄불만난 돈전지불고기", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"18,200", unit:"1kg (매콤/간장 맛)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"퀸덕 연탄불 돈전지 불고기" },
+  { id:853, name:"퀸덕 연탄불만난 오리불고기", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"19,500", unit:"1kg (매콤/간장 맛)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"퀸덕 연탄불 오리 불고기" },
+  { id:854, name:"퀸덕 연탄불만난 닭갈비불고기", brand:"푸드쿠키", category:"치킨", emoji:"🍗", price:"18,500", unit:"1kg (매콤/간장 맛)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"퀸덕 연탄불 닭갈비 불고기" },
+  { id:855, name:"참숯으로 구워낸 돈옥훈제", brand:"푸드쿠키", category:"훈제육", emoji:"🐖", price:"14,200", unit:"1kg, 돈후지 95%, 삽겹맛시즈닝 3%", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"돈옥 훈제 참숯" },
+  { id:856, name:"참숯으로 구워낸 돈삼겹바베큐", brand:"푸드쿠키", category:"훈제육", emoji:"🐖", price:"32,600", unit:"1kg, 돈삼겹 96.05%, 삽겹맛시즈닝 3%", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"돈삼겹 바베큐 참숯" },
+  { id:857, name:"솔향염지순살 생오리 통바비큐", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"19,167", unit:"1.2kg(한마리) / 단품 19,167원, 소스세트 20,167, 밀전병세트 별도", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"솔향 염지 순살 생오리 통바비큐" },
+  { id:858, name:"구워나온 북경식 통오리바비큐", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"24,778", unit:"900g(한마리) / 단품 24,778, 소스세트 26,333, 밀전병세트 27,888", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"구워나온 북경식 통오리 바비큐" },
+  { id:859, name:"프로바이오틱스 유산균 8無 훈제오리", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"23,500", unit:"1kg 단품 / 세트(증정) 24,700원 (3mm/5mm 선택)", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"프로바이오틱스 유산균 8無 훈제 오리" },
+  { id:860, name:"퀸덕 블루베리 9無 훈제오리", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"23,000", unit:"1kg 단품 / 세트(증정) 24,200원", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"퀸덕 블루베리 9無 훈제 오리" },
+  { id:861, name:"미슐랭 쓰리라차 마요 닭다리살 훈제슬라이스", brand:"푸드쿠키", category:"치킨", emoji:"🍗", price:"23,200", unit:"1kg (1등급 친환경), 신제품 출시 파격할인", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"미슐랭 쓰리라차 마요 닭다리살 훈제" },
+  { id:862, name:"미슐랭 쓰리라차 마요 9무훈제 슬라이스 (오리)", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"22,200", unit:"1kg (1등급 친환경), 신제품 출시 파격할인", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#EFEBEE", tcolor:"#5D4037", keywords:"미슐랭 쓰리라차 마요 9무 훈제 오리" },
+  { id:863, name:"다올 와규 큐브찹스테이크 세트", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"42,600", unit:"1kg (3×3×3cm, 25~30g), 호주산 MB5등급, 허브솔트+올리브오일+다올찹스테이크소스 증정", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"다올 와규 큐브찹 스테이크 세트" },
+  { id:864, name:"다올 와규 언양식 불고기", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"35,000", unit:"1kg(1.5mm 슬라이스), 양념육, 호주산 MB5등급", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"다올 와규 언양식 불고기" },
+  { id:865, name:"다올 바질램솔더렉스테이크", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🐑", price:"64,540", unit:"1kg (개당 110±5g × 9~10ea), 양고기 솔더렉, 하오츠 프란소스 증정", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"다올 바질 램솔더 렉스테이크 양고기" },
+  { id:866, name:"다올 큐브 목살/사태 찹스테이크 세트", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"32,400", unit:"1kg(2.5×2.5×2.5cm), 마리네이드 / 후레시 옵션 (목살 32,400~25,500 / 사태 17,800~16,000)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"다올 큐브 목살 사태 찹스테이크 세트" },
+  { id:867, name:"다올 포크럽 목살스테이크세트", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"26,910", unit:"1kg 단가 / 100g(약5g) / 150g(약5g) 옵션, 1등급 돈육(국내산), 특제소스+시즈닝 증정", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"다올 포크럽 목살 스테이크 세트" },
+  { id:868, name:"대구 북성로 솔향 숯불돈목구이", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🐖", price:"21,000", unit:"1kg, 1등급돈목살(국내산)87.5%, 솔향양념달콤소스25%(간장33.4%, 당근, 대파, 양파, 마늘, 참기름, 솔잎분말 외)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"대구 북성로 솔향 숯불 돈목구이" },
+  { id:869, name:"대구 북성로 솔향 숯불돈전지구이", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🐖", price:"17,800", unit:"1kg, 1등급돈전지살(국내산)87.5%, 솔향양념달콤소스25%(간장33.4%)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"대구 북성로 솔향 숯불 돈전지구이" },
+  { id:870, name:"말돈소금 엄마손 삼겹말이 (아스파라거스)", brand:"푸드쿠키", category:"전/부침", emoji:"🥓", price:"44,667", unit:"kg 44,667 (개당 1,340), 900g(30g×30ea), 아스파라거스 삽겹말이", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"말돈소금 엄마손 삼겹말이 아스파라거스" },
+  { id:871, name:"말돈소금 엄마손 삼겹말이 (미나리)", brand:"푸드쿠키", category:"전/부침", emoji:"🥓", price:"44,667", unit:"kg 44,667 (개당 1,340), 900g(30g×30ea), 미나리 삽겹말이", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"말돈소금 엄마손 삼겹말이 미나리" },
+  { id:872, name:"말돈소금 엄마손 삼겹말이 (마늘쫑)", brand:"푸드쿠키", category:"전/부침", emoji:"🥓", price:"42,667", unit:"kg 42,667 (개당 1,280), 900g(30g×30ea), 마늘쫑 삽겹말이", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"말돈소금 엄마손 삼겹말이 마늘쫑" },
+  { id:873, name:"명품 제주 흑돼지 장족슬라이스", brand:"푸드쿠키", category:"훈제육", emoji:"🐖", price:"24,800", unit:"1kg(슬라이스), 앞발로만 OK!, 단품 24,800 / 새우컷 세트 25,800", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"명품 제주 흑돼지 장족 슬라이스 앞발" },
+  { id:874, name:"숙성제주흑돼지 칼집양념구이", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🐖", price:"12,400", unit:"1kg (할인가), 칼집내어 양념한 국내산 양념갈비", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"숙성 제주 흑돼지 칼집 양념구이" },
+  { id:875, name:"숙성돼지 한입 LA갈비 양념구이", brand:"푸드쿠키", category:"불고기/스테이크", emoji:"🥩", price:"16,800", unit:"1kg(두께 1×4×5cm, 갈비뼈 포함, 할인가)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"숙성 돼지 한입 LA갈비 양념구이" },
+  { id:876, name:"싸먹는 오리 (쌈&덕)", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"23,600", unit:"1kg(슬라이스, 약 100장), 오리육(국내산)91.24%, 초특가 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"싸먹는 오리 쌈덕 슬라이스" },
+  { id:877, name:"연잎 속 10無 훈제오리", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"22,200", unit:"1kg(슬라이스, 3mm/5mm 선택가능), 오리육(국내산)90, 연잎 5.5%", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"연잎 10無 훈제 오리" },
+  { id:878, name:"흑돈품은 오리 떡갈비", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"20,800", unit:"1kg(100g×10ea), 오리육(국내산)56.96%, 돼지뒷다리(국내산)24.41%, 떡갈비양념", tags:[], color:"#FCE4EC", tcolor:"#AD1457", keywords:"흑돈 오리 떡갈비" },
+
+  // ===== 푸드쿠키 7~8월 신제품 =====
+  // page_20: 퀸덕 오리양념불고기 3종
+  { id:1113, name:"퀸덕 오리 양념 불고기", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"18,900", unit:"1kg (참맛다한 고추장/간장 맛)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"퀸덕 오리 양념 불고기 고추장 간장" },
+  { id:1114, name:"퀸덕 오리양념 불고기 세트", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"19,500", unit:"생오리 1kg + 소스 25% 증정", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"퀸덕 오리양념 불고기 세트 소스증정" },
+  { id:1115, name:"퀸덕 생오리 소스세트", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"22,200", unit:"1kg / 소스증정 250g + 연잎분말 2g (흑소스/블랙소이/연탄불만난 소스 선택)", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"퀸덕 생오리 소스세트 흑소스 블랙소이" },
+  // page_22: 산더미 롤링오리대패 + 로제풍당 훈제오리
+  { id:1116, name:"산더미 롤링오리대패 단품", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"18,900", unit:"1kg (2mm 슬라이스, 양념불고기용)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"산더미 롤링오리 대패 단품" },
+  { id:1117, name:"산더미 롤링오리대패 소스세트", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"21,000", unit:"대패오리 1kg + 소스 25% 증정 (매콤스윗/블랙소이 소스 선택)", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"산더미 롤링오리 대패 소스세트" },
+  { id:1118, name:"로제풍당 9無 훈제오리", brand:"푸드쿠키", category:"오리", emoji:"🦆", price:"22,200", unit:"단품 1kg, 훈제오리슬라이스 70% + 로제소스 30%", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"로제풍당 9無 훈제 오리" },
+  // page_23: 프리미엄 애플톡 샤벳
+  { id:1119, name:"프리미엄 애플톡 샤벳", brand:"푸드쿠키", category:"디저트", emoji:"🍎", price:"17,800", unit:"100ml / 1kg 17,800원 / 개당 1,780원, 출시기념 특별 혜택가", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"프리미엄 애플톡 샤벳 사과 셔벗" },
+
+  // ===== 단비 7~8월 신제품 (id:1120~1128) =====
+  { id:1120, name:"단비 우리밀/쌀 케이크", brand:"단비", category:"베이커리", emoji:"🎂", price:"1,430", unit:"개당 1,430원 / kg 57,200원 (가나슈/치즈/생크림/딸기 케이크)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 우리밀 쌀 케이크 가나슈 치즈 생크림 딸기" },
+  { id:1121, name:"단비 크림치즈쿠키", brand:"단비", category:"쿠키", emoji:"🍪", price:"50,000", unit:"kg (생지 21g · 냉동 18g)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"단비 크림 치즈 쿠키 크림치즈" },
+  { id:1122, name:"단비 우리쌀 블랙올리브 치아바타", brand:"단비", category:"빵", emoji:"🫓", price:"780", unit:"개당 / 생지 25g / kg 31,200원", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"단비 우리쌀 블랙 올리브 치아바타" },
+  { id:1123, name:"단비 크랩사이다쿠키", brand:"단비", category:"쿠키", emoji:"🍪", price:"1,190", unit:"개당 (생지 30g) / 50개입 59,500원", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"단비 크랩 사이다 쿠키" },
+  { id:1124, name:"단비 우리쌀 아이돌 시금브릭", brand:"단비", category:"빵", emoji:"🫓", price:"1,240", unit:"개당 (생지 40g) / kg 31,000원", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"단비 우리쌀 아이돌 시금 브릭 시금치" },
+  { id:1125, name:"단비 파이류 (다종)", brand:"단비", category:"파이", emoji:"🥐", price:"27,000", unit:"kg / 생지 30g 내외 (치즈엔슈/사냐문/호박꽃/파이바내추크림/파이위스트 등)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 파이 치즈 우리쌀 호박꽃 크림 파이위스트" },
+  { id:1126, name:"단비 우리쌀 도넛츠 생지", brand:"단비", category:"도넛츠", emoji:"🍩", price:"28,000", unit:"kg / 생지 30g (파배기/링/까망/복분자 도넛츠 4종)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 우리쌀 도넛츠 생지 파배기 링 까망 복분자" },
+  { id:1127, name:"단비 우리쌀 치아바타 & 크로와상", brand:"단비", category:"빵", emoji:"🥐", price:"47,500", unit:"kg / 치아바타 25g · 크로와상 33g", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 우리쌀 치아바타 크로와상" },
+  { id:1128, name:"단비 우리밀/쌀 바게트 & 식빵", brand:"단비", category:"빵", emoji:"🍞", price:"27,200", unit:"kg / 식빵 45g · 바게트 20~25g", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 우리밀 쌀 바게트 식빵 아바나" },
+  { id:1301, name:"단비 영양교육 케이크 만들기 카스테라 SET", brand:"단비", category:"케이크", emoji:"🎂", price:"8,260", unit:"케이크시트130g+휘핑크림80g+팔주머니(365원)+케이크칼(200원)+미니박스(1,600원) / 카스테라 생지 kg 43,000원", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 영양교육 케이크 만들기 카스테라 세트 생크림 휘핑 케이크시트" },
+  { id:1302, name:"단비 우리밀 모양쿠키 실습용 생지", brand:"단비", category:"쿠키", emoji:"🍪", price:"43,000", unit:"생지 1kg (반죽20g×50개 or 반죽25g×40개) · 1인 세트포장 가능", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"단비 우리밀 모양쿠키 실습 생지 영양교육 크림베리 계피 시금치 단호박 초코칩" },
+
+  // ===== 비락 7~8월 신제품 (id:1129~1136) =====
+  { id:1129, name:"비락 우유 추천 (100ml/200ml)", brand:"비락", category:"우유", emoji:"🥛", price:"480", unit:"100ml/개 · 200ml 720원/개 (딸기/망고/바닐라 라떼 3종)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 우유 딸기 망고 바닐라 라떼 100ml 200ml" },
+  { id:1130, name:"비락 코코브루니 콜드브루 라떼", brand:"비락", category:"커피", emoji:"☕", price:"1,650", unit:"개당 200ml / kg 8,250원 (골드브루라떼/봄즈브루라떼/바닐라라떼/아메리카노)", tags:[], color:"#EFEBE9", tcolor:"#4E342E", keywords:"비락 코코브루니 콜드브루 라떼 바닐라 아메리카노 커피" },
+  { id:1131, name:"비락 투유오리지날 & 강화우유", brand:"비락", category:"우유", emoji:"🥛", price:"680", unit:"180ml / 학교단가 3,778원/L단가 (투유/빼건강100/딸기라떼100/바나나라떼100)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 투유 오리지날 빼건강 강화우유 학교단가" },
+  { id:1132, name:"비락 초코라떼 & 검은콩씨리얼우유", brand:"비락", category:"우유", emoji:"🥛", price:"720", unit:"200ml / L단가 3,600~4,000원 (초코라떼/검은콩씨리얼우유)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 초코라떼 검은콩 씨리얼 우유" },
+  { id:1133, name:"비락 유기농 야채사랑 & 과채주스", brand:"비락", category:"주스", emoji:"🧃", price:"960", unit:"190ml / 5,053원/L단가 (야채사랑ABC/365/당근비트/유기농ABC/CCA주스)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"비락 유기농 과채주스 야채사랑 ABC CCA 당근 비트" },
+  { id:1134, name:"비락 에플린 올바른 두유 & 유산균음료", brand:"비락", category:"두유/음료", emoji:"🥤", price:"500", unit:"110~190ml / 올바른두유·유산균음료·유기농식혜·오늘의애플사이다비니거·오늘의석류 등", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 에플린 올바른 두유 유산균 음료 유기농 식혜 석류 사이다비니거" },
+  { id:1135, name:"비락 에플린 올바른 우유 (소화/무항생제)", brand:"비락", category:"우유", emoji:"🥛", price:"900", unit:"180ml / 5,000원/L단가 (소화가잘되는우유/올바른우유/무항생제우유)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 에플린 올바른 소화가잘되는 무항생제 우유" },
+  { id:1136, name:"비락 퍼펙트프로틴 & 로얄밀크티", brand:"비락", category:"음료", emoji:"🥤", price:"1,450", unit:"퍼펙트프로틴 180ml · 로얄밀크티 200ml / kg 8,056~8,250원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"비락 에플린 퍼펙트 프로틴 로얄 밀크티" },
+
+  // ===== 푸르나이 7~8월 신제품 (id:1137~1148) =====
+  { id:1137, name:"채움 수제 두툼통등심 돈까스", brand:"푸르나이", category:"돈까스", emoji:"🍖", price:"17,208", unit:"kg / 1.2kg(60g×20ea) · 개당 1,033원 (10% Sale)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"채움 수제 두툼 통등심 돈까스 우리밀 빵가루" },
+  { id:1138, name:"푸르나이 두 번 생각한 통등심 돈까스", brand:"푸르나이", category:"돈까스", emoji:"🍖", price:"18,492", unit:"kg / 1.2kg(60g×20ea) · 개당 1,110원 (연육제·베타믹스 ZERO, 국산돼지70%)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 두번 생각한 통등심 돈까스 국산돼지 베타믹스제로" },
+  { id:1139, name:"푸르나이 우리밀 통밀도넛", brand:"푸르나이", category:"도넛츠", emoji:"🍩", price:"19,500", unit:"kg / 2kg(40g×50ea) · 40g 780원 (소보로/초코 통밀도넛, 30% Sale)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 우리밀 통밀 도넛 소보로 초코" },
+  { id:1140, name:"푸르나이 우리밀 웨이퍼 3종", brand:"푸르나이", category:"과자", emoji:"🍘", price:"595", unit:"8g/개 · 800g(8g×100ea) · kg 74,375원 (우유/딸기/감태 웨이퍼)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 우리밀 웨이퍼 우유 딸기 감태" },
+  { id:1141, name:"푸르나이 두 번 훈제오리", brand:"푸르나이", category:"오리", emoji:"🦆", price:"34,890", unit:"1kg / 점가물ZERO 무항생제 오리 · 자연재료 20여가지", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 두번 훈제 오리 무항생제 자연재료" },
+  { id:1142, name:"푸르나이 두 번 생각한 우리밀 핫도그", brand:"푸르나이", category:"핫도그", emoji:"🌭", price:"29,000", unit:"kg / 500g(50g×10ea) · 개당 1,450원 (무항생제 돼지고기 소시지)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 두번 우리밀 핫도그 무항생제 소시지" },
+  { id:1143, name:"푸르나이 유기농 우리식혜", brand:"푸르나이", category:"음료", emoji:"🥤", price:"8,800", unit:"kg / 4L(100ml×40ea) · 개당 880원 (합성감미료 0%, 100% 국산 유기농)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 유기농 우리 식혜 국산" },
+  { id:1144, name:"우리 현미/통밀 담은 강정", brand:"푸르나이", category:"과자", emoji:"🍘", price:"9,950", unit:"300g(6g×50ea) · 개당 199원 · kg 33,167원 (버터조청, 첨가물無)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 우리 현미 통밀 담은 강정 버터조청 무첨가" },
+  { id:1145, name:"채움 한입에 쑥 과일젤리", brand:"푸르나이", category:"젤리", emoji:"🍬", price:"355", unit:"개당 20g / 200g(20g×10ea) (감귤/파인애플/망고/포도 4종)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"채움 한입에 쑥 과일 젤리 감귤 파인애플 망고 포도" },
+  { id:1146, name:"채움 우리쌀 고구마/치즈 떡사리", brand:"푸르나이", category:"떡", emoji:"🍡", price:"6,204", unit:"kg / 1kg(10g×100ea) · 개당 62원 (고구마 5%Sale · 치즈 7,287원)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"채움 우리쌀 고구마 치즈 떡사리" },
+  { id:1147, name:"채움 한라봉/밤 단자", brand:"푸르나이", category:"떡", emoji:"🍡", price:"13,870", unit:"kg / 1kg(25g×40ea) · 개당 347원 (5% Sale, 한라봉앙금/밤조각)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"채움 한라봉 밤 단자 떡 제주 앙금" },
+  { id:1148, name:"푸르나이 두 번 생각한 훈제 돼지 다짐육", brand:"푸르나이", category:"육류", emoji:"🥩", price:"19,340", unit:"kg / 1kg (너도밤나무 직화훈연, 국산 돈육 96.8%, 10% Sale)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"푸르나이 두번 훈제 돼지 다짐육 너도밤나무 직화훈연" },
+
+  // ===== 코주부 7~8월 신제품 (id:1149~1163) =====
+  { id:1149, name:"코주부 복날이닭 납닭 오브로스트 치킨 & 스테이크", brand:"코주부", category:"닭고기", emoji:"🍗", price:"13,000", unit:"kg / 납닭볶음치즈살·통가솜·날개살·정육·순살 등 다종 (소스 20% 증정)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 납닭 오브 로스트 치킨 스테이크 복날 통등심 볶음치즈살" },
+  { id:1150, name:"코주부 두툼한 계란말이 3종", brand:"코주부", category:"계란", emoji:"🥚", price:"10,900", unit:"규격당 / 대파당근900g 12,111원/kg · 통맛살품은780g 13,974원/kg · 버섯야채가득780g", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"코주부 계란말이 대파 당근 통맛살 버섯 야채 신제품" },
+  { id:1151, name:"코주부 코끼리 우리쌀 어묵 떡볶이 세트", brand:"코주부", category:"세트", emoji:"🍢", price:"34,700", unit:"3.6kg 세트 (떡 2kg+우리쌀어묵 1kg+코끼리떡볶이 분말소스 600g)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 코끼리 우리쌀 어묵 떡볶이 세트 김알이 낙지만두" },
+  { id:1152, name:"코주부 달콤 LA 양념갈비 & 볼고기", brand:"코주부", category:"육류", emoji:"🥩", price:"34,650", unit:"kg / LA갈비 2.5kg 세트 86,625원 · 돼지볼고기 17,500원~ · 1등급설도 45,000원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 달콤 LA 양념갈비 볼고기 돼지 채수 고추장 1등급 설도" },
+  { id:1153, name:"코주부 어사MEAT슐랭 세트", brand:"코주부", category:"세트", emoji:"🍖", price:"16,700", unit:"kg / 2.5kg 세트 (벌집달뜨/매콤갈비맛구이SET · 육즙가둔참스테이크SET · 채수갈비찜SET)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 어사 미트 슐랭 세트 갈비 스테이크 갈비찜 벌집" },
+  { id:1154, name:"코주부 수제갈비맛 떡쌀 & 구운어묵속떡", brand:"코주부", category:"떡", emoji:"🍡", price:"13,400", unit:"1kg(40개입) 야채떡쌀 · 990g(30개입) 통지떡쌀 · 구운어묵속떡 개당 840원 (할인행사)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 수제갈비맛 떡쌀 야채 통지 구운 어묵 속떡" },
+  { id:1155, name:"코주부 냉장 닭고치", brand:"코주부", category:"닭고기", emoji:"🍗", price:"28,800", unit:"kg / 누드닭다리살/누드닭가슴살/누드혼합닭/마늘간장닭 포치 (1등급·친환경, 소스 20% 증정)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 냉장 닭 고치 닭다리 가슴살 마늘 간장 친환경" },
+  { id:1156, name:"코주부 소세지 떡꼬치 & 소떡소떡", brand:"코주부", category:"소세지꼬치", emoji:"🌭", price:"16,018", unit:"kg / 문어모양소세지떡꼬치54g · 문어모양소세지틀25g · 베이컨떡말이포치60g · 이스페코지55g", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 소세지 떡꼬치 소떡소떡 문어모양 베이컨 이스페코지" },
+  { id:1157, name:"코주부 소떡 시리즈", brand:"코주부", category:"소세지꼬치", emoji:"🌭", price:"12,700", unit:"kg / 동글이치즈소떡90g · 소세지떡꼬치50g/85g/100g (10kg 이상 소스15% 증정)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 소떡 동글이 치즈 소세지 떡꼬치 100g 85g 50g" },
+  { id:1158, name:"코주부 가마보꼬 & 우리쌀 어묵", brand:"코주부", category:"어묵", emoji:"🍢", price:"11,300", unit:"kg / 가마보꼬 사각/모둠/볼(NO밀) · 우리쌀 김치/채이/합콥트윈이/혼합종합/인예야채후이 어묵", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 가마보꼬 어묵 우리쌀 김치 채이 NO밀 혼합종합" },
+  { id:1159, name:"코주부 순대국 세트", brand:"코주부", category:"순대", emoji:"🫕", price:"11,000", unit:"7.4kg 세트 71,641원 (10% Sale) / 우리밀밭순대·찹순대·누드순대·순대강정·불순대", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 순대국 세트 우리밀 찹순대 누드 순대강정 불순대" },
+  { id:1160, name:"코주부 강정 삼총사 & 탕수육", brand:"코주부", category:"강정", emoji:"🍤", price:"14,700", unit:"kg / 우리쌀깐소새우 18,400원 · 오곡아귀강정 18,400원 · 오곡고다리강정 14,700원 · 탕수육 9,800원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 강정 깐소새우 아귀 고다리 탕수육 꽤바로우 찹쌀" },
+  { id:1161, name:"코주부 어묵 피시볼 & 유부주머니", brand:"코주부", category:"어묵", emoji:"🍢", price:"13,200", unit:"kg / 가마보꼬피시볼·오징어청양피시볼(NEW)·잡채말이어묵·유부고기주머니·유부야채주머니", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"코주부 어묵 피시볼 오징어 청양 유부 주머니 잡채말이" },
+  { id:1162, name:"코주부 꼬지어묵", brand:"코주부", category:"어묵", emoji:"🍢", price:"6,100", unit:"kg / 칵테일꼬지50g·국산살물떡지50g·사각꼬지30g/40g·우리쌀꼬지40g/60g·파배기60g·꼬지어묵75g", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 꼬지 어묵 사각 우리쌀 칵테일 파배기" },
+  { id:1163, name:"코주부 달콤한 후식 라인업", brand:"코주부", category:"디저트", emoji:"🍮", price:"6,600", unit:"1kg / 바나나크림치즈케임35g · 망고다이스 6,600원 · 애플망고 10,800원 · 열대과일3종 9,000원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 후식 바나나 크림 치즈케이크 망고 다이스 애플 열대과일" },
+
+  // ===== 코주부 신제품 (id:1287~1300) =====
+  { id:1287, name:"코주부 생선가득 가마보꼬바 50g/75g", brand:"코주부", category:"어묵바", emoji:"🍢", price:"6,400", unit:"500g(50g×10ea) 6,400원 / 750g(75g×10ea) · 30% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 생선가득 가마보꼬바 어묵바 50g 75g 할인" },
+  { id:1288, name:"코주부 꼬마치즈바 25g", brand:"코주부", category:"어묵바", emoji:"🍢", price:"3,840", unit:"300g(25g×12ea) · 개당 320원 · 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 꼬마 치즈바 25g 어묵바 할인" },
+  { id:1289, name:"코주부 오징어 가마보꼬바 50g", brand:"코주부", category:"어묵바", emoji:"🍢", price:"7,000", unit:"500g(50g×10ea) · 개당 700원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 오징어 가마보꼬바 어묵바 50g" },
+  { id:1290, name:"코주부 매콤 가마보꼬바 60g", brand:"코주부", category:"어묵바", emoji:"🍢", price:"7,000", unit:"500g · 개당 700원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 매콤 가마보꼬바 어묵바 60g" },
+  { id:1291, name:"코주부 스트링 치즈 어묵바 50g", brand:"코주부", category:"어묵바", emoji:"🍢", price:"할인", unit:"500g(50g×10ea)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 스트링 치즈 어묵바 50g 할인" },
+  { id:1292, name:"코주부 김알이", brand:"코주부", category:"튀김", emoji:"🍘", price:"6,400", unit:"1kg · Kg단가 6,400원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 김알이 김 알이 튀김" },
+  { id:1293, name:"코주부 홍참 삼겹도 60g", brand:"코주부", category:"튀김", emoji:"🍤", price:"13,500", unit:"1kg · Kg단가 13,500원 · 개당 810원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 홍참 삼겹도 튀김 60g" },
+  { id:1294, name:"코주부 소문난 납작이 군만두 50g", brand:"코주부", category:"만두", emoji:"🥟", price:"9,000", unit:"1kg(50g×20ea) · 개당 450원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 소문난 납작이 군만두 50g" },
+  { id:1295, name:"코주부 소문난 떡만두전병 70g", brand:"코주부", category:"만두", emoji:"🥟", price:"660", unit:"1.4kg(70g×20ea) · 개당 660원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 소문난 떡만두 전병 70g" },
+  { id:1296, name:"코주부 탱탱 맛살", brand:"코주부", category:"맛살", emoji:"🦀", price:"12,400", unit:"8~10g · Kg단가 12,400원 (알래스카에서 왓습니다)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 탱탱 맛살 알래스카" },
+  { id:1297, name:"코주부 핑크랩 맛살채", brand:"코주부", category:"맛살", emoji:"🦀", price:"10,600", unit:"2kg · Kg단가 10,600원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 핑크랩 맛살채 맛살" },
+  { id:1298, name:"코주부 통통 맛살", brand:"코주부", category:"맛살", emoji:"🦀", price:"12,950", unit:"7cm · Kg단가 12,950원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"코주부 통통 맛살 7cm" },
+  { id:1299, name:"코주부 가마보꼬 오징어 청양피쉬볼 (2026신제품)", brand:"코주부", category:"어묵", emoji:"🍢", price:"13,200", unit:"1kg(약 84개) · 개별 11~12g · NEW", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"코주부 가마보꼬 오징어 청양 피쉬볼 신제품 2026 NEW" },
+  { id:1300, name:"코주부 오징어 먹물 사각꼬지 32g (2026신제품)", brand:"코주부", category:"어묵", emoji:"🍢", price:"9,000", unit:"640g(20개) · 개당 450원 · 꼬지길이 20cm · NEW", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"코주부 오징어 먹물 사각 꼬지 32g 신제품 2026 NEW" },
+
+  // ===== 자담선 7~8월 신제품 (id:1164~1180) =====
+  { id:1164, name:"자담선 디핀다트 구슬아이스크림 & 남남남 아이스바", brand:"자담선", category:"아이스크림", emoji:"🍦", price:"1,500", unit:"개당 / 1.2L(50ml×24ea) 36,000원 · 2.6L(65ml×40ea) 36,000원 (초코바나나/레인보우/쿠키앤크림·딸기/메론바)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 디핀다트 구슬 아이스크림 남남남 스위트맘 아이스바 딸기 메론" },
+  { id:1165, name:"자담선 얼려먹는 사베트 코코넛라떼 & 남남남 스무디", brand:"자담선", category:"음료/빙과", emoji:"🥤", price:"1,050", unit:"개당 100ml / 4L(100ml×40ea) 42,000원 (요구르트/초코) · 남남남스무디 망고/포도 730원/개", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 얼려먹는 사베트 코코넛 라떼 남남남 스무디 망고 포도" },
+  { id:1166, name:"자담선 제주 천혜향 사베트", brand:"자담선", category:"아이스크림", emoji:"🍊", price:"1,990", unit:"개당 65g / 3.25kg(65g×50ea) · kg 30,614원 (10% Sale, 천혜향 착즙액 22.4%)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"자담선 제주 천혜향 사베트 샤베트 아이스크림 감귤 한라봉" },
+  { id:1167, name:"자담선 옥주부 LA갈비 & 낙지볶음 & 인양식불고기", brand:"자담선", category:"육류", emoji:"🥩", price:"35,200", unit:"LA갈비 1kg 35,200원(20%Sale) · 낙지볶음 1kg 29,600원(20%Sale) · 인양식불고기 1.08kg 44,160원(20%Sale)", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 옥주부 LA 갈비 낙지볶음 인양식 불고기 한정수량" },
+  { id:1168, name:"자담선 100% 우리한우 함바그", brand:"자담선", category:"함박스테이크", emoji:"🍔", price:"19,250", unit:"kg / 1.2kg(60g×20ea) · 개당 1,155원 (50% Sale, 부정형/수제느낌)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"자담선 100 우리 한우 함바그 함박스테이크 부정형 수제" },
+  { id:1169, name:"자담선 크로찌 (크로와상+모찌)", brand:"자담선", category:"베이커리", emoji:"🥐", price:"1,500", unit:"개당 20g / 0.6kg(20g×30ea) · kg 75,000원 (10% Sale, 오레오크림소스 포함)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"자담선 크로찌 크로와상 모찌 치즈 베이커리 오레오 크림소스" },
+  { id:1170, name:"자담선 피스타치오 초록 초코케이크 & 우리쌀 축하설기", brand:"자담선", category:"케이크/떡", emoji:"🎂", price:"1,450", unit:"개당 30g / 1.08kg(30g×36ea) · kg 48,333원 (10% Sale) · 우리쌀 축하설기 1,390원/개", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"자담선 피스타치오 초록 초코케이크 우리쌀 축하설기 케이크" },
+  { id:1171, name:"자담선 한반도 돈까스 SET & 대한민국 떡갈비 SET", brand:"자담선", category:"세트", emoji:"🍖", price:"23,800", unit:"돈까스 단품 1.2kg(60g×20ea) 23,800원 · 떡갈비 1.35kg(90g×15ea) 33,000원 (광복절/제헌절 특별)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 한반도 돈까스 대한민국 떡갈비 세트 광복절 제헌절 파인애플스테이크소스" },
+  { id:1172, name:"자담선 쥬라기 돈까스 SET & 치킨커플렛", brand:"자담선", category:"세트", emoji:"🍗", price:"17,000", unit:"쥬라기돈까스 1kg(100g×10ea) 17,000원 · 오브베요 치킨커플렛 1kg(40×5g×25ea) 16,250원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 쥬라기 돈까스 세트 오브베요 치킨 커플렛 감자전빵" },
+  { id:1173, name:"JADAMSUN 핫도그 4종", brand:"자담선", category:"핫도그", emoji:"🌭", price:"1,200", unit:"50g 감자도깨비우리밀핫도그 1,250원 · 50g 모짜렐라치즈만핫도그 1,600원 · 바삭콘크런치치즈/콘크런치핫도그", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 핫도그 감자도깨비 우리밀 모짜렐라 치즈만 바삭 콘크런치 JADAMSUN" },
+  { id:1174, name:"JADAMSUN 사각피자 3종 (RENEWAL)", brand:"자담선", category:"피자", emoji:"🍕", price:"25,000", unit:"kg / 치즈목수소 1.23kg(77g×16ea) 28,000원 · 하와이안페퍼로니 1.2kg 28,800원 · 화기반 1.28kg 32,000원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 사각피자 치즈목수소 하와이안 페퍼로니 화기반 RENEWAL JADAMSUN" },
+  { id:1175, name:"자담선 꼬치요리 세트", brand:"자담선", category:"꼬치", emoji:"🍢", price:"17,000", unit:"1.2kg(60g×20ea) 소세지떡꼬치SET · 0.7kg(70g×10ea) 소세지 푸아그라이도SET · 통살바사삭안심포치0.5kg", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 꼬치 소세지 떡꼬치 통살 바사삭 안심 포치 시크라맛" },
+  { id:1176, name:"자담선 홍반장 순대국 세트", brand:"자담선", category:"순대국", emoji:"🫕", price:"13,176", unit:"7.4kg(50인분) · 전통/쫄본/모둠/갈비 순대국 세트 (신의주 홍반장, 우리밀 밭순대 포함)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 홍반장 순대국 세트 전통 쫄본 모둠 갈비 우리밀 밭순대" },
+  { id:1177, name:"자담선 깐소새우 & 새우까스", brand:"자담선", category:"새우", emoji:"🍤", price:"23,800", unit:"1kg / 우리쌀가루깐소새우 · 실속형왕깐소새우 · 한겹입힌왕깐소새우 · 새우가득통살새우까스 1.2kg", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 깐소 새우 까스 우리쌀 통살 왕깐소 할인" },
+  { id:1178, name:"자담선 냉동과일", brand:"자담선", category:"과일", emoji:"🍑", price:"11,250", unit:"1kg / 아이스조각감시·아이스왕고(망고)·블루베리그레이브·아이스열대과일3종·아이스왕고파마 등", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 냉동 과일 아이스 망고 블루베리 열대 감귤 파마" },
+  { id:1179, name:"자담선 음료 (에이드/주스/식혜)", brand:"자담선", category:"음료", emoji:"🥤", price:"990", unit:"개당 100ml / 4L(100ml×40ea) · 내사리를뽑아차·청사과그린에이드·지구레몬에이드·나이아사람해 등", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 음료 에이드 주스 내사리 청사과 레몬 사과 나이아 지구" },
+  { id:1180, name:"자담선 기말고사 화이팅! 비타민주스 & 투데이스터디넛", brand:"자담선", category:"음료/간식", emoji:"🧃", price:"710", unit:"개당 110ml / 4.4L(110ml×40ea) 28,400원 · 투데이스터디넛 요구르트/블루베리 0.45kg(15g×30ea)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 기말고사 화이팅 비타민 주스 블루베리 투데이스터디넛 요구르트" },
+
+  // ===== 자담선 7~8월 신제품 (id:1218~1286) =====
+  { id:1218, name:"자담선 신나는 여름방학 단체 오이야 에이드", brand:"자담선", category:"음료", emoji:"🥤", price:"36,380", unit:"4L(100ml×40ea) · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 신나는 여름방학 단체 오이야 에이드 음료 할인" },
+  { id:1219, name:"자담선 한우 65일 숙성 떡갈비", brand:"자담선", category:"육류", emoji:"🍖", price:"16,500", unit:"한우 65일 숙성 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 한우 65일 숙성 떡갈비 할인" },
+  { id:1220, name:"자담선 치즈 닭가슴살 떡갈비", brand:"자담선", category:"육류", emoji:"🍗", price:"16,500", unit:"치즈 닭가슴살 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 치즈 닭가슴살 떡갈비 할인" },
+  { id:1221, name:"자담선 비타민모양 구미젤리 에이드", brand:"자담선", category:"음료", emoji:"🧃", price:"39,186", unit:"4L · 40% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 비타민 모양 구미 젤리 에이드 음료 할인" },
+  { id:1222, name:"자담선 비타민모양 제주감귤 에이드", brand:"자담선", category:"음료", emoji:"🧃", price:"27,540", unit:"4L · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 비타민 모양 제주 감귤 에이드 음료 할인" },
+  { id:1223, name:"자담선 수제 가자미 곱창 치킨까스", brand:"자담선", category:"치킨까스", emoji:"🍗", price:"24,200", unit:"1.2kg(60g×20ea) · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 수제 가자미 곱창 치킨까스 할인" },
+  { id:1224, name:"자담선 스웨드 토마호크 소(牛)", brand:"자담선", category:"소고기", emoji:"🥩", price:"26,400", unit:"1.08kg(80g+5g×6ea) · 개당 4,400원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 스웨드 토마호크 소고기 구이" },
+  { id:1225, name:"자담선 홍반장 한우소내이 국밥 SET [50인분]", brand:"자담선", category:"국밥", emoji:"🍲", price:"115,000", unit:"50인분 SET · 개당 2,300원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 홍반장 한우 소내이 국밥 세트 50인분 단체" },
+  { id:1226, name:"자담선 홍반장 닭가슴살 도시락밥 SET", brand:"자담선", category:"도시락", emoji:"🍱", price:"18,000", unit:"개당 600원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 홍반장 닭가슴살 도시락밥 세트" },
+  { id:1227, name:"자담선 바다가득 문어 도시락밥 SET", brand:"자담선", category:"도시락", emoji:"🍱", price:"65,000", unit:"개당 1,300원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 바다 문어 도시락밥 세트" },
+  { id:1228, name:"자담선 홍반장 한식 사골 돼지국밥 [50인분]", brand:"자담선", category:"국밥", emoji:"🫕", price:"86,500", unit:"50인분 SET · 인당 1,730원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 홍반장 한식 사골 돼지국밥 50인분 단체" },
+  { id:1229, name:"자담선 홍반장 한식 사골 담백대 돼지국밥 [50인분]", brand:"자담선", category:"국밥", emoji:"🫕", price:"85,000", unit:"50인분 SET · 인당 1,700원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 홍반장 한식 사골 담백 돼지국밥 50인분 단체" },
+  { id:1230, name:"자담선 남도식 3mm 생오리불고기", brand:"자담선", category:"오리", emoji:"🦆", price:"31,900", unit:"1kg", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 남도식 3mm 생오리 불고기" },
+  { id:1231, name:"자담선 무항생제 블루베리 훈제오리", brand:"자담선", category:"오리", emoji:"🦆", price:"27,500", unit:"1kg · 무항생제", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 무항생제 블루베리 훈제 오리" },
+  { id:1232, name:"자담선 직접숙성 훈제오리", brand:"자담선", category:"오리", emoji:"🦆", price:"30,000", unit:"4kg", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 직접 숙성 훈제 오리" },
+  { id:1233, name:"자담선 무항생제 논오리 훈제오리", brand:"자담선", category:"오리", emoji:"🦆", price:"28,200", unit:"1kg · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 무항생제 논오리 훈제 오리 할인" },
+  { id:1234, name:"자담선 인도식 판두리 훈제오리", brand:"자담선", category:"오리", emoji:"🦆", price:"29,700", unit:"1kg", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 인도식 판두리 훈제 오리" },
+  { id:1235, name:"자담선 우리콩 동심 탕수육 SET", brand:"자담선", category:"탕수육", emoji:"🍜", price:"15,200", unit:"개당 190원 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리콩 동심 탕수육 세트 할인" },
+  { id:1236, name:"자담선 우리콩 동심 꿔바로우 SET", brand:"자담선", category:"꿔바로우", emoji:"🍜", price:"21,200", unit:"개당 530원 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리콩 동심 꿔바로우 세트 할인" },
+  { id:1237, name:"자담선 두툼한 고기 함박채전", brand:"자담선", category:"채전", emoji:"🍳", price:"580", unit:"개당 580원 · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 두툼한 고기 함박 채전 할인" },
+  { id:1238, name:"자담선 두툼한 오징어 함박전", brand:"자담선", category:"채전", emoji:"🍳", price:"580", unit:"개당 580원 · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 두툼한 오징어 함박 전 할인" },
+  { id:1239, name:"자담선 국내산 꽃게 아귀강정 SET", brand:"자담선", category:"강정", emoji:"🦐", price:"29,250", unit:"1kg · 20% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 국내산 꽃게 아귀 강정 세트 할인" },
+  { id:1240, name:"자담선 한쪽 속살 초다리새우 강정 SET", brand:"자담선", category:"강정", emoji:"🦐", price:"22,680", unit:"1kg · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 속살 초다리 새우 강정 세트 할인" },
+  { id:1241, name:"자담선 5040 BIG 버터플라이 새우튀김", brand:"자담선", category:"새우", emoji:"🦐", price:"29,000", unit:"1kg(50g×20ea) · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 5040 BIG 버터플라이 새우튀김 할인" },
+  { id:1242, name:"자담선 버터플라이 새우튀김", brand:"자담선", category:"새우", emoji:"🦐", price:"7,500", unit:"0.25kg(25g×10ea)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 버터플라이 새우 튀김" },
+  { id:1243, name:"자담선 브레디도 고급볼가루 새우튀김", brand:"자담선", category:"새우", emoji:"🦐", price:"6,000", unit:"0.3kg(30g×10ea)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 브레디도 고급 볼가루 새우 튀김" },
+  { id:1244, name:"자담선 브레디도 두절통속 새우튀김", brand:"자담선", category:"새우", emoji:"🦐", price:"13,000", unit:"0.5kg", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 브레디도 두절 통속 새우 튀김" },
+  { id:1245, name:"자담선 통새우 한마리 수제만두", brand:"자담선", category:"만두", emoji:"🥟", price:"23,800", unit:"1kg(50g×20ea) · 개당 1,190원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 통새우 한마리 수제 만두" },
+  { id:1246, name:"자담선 속이꽉찬 장미모양 만두", brand:"자담선", category:"만두", emoji:"🥟", price:"17,360", unit:"1kg · 개당 560원 · 민트/레드/옐로우", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 속이꽉찬 장미 모양 만두 민트 레드 옐로우" },
+  { id:1247, name:"자담선 맛이 즐거운 갈비만두", brand:"자담선", category:"만두", emoji:"🥟", price:"16,200", unit:"(28g×36ea) · 개당 450원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 맛이 즐거운 갈비 만두" },
+  { id:1248, name:"자담선 우리밀 수제 메밀전병만두", brand:"자담선", category:"만두", emoji:"🥟", price:"7,250", unit:"(40g×25ea) · 개당 290원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 수제 메밀 전병 만두" },
+  { id:1249, name:"자담선 환수영 고리어묵", brand:"자담선", category:"어묵", emoji:"🍢", price:"17,100", unit:"1.4kg(70g×20ea) · 개당 855원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 환수영 고리 어묵 교동 삼색" },
+  { id:1250, name:"자담선 미니 환수영 고리어묵", brand:"자담선", category:"어묵", emoji:"🍢", price:"14,175", unit:"0.75kg(15g×50ea) · 개당 283원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 미니 환수영 고리 어묵" },
+  { id:1251, name:"자담선 나야말씨미 관자어묵", brand:"자담선", category:"어묵", emoji:"🍢", price:"16,660", unit:"할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 나야말씨미 관자 어묵 할인" },
+  { id:1252, name:"자담선 부산어묵 혼합꼬치", brand:"자담선", category:"어묵꼬치", emoji:"🍢", price:"9,800", unit:"0.75kg(75g×10ea)", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 부산 어묵 혼합 꼬치" },
+  { id:1253, name:"자담선 통통 부산어묵 꼬치", brand:"자담선", category:"어묵꼬치", emoji:"🍢", price:"10,500", unit:"0.75kg(50g×15ea) · 개당 700원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 통통 부산 어묵 꼬치" },
+  { id:1254, name:"자담선 부산어묵 꼬치", brand:"자담선", category:"어묵꼬치", emoji:"🍢", price:"10,250", unit:"0.75kg(30g×25ea) · 개당 410원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 부산 어묵 꼬치" },
+  { id:1255, name:"자담선 오파미 어묵바", brand:"자담선", category:"어묵", emoji:"🍢", price:"11,050", unit:"0.7kg(70g×10ea) · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 오파미 어묵바 할인" },
+  { id:1256, name:"자담선 삼복 부산어묵꼬치 RENEWAL", brand:"자담선", category:"어묵꼬치", emoji:"🍢", price:"17,333", unit:"1kg(40g×25ea) · 개당 693원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 삼복 부산 어묵 꼬치 RENEWAL 리뉴얼" },
+  { id:1257, name:"자담선 베트남쌀국수 [소면or칼국수면]", brand:"자담선", category:"쌀국수", emoji:"🍜", price:"71,900", unit:"7kg(육수1kg+면6kg) 1SET", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 베트남 쌀국수 소면 칼국수 육수 면 세트" },
+  { id:1258, name:"자담선 통새우 짜조롤", brand:"자담선", category:"새우", emoji:"🌯", price:"13,000", unit:"0.4kg(20g×20ea) · 개당 650원 · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 통새우 짜조롤 베트남 할인" },
+  { id:1259, name:"자담선 erom 과채습관 4종 190ml", brand:"자담선", category:"음료", emoji:"🥤", price:"11,526", unit:"3.04L(190ml×16ea) · 개당 720원 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 에롬 erom 과채 습관 4종 190ml 퍼플 옐로우 트로피컬 그린 할인" },
+  { id:1260, name:"자담선 erom 과채습관 4종 140ml", brand:"자담선", category:"음료", emoji:"🥤", price:"13,441", unit:"3.36L(140ml×24ea) · 개당 560원 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 에롬 erom 과채 습관 4종 140ml 음료 할인" },
+  { id:1261, name:"자담선 erom 황성 국산콩두유 검은콩·고칼슘", brand:"자담선", category:"두유", emoji:"🥛", price:"640", unit:"3.36L(140ml×24ea) · 개당 640원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 에롬 erom 황성 국산콩 두유 검은콩 고칼슘" },
+  { id:1262, name:"자담선 마법의 요술감자", brand:"자담선", category:"감자", emoji:"🥔", price:"97,200", unit:"4kg(50g×80ea) · 개당 1,215원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 마법 요술 감자 냉동 할인" },
+  { id:1263, name:"자담선 우리 찹쌀 찰 도깨비", brand:"자담선", category:"떡", emoji:"🍡", price:"26,000", unit:"1kg(50g×20ea) · 개당 1,300원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리 찹쌀 찰 도깨비 떡 할인" },
+  { id:1264, name:"자담선 겹 구름빵 마늘(반제)", brand:"자담선", category:"빵", emoji:"🥐", price:"16,800", unit:"0.5kg(17g×30ea) · 개당 560원 · 20% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 겹 구름빵 마늘 반제 빵 할인" },
+  { id:1265, name:"자담선 갈빅스틱(반제)", brand:"자담선", category:"빵", emoji:"🥖", price:"17,856", unit:"0.825kg(55g×15ea) · 개당 1,190원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 갈빅 스틱 반제 빵 할인" },
+  { id:1266, name:"자담선 호로록 제주감귤", brand:"자담선", category:"음료", emoji:"🍊", price:"25,600", unit:"4.4L(110ml×40ea) · 개당 640원 · 9% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 호로록 제주 감귤 음료 할인" },
+  { id:1267, name:"자담선 호로록 청포도", brand:"자담선", category:"음료", emoji:"🍇", price:"22,400", unit:"4.4L(110ml×40ea) · 개당 560원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 호로록 청포도 음료 할인" },
+  { id:1268, name:"자담선 우리쌀 전통 식혜", brand:"자담선", category:"음료", emoji:"🥤", price:"20,800", unit:"4L(100ml×40ea) · 개당 520원 · 20% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리쌀 전통 식혜 음료 할인" },
+  { id:1269, name:"자담선 호로록 유기농 케플", brand:"자담선", category:"음료", emoji:"🥤", price:"24,800", unit:"4L(100ml×40ea) · 개당 620원 · 20% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 호로록 유기농 케플 음료 할인" },
+  { id:1270, name:"자담선 탐나는 제주 그대로 한라봉", brand:"자담선", category:"음료", emoji:"🍊", price:"27,600", unit:"4L(100ml×40ea) · 개당 690원 · 30% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 탐나는 제주 그대로 한라봉 음료 할인" },
+  { id:1271, name:"자담선 전통명문 우리학교 개교기념일 음료", brand:"자담선", category:"음료", emoji:"🥤", price:"33,600", unit:"4L(100ml×40ea) · 개당 840원 · 20% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 전통명문 우리학교 개교기념일 음료 감귤 주스 할인" },
+  { id:1272, name:"자담선 남남남 스위트맘 푸딩", brand:"자담선", category:"푸딩", emoji:"🍮", price:"18,400", unit:"2.2kg(55g×40ea) · 개당 460원 · 30% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 남남남 스위트맘 푸딩 포도 망고 사과 할인" },
+  { id:1273, name:"자담선 꾹!찍어먹는 오래오 츄러스+크림소스 SET", brand:"자담선", category:"츄러스", emoji:"🍩", price:"25,410", unit:"(20g×30ea)+(50g×20ea)+(150g×10ea) SET · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 꾹 찍어먹는 오래오 츄러스 크림소스 세트 할인" },
+  { id:1274, name:"자담선 우리밀 파기오 츄러스+치나유설탕 SET", brand:"자담선", category:"츄러스", emoji:"🍩", price:"24,000", unit:"SET · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 파기오 츄러스 치나유설탕 세트 할인" },
+  { id:1275, name:"자담선 (뉴텔라) 초코 필링 츄러스", brand:"자담선", category:"츄러스", emoji:"🍩", price:"25,410", unit:"1kg(12.6g×76ea) · 개당 334원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 뉴텔라 초코 필링 츄러스" },
+  { id:1276, name:"자담선 우리밀 초코 브라우니케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"33,210", unit:"0.8kg(20g×40ea) · 개당 830원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 초코 브라우니 케이크 할인" },
+  { id:1277, name:"자담선 우리밀 초코 크레키케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"33,015", unit:"1.225kg(35g×35ea) · 10% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 초코 크레키 케이크 할인" },
+  { id:1278, name:"자담선 우리밀 초코케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"27,000", unit:"0.72kg(24g×30ea) · 개당 900원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 초코 케이크 할인" },
+  { id:1279, name:"자담선 라즈베리 벌룬케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"42,900", unit:"개당 1,430원 · 15% 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 라즈베리 벌룬 케이크 할인" },
+  { id:1280, name:"자담선 우리밀 초코 봄케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"33,015", unit:"1.05kg(35g×30ea) · 개당 1,100원", tags:[], color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 우리밀 초코 봄 케이크" },
+  { id:1281, name:"자담선 헬드로 바닐라초코 봄케이크", brand:"자담선", category:"케이크", emoji:"🎂", price:"46,450", unit:"0.9kg(30g×30ea) · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 헬드로 바닐라 초코 봄 케이크 할인" },
+  { id:1282, name:"자담선 봉돼지 마카롱", brand:"자담선", category:"마카롱", emoji:"🍬", price:"39,600", unit:"0.9kg(30g×30ea) · 개당 1,320원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 봉돼지 마카롱 할인" },
+  { id:1283, name:"자담선 신나는새학기 소시지빵", brand:"자담선", category:"빵", emoji:"🌭", price:"29,250", unit:"할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 신나는 새학기 소시지 빵 할인" },
+  { id:1284, name:"자담선 신나는새학기 크로아상", brand:"자담선", category:"빵", emoji:"🥐", price:"할인", unit:"할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 신나는 새학기 크로아상 빵 할인" },
+  { id:1285, name:"자담선 신나는새학기 개교기념일 에이드", brand:"자담선", category:"음료", emoji:"🧃", price:"33,210", unit:"4L(100ml×40ea) · 개당 830원 · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 신나는 새학기 개교기념일 에이드 음료 할인" },
+  { id:1286, name:"자담선 오란다", brand:"자담선", category:"과자", emoji:"🍘", price:"할인", unit:"0.44kg(21g×20ea) · 할인", tags:["할인"], isSale:true, color:"#E8EAF6", tcolor:"#283593", keywords:"자담선 오란다 과자 전통 할인" },
+
+  // ===== 냠냐미 6~8월 신제품 (id:1181~1217) =====
+  { id:1181, name:"냠냐미 팥빙큐브 & 딸기요거트큐브", brand:"냠냐미", category:"아이스크림", emoji:"🍧", price:"2,200", unit:"개당 70g / 1.4kg(70g×20ea) · 봉단가 44,000원 / kg 31,429원 (핸드메이드)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 팥빙 큐브 딸기 요거트 아이스크림 핸드메이드" },
+  { id:1182, name:"냠냐미 유기농 느린식혜 & 유과쿠키크런치", brand:"냠냐미", category:"음료/과자", emoji:"🥤", price:"660", unit:"식혜 개당 660원/4L(100ml×40ea) 26,400원 · 유과쿠키크런치/초코유과크런치 개당 520원/600g(12g×50ea)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 유기농 느린 식혜 유과 쿠키 크런치 초코" },
+  { id:1183, name:"냠냐미 서종호박약과 & 브라우니약과 & NEW 로쉐밀크볼", brand:"냠냐미", category:"한과/과자", emoji:"🍘", price:"406", unit:"호박/브라우니약과 개당 406원/1.5kg(15g×100ea) · NEW 딸기/귀균 로쉐밀크볼 개당 350원/140g(7g×20ea)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 서종 호박 브라우니 약과 딸기 귀균 로쉐 밀크볼 한과" },
+  { id:1184, name:"냠냐미 NEW 상하이 쉘 버터떡", brand:"냠냐미", category:"떡", emoji:"🍡", price:"1,050", unit:"개당 25g / 750g(25g±2g×30ea) · 봉단가 31,500원 / kg 42,000원 (핸드메이드 신제품)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 상하이 쉘 버터떡 핸드메이드 신제품" },
+  { id:1185, name:"냠냐미 두폰쿠 Dubai Chewy Cookie", brand:"냠냐미", category:"쿠키", emoji:"🍪", price:"2,150", unit:"개당 30g / 600g(30g±3g×20ea) · 봉단가 43,000원 / kg 71,667원 (수제·개별포장)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 두폰쿠 두바이 치위 쿠키 피스타치오 초코 수제 개별포장" },
+  { id:1186, name:"냠냐미 행운팡팡 버터가득 수제포춘쿠키", brand:"냠냐미", category:"쿠키", emoji:"🍪", price:"2,000", unit:"개당 13g / 1.3kg(13g±2g×100ea) · 봉단가 200,000원 / kg 153,846원 (Yoon's Cookie, D-14일 예약)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 행운 팡팡 버터 수제 포춘 쿠키 윤스쿠키 응원문구" },
+  { id:1187, name:"냠냐미 NEW 갓성비 소떡소떡 3종", brand:"냠냐미", category:"소세지꼬치", emoji:"🌭", price:"1,200", unit:"800g(80g×10ea) 12,000원 · 1kg(100g×10ea) 13,000원 · 1.2kg(120g×10ea) 15,000원 (소시지2~3개+떡2~3개)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 갓성비 소떡 소시지 떡 꼬치 신제품" },
+  { id:1188, name:"냠냐미 맛도리소갈비 떡포치 & 갈떡모치", brand:"냠냐미", category:"소세지꼬치", emoji:"🍢", price:"1,200", unit:"650g(130g×5ea) 단품 1,800원 · 800g(80g×10ea) 단품 1,210원 (소스선택: 미슬랭마스터or우리미스테이크소스)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 맛도리 소갈비 떡포치 갈떡 모치 소스 선택 미슬랭" },
+  { id:1189, name:"냠냐미 문어달은소떡 & 회오리베이컨떡말이", brand:"냠냐미", category:"소세지꼬치", emoji:"🍢", price:"18,000", unit:"문어달은소떡 1kg(28g×35ea) kg 18,000원 · 회오리베이컨떡말이 1.2kg(60g×20ea) 봉 27,000원 (10~20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 문어 달은 소떡 회오리 베이컨 떡말이 할인" },
+  { id:1190, name:"냠냐미 최강오리 (무항생제 생오리 & NEW 양념오리주물럭)", brand:"냠냐미", category:"오리", emoji:"🦆", price:"16,000", unit:"1등급 무항생제 생오리 1kg 16,000원 · NEW 간장/고추장 양념오리주물럭(생오리1kg+소스200g) 19,000원", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 최강 오리 무항생제 생오리 간장 고추장 양념 주물럭 연탄불" },
+  { id:1191, name:"냠냐미 NEW 전통수제 한도 生떡갈비 & 9無 훈제오리슬라이스", brand:"냠냐미", category:"오리/육류", emoji:"🥩", price:"16,200", unit:"生떡갈비 1kg 16,200원(10%Sale) · 9無 연잎훈제오리슬라이스 1kg 23,000원 · 9無 라즈베리훈제오리슬라이스 1kg 23,000원", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 전통 수제 한도 생 떡갈비 9무 연잎 라즈베리 훈제 오리 슬라이스" },
+  { id:1192, name:"냠냐미 맛통룡 순살치킨 & 쫄깃찹쌀꿔바로우", brand:"냠냐미", category:"육류", emoji:"🍗", price:"12,400", unit:"맛통룡순살치킨 1kg 12,400원 · 쫄깃찹쌀꿔바로우 1kg 11,500원 (10~20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 맛통룡 순살 치킨 쫄깃 찹쌀 꿔바로우 할인" },
+  { id:1193, name:"냠냐미 통안심치킨텐더 & 순살치킨당강정 & 튀롱지탕수육", brand:"냠냐미", category:"육류", emoji:"🍗", price:"12,000", unit:"바사삭통안심치킨텐더 1kg 12,000원 · 대한민국쌀가루순살치킨당강정 1kg 15,000원 · 튀롱지탕수육 1kg 12,700원", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 바사삭 통안심 치킨텐더 순살치킨 당강정 튀롱지 탕수육" },
+  { id:1194, name:"냠냐미 대한민국 3종사 육가공씨리즈 (우리밀/찹쌀 등심탕수육/꿔바로우)", brand:"냠냐미", category:"육류", emoji:"🍖", price:"14,000", unit:"대한민국우리밀등심탕수육·대한민국찹쌀등심탕수육·대한민국찹쌀등심꿔바로우 각 1kg (14,000~15,200원)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 대한민국 우리밀 찹쌀 등심 탕수육 꿔바로우 3종사 씨리즈" },
+  { id:1195, name:"냠냐미 쌀쌀 대파탕수육/꿔바로우 & 우리쌀 숙성탕수육/꿔바로우", brand:"냠냐미", category:"육류", emoji:"🍖", price:"14,300", unit:"남냐미쌀쌀대파탕수육 14,300원 · 대파꿔바로우 14,700원 · 우리쌀숙성탕수육 15,000원 · 숙성꿔바로우 14,600원 각 1kg", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 쌀쌀 대파 탕수육 꿔바로우 우리쌀 숙성" },
+  { id:1196, name:"냠냐미 튀롱지 바삭치킨텐더 & 탐라도통살탕수육 & 제주참쌀탕수육", brand:"냠냐미", category:"육류", emoji:"🍗", price:"10,350", unit:"탐라도통살탕수육 1kg 10,350원 · 제주참쌀탕수육 1kg 11,250원 · 튀롱지고소한바삭치킨텐더 1kg 13,900원 (10% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 튀롱지 고소한 바삭 치킨텐더 탐라도 통살 탕수육 제주 참쌀" },
+  { id:1197, name:"냠냐미 남산통등심돈까스 & 두물머리 연근함박스테이크", brand:"냠냐미", category:"돈까스/함박", emoji:"🍖", price:"15,374", unit:"(비가열)남산통등심돈까스 1.6kg(80g×20ea) kg 15,374원 · 두물머리연근함박스테이크 1.6kg kg 15,875원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 남산 통등심 돈까스 두물머리 연근 함박스테이크 비가열" },
+  { id:1198, name:"냠냐미 맛있는 미트볼 & 떡산적스테이크 & 갈릭쌀떡갈비", brand:"냠냐미", category:"육류", emoji:"🍖", price:"11,700", unit:"맛있는미트볼 1kg 18,900원 · 육즙담은떡산적스테이크 2kg 8,100원 · 갈릭쌀떡갈비 1kg 11,700원 (10~20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 맛있는 미트볼 떡산적 스테이크 갈릭 쌀 떡갈비 육즙" },
+  { id:1199, name:"냠냐미 튀김나라 바사삭 (고추튀김/연근튀김/찰김말이/야채튀김)", brand:"냠냐미", category:"튀김", emoji:"🍤", price:"7,650", unit:"매콤고추튀김 1kg 13,860원 · 바삭연근튀김 1kg 16,650원 · 꼬마찰김말이 1kg 7,650원 · 바삭야채튀김 1.2kg 10,875원", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 매콤 고추튀김 바삭 연근 찰김말이 야채튀김 튀김나라" },
+  { id:1200, name:"냠냐미 국밥천하 (한우사골국밥/한돈돼지국밥/순대국 세트)", brand:"냠냐미", category:"국밥/세트", emoji:"🍲", price:"23,000", unit:"전통한우사골국밥 3kg(50인분) 봉 130,000원 · 한돈돼지국밥(리뉴얼) 3kg 봉 69,000원 · 전통/야채순대국 7.4kg 봉 95,000~100,000원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 전통 한우 사골 국밥 한돈 돼지국밥 리뉴얼 순대국 세트 야채순대국" },
+  { id:1201, name:"냠냐미 홍야직화 팜뽕탕 (오징어/고기)", brand:"냠냐미", category:"찌개/탕", emoji:"🫕", price:"9,878", unit:"오징어팜뽕탕 5kg(250g×20인분) 봉 49,392원 · 고기팜뽕탕 5kg 봉 49,392원 (파조세트·중화군만두 포함)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 홍야 직화 팜뽕탕 오징어 고기 짬뽕 짬봉 찌개 탕 중화군만두" },
+  { id:1202, name:"냠냐미 NEW 바사삭 가자미까스 & 팜콘새우튀김", brand:"냠냐미", category:"수산", emoji:"🐟", price:"16,500", unit:"바사삭가자미까스 1.2kg(60g×20ea) kg 16,667원 · 팜콘새우튀김+미슬랭마스터소스 1kg(14g×75ea) kg 22,500원", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 바사삭 가자미까스 가자미 팜콘 새우튀김 미슬랭 수산 신제품" },
+  { id:1203, name:"냠냐미 대한민국쌀가루 깐소새우 & 오징어바/볼", brand:"냠냐미", category:"수산", emoji:"🦐", price:"16,200", unit:"쌀가루깐소새우 1kg 23,400원 · 대왕깐소새우 1kg 27,000원 · 오징어바 1kg 16,200원 · 오징어볼 1kg 16,200원 (10% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 대한민국 쌀가루 깐소새우 대왕 오징어바 오징어볼 수산 할인" },
+  { id:1204, name:"냠냐미 새우에비까스 & 브래디드쉬림프 & 통알버터라이새우", brand:"냠냐미", category:"수산", emoji:"🦐", price:"18,000", unit:"새우에비까스 720g(60g×12ea) kg 25,000원 · 브래디드쉬림프 300g(30g×10ea) 봉 6,300원 · 통알버터라이새우 250g 봉 5,400원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 새우 에비까스 브래디드 쉬림프 통알 버터라이 새우" },
+  { id:1205, name:"냠냐미 꼬치어묵 & 해외바다 10종 해물모음", brand:"냠냐미", category:"수산/어묵", emoji:"🍢", price:"11,000", unit:"하늘바다앤꼬치어묵30g 750g 봉 11,000원 · 통근꼬치어묵50g 1kg 봉 13,000원 · 10종해물모음 800g 봉 15,000원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 꼬치 어묵 하늘바다앤 통근 해외바다 10종 해물모음" },
+  { id:1206, name:"냠냐미 회오리감자 원조 (소시지회오리감자 & 피즈놈세트)", brand:"냠냐미", category:"감자", emoji:"🍟", price:"20,167", unit:"소시지회오리감자 1.1kg(55g×20ea) kg 32,727원 · 회오리감자 600g(60g×10ea) kg 20,167원 · 피즈놈세트 21,668원 (Twist Potato)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 회오리 감자 원조 소시지 Twist Potato 피즈놈 세트" },
+  { id:1207, name:"냠냐미 성북당 미니십원빵 (수크림/팥/모파치즈)", brand:"냠냐미", category:"빵/디저트", emoji:"🍞", price:"1,190", unit:"1.35kg(45g±5g×30ea) / 수크림·팥맛 15% 할인 개당 1,190원 · 모파치즈맛 개당 1,800원", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 성북당 미니 십원빵 수크림 팥 모파 치즈 원조" },
+  { id:1208, name:"냠냐미 NEW 샌드위치 3종 (삼색/트리플베리/대만식)", brand:"냠냐미", category:"샌드위치", emoji:"🥪", price:"2,100", unit:"개당 70~80g / 삼색1.92kg · 트리플베리1.68kg · 대만식킨아겐드1.68kg kg 26,250~30,000원 (10일전 예약필수)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"냠냐미 삼색 샌드위치 트리플 베리 대만식 킨아겐드 신제품 예약" },
+  { id:1209, name:"냠냐미 추러스 3종 (누텔라/우리쌀링/찰추러스)", brand:"냠냐미", category:"추러스", emoji:"🌀", price:"14,500", unit:"누텔라추러스 1kg(13g×81ea) 15,900원 · 우리쌀링추러스 1kg(25g×40ea) 14,500원 · 찰추러스 1kg(11g×90ea) 18,000원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 추러스 누텔라 우리쌀 링 찰추러스 churros 냉동 생지" },
+  { id:1210, name:"냠냐미 우리쌀도깨비핫도그 & 모짜폰득치즈볼", brand:"냠냐미", category:"핫도그/치즈볼", emoji:"🌭", price:"16,500", unit:"우리쌀도깨비핫도그 500g(50g×10ea) kg 19,400원 · 모짜폰득치즈볼(냉동생지) 1kg(31g×32ea) kg 16,500원", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 우리쌀 도깨비 핫도그 모짜 폰득 치즈볼 냉동 생지" },
+  { id:1211, name:"냠냐미 프렌치프라이 모음 5종", brand:"냠냐미", category:"감자", emoji:"🍟", price:"5,850", unit:"2kg / 슈스트링·클링클컷·맛감자·미니하트감자 각 2kg · 더쳐츠감자(주름머리) 1kg (10% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 프렌치 프라이 슈스트링 막대감자 클링클컷 줄무늬 맛감자 미니하트 감자튀김" },
+  { id:1212, name:"냠냐미 만두 4종 (고기잎새/갈비잎새/감자편/중화군)", brand:"냠냐미", category:"만두", emoji:"🥟", price:"10,500", unit:"고기잎새만두 3kg(24g×125ea) kg 10,500원 · 갈비잎새만두 1.6kg kg 11,250원 · 감자편만두 1.4kg kg 7,714원 · 중화군만두 1.4kg kg 5,014원 (10% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 만두 고기 잎새 갈비 감자편 중화 군만두" },
+  { id:1213, name:"냠냐미 드링크 퓨어포커 (브레인 집중에너지)", brand:"냠냐미", category:"음료", emoji:"🥤", price:"1,500", unit:"개당 240ml / 5.76kg(240ml×24ea) · 봉단가 36,000원 / kg 6,250원 (타우린1,000mg·비타민C500mg·B6 함유)", tags:[], color:"#FFF8E1", tcolor:"#E65100", keywords:"냠냐미 드링크 퓨어포커 브레인 집중 에너지 타우린 비타민 음료" },
+  { id:1214, name:"냠냐미 과일디저트 개별컵 (파인애플/사과/포도/멜론/모듬)", brand:"냠냐미", category:"과일", emoji:"🍓", price:"935", unit:"1kg(40g×25ea) / 파인애플 1,100원·사과 1,360원·포도 1,400원·멜론 1,160원·모듬 1,200원 (15% 할인)", tags:["할인"], isSale:true, color:"#E8F5E9", tcolor:"#1B5E20", keywords:"냠냐미 과일 디저트 개별컵 파인애플 사과 포도 멜론 모듬 냉장" },
+  { id:1215, name:"냠냐미 골드파인애플 & 그린/골드키위 & 메론 조각 (벌크)", brand:"냠냐미", category:"과일", emoji:"🍍", price:"17,850", unit:"1kg / 골드파인애플조각/링/스틱 17,850~22,000원 · 그린키위조각 21,012원 · 골드키위조각 40,000원 · 국내산메론조각 19,800원", tags:["할인"], isSale:true, color:"#E8F5E9", tcolor:"#1B5E20", keywords:"냠냐미 골드 파인애플 조각 링 스틱 그린 골드 키위 메론 벌크 냉장" },
+  { id:1216, name:"냠냐미 냉동망고 슬라이스 & 스틱바", brand:"냠냐미", category:"과일", emoji:"🥭", price:"8,000", unit:"냉동망고슬라이스 1kg(40g×25ea) kg 8,000원 · 냉동망고스틱바 2kg(40g×50ea) kg 14,000원 (망고100% 베트남산)", tags:[], color:"#E8F5E9", tcolor:"#1B5E20", keywords:"냠냐미 냉동 망고 슬라이스 스틱바 망고 100 베트남산" },
+  { id:1217, name:"냠냐미 냉동망고 다이스(청크) & 냉동과일믹스", brand:"냠냐미", category:"과일", emoji:"🥭", price:"7,200", unit:"냉동망고청크(다이스) 1kg(13g×80ea) kg 8,000원 · 냉동과일믹스(망고/용과/파파야) 1kg kg 7,200원", tags:[], color:"#E8F5E9", tcolor:"#1B5E20", keywords:"냠냐미 냉동 망고 청크 다이스 과일믹스 용과 파파야 베트남산" },
+
+  // ===== // 맛샘 (900~916) =====
+{ id:900, name:"맛샘 수박마카롱", brand:"맛샘", category:"디저트", emoji:"🍉", price:"1,390", unit:"690g(23g×30ea, 봉당 41,709, kg 60,448, 25% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 수박 마카롱" },
+  { id:901, name:"맛샘 쿠&크 마카롱 (호국보훈)", brand:"맛샘", category:"디저트", emoji:"🍪", price:"1,390", unit:"690g(23g×30ea, 봉당 41,709, kg 60,448, 25% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 쿠크 마카롱 호국보훈" },
+  { id:902, name:"허쉬 초코앤쿠키 미니컵", brand:"맛샘", category:"디저트", emoji:"🍦", price:"2,500", unit:"4.8L(100ml×48ea, 봉당 120,000, kg 25,000, 20% 할인)", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"허쉬 초코앤쿠키 미니컵 아이스크림" },
+  { id:903, name:"허쉬 쿠키앤크림 미니컵", brand:"맛샘", category:"디저트", emoji:"🍦", price:"2,500", unit:"4.8L(100ml×48ea, 봉당 120,000, kg 25,000, 20% 할인)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"허쉬 쿠키앤크림 미니컵 아이스크림" },
+  { id:904, name:"포켓 웨하스 초코", brand:"맛샘", category:"디저트", emoji:"🍫", price:"490", unit:"349g(16.6g×21ea, 봉당 10,290, kg 29,518, 20% 할인)", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"포켓 웨하스 초코" },
+  { id:905, name:"포켓 허니버터 와플", brand:"맛샘", category:"디저트", emoji:"🧇", price:"490", unit:"357g(17g×21ea, 봉당 10,290, kg 29,518, 20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"포켓 허니버터 와플" },
+  { id:906, name:"젤리인젤리 (리치/망고)", brand:"맛샘", category:"디저트", emoji:"🍬", price:"488", unit:"1.104kg(23g×48ea, 봉당 23,400, kg 21,196, 22% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"젤리인젤리 리치 망고" },
+  { id:907, name:"맛샘 브리오슈 통새우 버거세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,932", unit:"7.5kg(50인분, 세트 단품+소스, 봉당 146,612, kg 19,548, 26% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 브리오슈 통새우 버거 세트" },
+  { id:908, name:"맛샘 통새우 미니버거세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,702", unit:"9.8kg(80인분, 봉당 216,143, kg 22,055, 26% 할인)", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 통새우 미니버거 세트" },
+  { id:909, name:"[1등급] 맛샘 통안심 꼬치 커틀렛 + 소스", brand:"맛샘", category:"만두/튀김", emoji:"🍢", price:"1,590", unit:"500g(50g 내외 × 10개, 봉 15,902, kg 31,803, 25% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 통안심 꼬치 커틀렛" },
+  { id:910, name:"[1등급] 맛샘 치킨 바사삭 꼬치 커틀렛 + 소스", brand:"맛샘", category:"만두/튀김", emoji:"🍢", price:"1,850", unit:"750g(75g 내외 × 10개, 봉 18,500, kg 24,666, 25% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 치킨 바사삭 꼬치 커틀렛" },
+  { id:911, name:"맛샘 마제 라구", brand:"맛샘", category:"불고기/스테이크", emoji:"🍝", price:"44,528", unit:"2kg(돼지뒷다리 56.18%, 중화두반장 굴소스 고추맛기름 콩기름, 15% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 마제 라구" },
+  { id:912, name:"맛샘 북성로 간장 직화불고기", brand:"맛샘", category:"불고기/스테이크", emoji:"🔥", price:"20,000", unit:"1kg(돼지고기 80.8%, 간장불고기소스-NFC 물엿, 27% 할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 북성로 간장 직화불고기" },
+  { id:913, name:"맛샘 리얼딸기 요거트 세트", brand:"맛샘", category:"음료", emoji:"🍓", price:"30,380", unit:"5.5kg(50인분), 맛샘 생요거트 5kg + 마법의딸기 1kg, 35% 할인", tags:["SET", "할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 리얼딸기 요거트 세트" },
+  { id:914, name:"마법의 딸기", brand:"맛샘", category:"디저트", emoji:"🍓", price:"24,756", unit:"1kg(딸기 77%, D-자일로오스설탕, 17% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"마법의 딸기" },
+  { id:915, name:"맛샘 비요뜨 세트", brand:"맛샘", category:"음료", emoji:"🍶", price:"918", unit:"5.5kg(50인분), 맛샘 생요거트 5kg + 초코웨이스 500g, 35% 할인", tags:["SET", "할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"맛샘 비요뜨 세트" },
+  { id:916, name:"맛샘 요거트 3종 세트", brand:"맛샘", category:"음료", emoji:"🥛", price:"868", unit:"5.5kg(50인분), 오레오크럼블/초코크럼블/딸기내추럴크럼블 중 선택, 35% 할인", tags:["SET", "할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 요거트 3종 세트" },
+
+  // ===== // 맛샘 추가 (917+) =====
+{ id:917, name:"초계국수구나 세트", brand:"맛샘", category:"세트", emoji:"🍜", price:"1,719", unit:"26.5kg(중·고등 100인분/초등 200인분), 슈레드 치킨 4봉 + 초계육수 5봉, 25% 할인", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"초계국수 세트 슈레드 치킨" },
+  { id:918, name:"청포도 한모금", brand:"맛샘", category:"음료", emoji:"🍇", price:"670", unit:"4.5L(100ml×45ea, 봉 30,149, kg 6,700, 32% 할인)", tags:["할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"청포도 한모금" },
+  { id:919, name:"자두 한모금", brand:"맛샘", category:"음료", emoji:"🍑", price:"670", unit:"4.5L(100ml×45ea, 봉 30,149, kg 6,700, 32% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"자두 한모금" },
+  { id:920, name:"아올다 샤르르 미니수박", brand:"맛샘", category:"디저트", emoji:"🍉", price:"710", unit:"4.05L(90ml×45ea, kg 7,890, 24% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"아올다 샤르르 미니수박" },
+  { id:921, name:"아올다 샤르르 미니배", brand:"맛샘", category:"디저트", emoji:"🍐", price:"651", unit:"4.05L(90ml×45ea, kg 7,237, 20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"아올다 샤르르 미니배" },
+  { id:922, name:"아올다 샤르르 미니메론", brand:"맛샘", category:"디저트", emoji:"🍈", price:"651", unit:"4.05L(90ml×45ea, kg 7,237, 20% 할인)", tags:["할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"아올다 샤르르 미니메론" },
+  { id:923, name:"쁘띠엘 밀크쉐이크", brand:"맛샘", category:"디저트", emoji:"🥤", price:"1,140", unit:"3.84L(160ml×24ea, kg 7,125, 30% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"쁘띠엘 밀크 쉐이크" },
+  { id:924, name:"쁘띠엘 초코쉐이크", brand:"맛샘", category:"디저트", emoji:"🍫", price:"1,140", unit:"3.84L(160ml×24ea, kg 7,125, 30% 할인)", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"쁘띠엘 초코 쉐이크" },
+  { id:925, name:"맛샘 마라크림 크런치 새우볼 세트", brand:"맛샘", category:"만두/튀김", emoji:"🦐", price:"359", unit:"1kg(20g×50ea, 봉 17,937, kg 17,937, 40% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"마라크림 크런치 새우볼 세트" },
+  { id:926, name:"레모나", brand:"맛샘", category:"음료", emoji:"🍋", price:"590", unit:"5kg(100ml×50ea, 봉 29,521, kg 5,904, 38% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"레모나" },
+  { id:927, name:"우리쌀 큐브 선동 동태강정 세트", brand:"맛샘", category:"만두/튀김", emoji:"🐟", price:"270", unit:"1kg(14.5g 내외 × 68±2개, 봉 18,377, kg 18,377, 24% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"우리쌀 큐브 선동 동태강정 세트" },
+  { id:928, name:"맛샘 스파이시 상하이 치킨버거 세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,977", unit:"14kg(80인분), 27% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"스파이시 상하이 치킨버거 세트" },
+  { id:929, name:"맛샘 브리오슈 마라크림 통새우 버거 세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,737", unit:"7.5kg(50인분), 28% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"브리오슈 마라크림 통새우 버거 세트" },
+  { id:930, name:"브리오슈 떡갈비 치즈버거세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"3,171", unit:"14.91kg(80인분), 30% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"브리오슈 떡갈비 치즈 버거 세트" },
+  { id:931, name:"맛샘 쁘띠 한우치즈버거세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,617", unit:"10.19kg(80인분), 28% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"쁘띠 한우 치즈 버거 세트" },
+  { id:932, name:"맛샘 브리오슈 한우품은 치즈버거세트", brand:"맛샘", category:"세트", emoji:"🍔", price:"2,756", unit:"11.79kg(80인분), 28% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"브리오슈 한우품은 치즈 버거 세트" },
+  { id:933, name:"맛샘 상하이 치킨텐더 스낵랩 세트", brand:"맛샘", category:"세트", emoji:"🌯", price:"1,365", unit:"9.728kg(96인분), 17% 할인", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"상하이 치킨텐더 스낵랩 세트" },
+  { id:934, name:"맛샘 멕시칸 바베큐 치킨타코", brand:"맛샘", category:"세트", emoji:"🌮", price:"851", unit:"5.8kg(120인분), 25% 할인", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"멕시칸 바베큐 치킨타코" },
+  { id:935, name:"맛샘 치킨 퀘사디아 세트", brand:"맛샘", category:"세트", emoji:"🌯", price:"874", unit:"4.44kg(96인분), 24% 할인", tags:["SET", "할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"치킨 퀘사디아 세트" },
+  { id:936, name:"맛샘 북성로 직화 불고기 타코 세트", brand:"맛샘", category:"세트", emoji:"🌮", price:"799", unit:"5.8kg(120인분), 22% 할인", tags:["SET", "할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"북성로 직화 불고기 타코 세트" },
+  { id:937, name:"맛샘 별별 자이언트 꼬치닭 세트", brand:"맛샘", category:"치킨", emoji:"🍢", price:"2,745", unit:"1.23kg(약 123g 내외 × 10ea, 봉 27,453, kg 22,320, 12% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"별별 자이언트 꼬치닭 세트" },
+  { id:938, name:"맛샘 별별 순살 꼬치닭 세트", brand:"맛샘", category:"치킨", emoji:"🍢", price:"1,763", unit:"620g(약 62g 내외 × 10ea, 봉 17,626, kg 28,429, 7% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"별별 순살 꼬치닭 세트" },
+  { id:939, name:"맛샘 자이언트 순살 꼬치닭 세트", brand:"맛샘", category:"치킨", emoji:"🍢", price:"2,396", unit:"1.23kg(약 123g 내외 × 10ea, 12% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"자이언트 순살 꼬치닭 세트" },
+  { id:940, name:"맛샘 순살 꼬치닭 세트", brand:"맛샘", category:"치킨", emoji:"🍢", price:"1,609", unit:"620g(약 62g 내외 × 10ea, 7% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"순살 꼬치닭 세트" },
+  { id:941, name:"맛샘 오븐구이 바베큐 하프 치킨 세트", brand:"맛샘", category:"치킨", emoji:"🍗", price:"3,582", unit:"2.7kg(270 ±15g × 10ea, 16% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"오븐구이 바베큐 하프 치킨 세트" },
+  { id:942, name:"맛샘 자메이카 통다리닭", brand:"맛샘", category:"치킨", emoji:"🌴", price:"3,918", unit:"2kg(200 ±10g × 10ea, 28% 할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"자메이카 통다리닭" },
+  { id:943, name:"이슬촌 레몬에이드 (음료)", brand:"맛샘", category:"음료", emoji:"🍋", price:"583", unit:"4.5L(100ml × 45ea)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"이슬촌 레몬에이드" },
+  { id:944, name:"맛샘 저크 부메랑 치킨", brand:"맛샘", category:"치킨", emoji:"🍗", price:"1,170", unit:"1kg(약 66.7g × 18ea, 18% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"저크 부메랑 치킨" },
+  { id:945, name:"맛샘 그릴 자메이카 치킨", brand:"맛샘", category:"치킨", emoji:"🍗", price:"2,990", unit:"1kg(100 ±5g × 10ea, 18% 할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"그릴 자메이카 치킨" },
+  { id:946, name:"맛샘 그릴 숯불갈비맛 치킨", brand:"맛샘", category:"치킨", emoji:"🔥", price:"2,990", unit:"1kg(약 100 ±5g × 10ea, 18% 할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"그릴 숯불 갈비맛 치킨" },
+  { id:947, name:"맛샘 바삭쫄깃 유린기 세트", brand:"맛샘", category:"치킨", emoji:"🍗", price:"532", unit:"1kg(약 30g × 33 ±3ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"바삭쫄깃 유린기 세트" },
+  { id:948, name:"맛샘 순살에 레몬크림 뿌링닭강정 세트", brand:"맛샘", category:"치킨", emoji:"🍋", price:"555", unit:"1kg(약 30g × 33 ±3ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"순살에 레몬크림 뿌링닭강정 세트" },
+  { id:949, name:"맛샘 칠리 닭강정 세트", brand:"맛샘", category:"치킨", emoji:"🌶️", price:"549", unit:"1kg(약 30g × 33 ±3ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"칠리 닭강정 세트" },
+  { id:1000, name:"맛샘 뿌링글 지파이 세트", brand:"맛샘", category:"만두/튀김", emoji:"🍗", price:"1,719", unit:"1kg(100g × 10ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"뿌링글 지파이 세트" },
+  { id:1001, name:"맛샘 지파이 세트", brand:"맛샘", category:"만두/튀김", emoji:"🍗", price:"1,827", unit:"1kg(100g × 10ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"지파이 세트" },
+  { id:1002, name:"맛샘 허브 치킨 커틀렛 세트", brand:"맛샘", category:"만두/튀김", emoji:"🌿", price:"1,899", unit:"1kg(100g × 10ea, 22% 할인)", tags:["할인", "SET"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"허브 치킨 커틀렛 세트" },
+  { id:1003, name:"맛샘 숯불한돈 떡갈비세트", brand:"맛샘", category:"불고기/스테이크", emoji:"🔥", price:"1,666", unit:"1kg(100g × 10ea, 31% 할인)", tags:["할인", "SET"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"숯불 한돈 떡갈비 세트" },
+  { id:1004, name:"맛샘 매콤 고추마요 한돈 떡갈비 세트", brand:"맛샘", category:"불고기/스테이크", emoji:"🌶️", price:"1,836", unit:"1kg(100g × 10ea, 32% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"매콤 고추마요 한돈 떡갈비 세트" },
+  { id:1005, name:"맛샘 별이 내린 맛동산 탕수육 세트", brand:"맛샘", category:"탕수육", emoji:"🥘", price:"144", unit:"1kg(약 12g 내외 × 80ea ±5ea, 31% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"별이 내린 맛동산 탕수육 세트" },
+  { id:1006, name:"맛샘 맛동산 탕수육 세트", brand:"맛샘", category:"탕수육", emoji:"🥘", price:"144", unit:"1kg(약 12g 내외 × 80ea ±5ea, 31% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛동산 탕수육 세트" },
+  { id:1007, name:"맛샘 마라크림 사천탕수육 세트", brand:"맛샘", category:"탕수육", emoji:"🥘", price:"164", unit:"1kg(약 12g 내외 × 80ea ±5ea, 25% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"마라크림 사천탕수육 세트" },
+  { id:1008, name:"맛샘 대구 가라아게 + 카사바칩", brand:"맛샘", category:"만두/튀김", emoji:"🐟", price:"885", unit:"600g(33g × 18 ±1ea), 22% 할인", tags:["할인", "SET"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"대구 가라아게 카사바칩" },
+  { id:1009, name:"맛샘 눈꽃치즈 레몬데리야끼 연어스테이크세트", brand:"맛샘", category:"불고기/스테이크", emoji:"🐟", price:"2,121", unit:"1kg(50g × 20ea, 28% 할인)", tags:["할인", "SET"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"눈꽃치즈 레몬데리야끼 연어스테이크" },
+  { id:1010, name:"맛샘 통살 청대구까스와 카사바칩", brand:"맛샘", category:"만두/튀김", emoji:"🐟", price:"815", unit:"1.2kg(60g × 20ea, 19% 할인)", tags:["할인", "SET"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"통살 청대구 까스 카사바칩" },
+  { id:1011, name:"맛샘 통살 연어까스와 카사바칩", brand:"맛샘", category:"만두/튀김", emoji:"🐟", price:"1,227", unit:"1.2kg(60g × 20ea, 15% 할인)", tags:["할인", "SET"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"통살 연어 까스 카사바칩" },
+  { id:1012, name:"맛샘 칠리 깐쇼새우 세트", brand:"맛샘", category:"탕수육", emoji:"🦐", price:"524", unit:"1kg(18g 내외 × 55 ±3ea, 28% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"칠리 깐쇼새우 세트" },
+  { id:1013, name:"맛샘 얇은피 크림깐쇼새우 세트", brand:"맛샘", category:"탕수육", emoji:"🦐", price:"524", unit:"1kg(18g 내외 × 55 ±3ea, 28% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"얇은피 크림깐쇼새우 세트" },
+  { id:1014, name:"맛샘 마라크림 깐쇼새우 세트", brand:"맛샘", category:"탕수육", emoji:"🦐", price:"524", unit:"1kg(18g 내외 × 55 ±3ea, 28% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"마라크림 깐쇼새우 세트" },
+  { id:1015, name:"맛샘 주꾸미 볶음 세트", brand:"맛샘", category:"세트", emoji:"🌶️", price:"26,068", unit:"6kg(절단쭈꾸미 100% 베트남산, 20% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"주꾸미 볶음 세트" },
+  { id:1016, name:"불고기 수제화덕피자", brand:"맛샘", category:"피자", emoji:"🍕", price:"11,367", unit:"343g, 29% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"불고기 수제 화덕 피자" },
+  { id:1017, name:"꿀 고르곤졸라 수제화덕피자", brand:"맛샘", category:"피자", emoji:"🍕", price:"12,536", unit:"355g, 26% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"꿀 고르곤졸라 수제 화덕 피자" },
+  { id:1018, name:"맛샘 슈프림 콤비네이션 쁘띠피자", brand:"맛샘", category:"피자", emoji:"🍕", price:"1,499", unit:"800g(80g × 10ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"슈프림 콤비네이션 쁘띠 피자" },
+  { id:1019, name:"맛샘 체다치즈 쁘띠피자", brand:"맛샘", category:"피자", emoji:"🧀", price:"1,594", unit:"800g(80g × 10ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"체다치즈 쁘띠 피자" },
+  { id:1020, name:"우리나라 감자튀김 웨지", brand:"맛샘", category:"디저트", emoji:"🥔", price:"208", unit:"1kg(약 14 ±3g × 70 ±2ea, 20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"감자튀김 웨지" },
+  { id:1021, name:"맛샘 달콤허니 오븐구이 콘립세트", brand:"맛샘", category:"디저트", emoji:"🌽", price:"624", unit:"1kg(48 ±5g × 20 ±1ea, 30% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"달콤허니 오븐구이 콘립세트" },
+  { id:1022, name:"맛샘 체다치즈 뿌링클 찰도그", brand:"맛샘", category:"디저트", emoji:"🌭", price:"845", unit:"1.2kg(60g × 20ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"체다치즈 뿌링클 찰도그" },
+  { id:1023, name:"맛샘 야채잡채 미니호떡", brand:"맛샘", category:"디저트", emoji:"🥯", price:"413", unit:"1kg(27g × 4g × 33 + 4ea, 27% 할인)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"야채잡채 미니호떡" },
+  { id:1024, name:"맛샘 치즈감자 도깨비 방망이", brand:"맛샘", category:"디저트", emoji:"🥔", price:"1,253", unit:"700g(70g × 10ea, 20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"치즈감자 도깨비 방망이" },
+  { id:1025, name:"맛샘 우리밀 바스크 치즈케이크", brand:"맛샘", category:"디저트", emoji:"🍰", price:"1,436", unit:"500g(약 27.8g × 18ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"우리밀 바스크 치즈케이크" },
+  { id:1026, name:"맛샘 수제 미니 바스크 치즈케이크 49", brand:"맛샘", category:"디저트", emoji:"🍰", price:"1,397", unit:"720g(30g × 24ea, 23% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"수제 미니 바스크 치즈케이크" },
+  { id:1027, name:"맛샘 수제 가나초코 케이크", brand:"맛샘", category:"디저트", emoji:"🍰", price:"1,330", unit:"500g(약 27.8g × 18ea, 18% 할인)", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"수제 가나초코 케이크" },
+  { id:1028, name:"맛샘 크리미 크로칸슈", brand:"맛샘", category:"디저트", emoji:"🥐", price:"1,236", unit:"675g(45g × 15ea, 20% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"크리미 크로칸슈" },
+  { id:1029, name:"맛샘 바나나슈 크림 크로칸슈", brand:"맛샘", category:"디저트", emoji:"🍌", price:"1,198", unit:"675g(45g × 15ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"바나나슈 크림 크로칸슈" },
+  { id:1030, name:"맛샘 딸기크림 크로칸슈", brand:"맛샘", category:"디저트", emoji:"🍓", price:"1,250", unit:"675g(45g × 15ea, 33% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"딸기크림 크로칸슈" },
+  { id:1031, name:"햄&치즈 샌드위치", brand:"맛샘", category:"디저트", emoji:"🥪", price:"2,410", unit:"1.35kg(75g × 18ea, 25% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"햄 치즈 샌드위치" },
+  { id:1032, name:"맛샘 수제 초코 브라우니 타르트세트", brand:"맛샘", category:"디저트", emoji:"🍫", price:"1,030", unit:"2.76kg(46g × 60ea, 30% 할인)", tags:["할인", "SET"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"수제 초코 브라우니 타르트세트" },
+  { id:1033, name:"이슬촌 우리제주감귤", brand:"맛샘", category:"음료", emoji:"🍊", price:"463", unit:"4.5L(100ml × 45ea, 25% 할인)", tags:["할인"], isSale:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"이슬촌 우리 제주 감귤" },
+  { id:1034, name:"이슬촌 우리매실", brand:"맛샘", category:"음료", emoji:"🍏", price:"420", unit:"4.5L(100ml × 45ea, 28% 할인)", tags:["할인"], isSale:true, color:"#E8F5E9", tcolor:"#2E7D32", keywords:"이슬촌 우리 매실" },
+  { id:1035, name:"모구모구 복숭아", brand:"맛샘", category:"음료", emoji:"🍑", price:"1,364", unit:"7.68L(320ml × 24ea, 25% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"모구모구 복숭아" },
+  { id:1036, name:"모구모구 리치", brand:"맛샘", category:"음료", emoji:"🍒", price:"1,364", unit:"7.68L(320ml × 24ea, 25% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"모구모구 리치" },
+
+  // ===== 맛샘 신제품 (26년 7~8월) =====
+  { id:1045, name:"자메이카 펼친 닭다리(북채)", brand:"맛샘", category:"치킨", emoji:"🍗", price:"", unit:"2kg / 20ea (1등급)", tags:["신제품"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"자메이카 북채 닭다리 펼친닭다리 1등급" },
+  { id:1046, name:"맛샘 버팔로 치킨봉", brand:"맛샘", category:"치킨", emoji:"🍗", price:"", unit:"", tags:["신제품"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"버팔로 치킨봉 맛샘 핫소스 스파이시" },
+  { id:1047, name:"맛샘 버팔로 치킨윙", brand:"맛샘", category:"치킨", emoji:"🍗", price:"", unit:"", tags:["신제품"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"버팔로 치킨윙 맛샘 핫소스 스파이시" },
+  { id:1048, name:"상하이 초코 버터떡", brand:"맛샘", category:"디저트", emoji:"🍡", price:"", unit:"", tags:["신제품"], isNew:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"상하이 초코버터떡 버터떡 초코 맛샘 디저트" },
+  { id:1049, name:"나주배+열대과일 선물세트", brand:"맛샘", category:"음료", emoji:"🍐", price:"", unit:"", tags:["신제품"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"나주배 열대과일 선물세트 과일세트" },
+  { id:1050, name:"맛샘 매운 떡볶이세트", brand:"맛샘", category:"세트", emoji:"🌶️", price:"461~645", unit:"3.4kg (초등 56인분~중고등 40인분), 스타크림믹스 포함", tags:["신제품","SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 매운 떡볶이 세트 스타크림믹스 스텔라 별튀김" },
+
+  // ===== 맛샘 신제품 (id:1303~1353) =====
+  { id:1303, name:"맛샘 전통찹쌀 수제식혜", brand:"맛샘", category:"음료", emoji:"🥤", price:"14,215", unit:"3kg(30인분) · Kg 4,738원 · 30% 할인", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 전통 찹쌀 수제 식혜 무향료 무색소 무방부제 3無" },
+  { id:1304, name:"맛샘 새우짜조롤 세트", brand:"맛샘", category:"새우", emoji:"🌯", price:"537", unit:"400g/20g×20ea · 단품 537원 / 세트(단품+소스) 594원 · 33% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 새우 짜조롤 세트 파격행사" },
+  { id:1305, name:"맛샘 핫바 매콤달콤 즐거봐 세트", brand:"맛샘", category:"핫바", emoji:"🌭", price:"1,120", unit:"900g/90g×10ea · 단품 1,120원 / 세트(단품+소스) 1,237원 · 29% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 핫바 매콤달콤 즐거봐 세트 파격행사" },
+  { id:1306, name:"맛샘 탱글탱글 미니핫바 즐거봐세트", brand:"맛샘", category:"핫바", emoji:"🌭", price:"860", unit:"900g/60g×15ea · 단품 860원 / 세트(단품+소스) 939원 · 29% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 탱글탱글 미니핫바 즐거봐 세트 파격행사" },
+  { id:1307, name:"맛샘 콘소메 치킨 + 스위트콘 세트", brand:"맛샘", category:"치킨", emoji:"🍗", price:"480", unit:"1kg/약 30×33±3ea · 단품 480원 / 세트1 642원 / 세트2 679원 · 23% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 콘소메 치킨 스위트콘 세트 오븐 치킨" },
+  { id:1308, name:"맛샘 뿌링클 치킨 & 칩스 세트", brand:"맛샘", category:"치킨", emoji:"🍗", price:"480", unit:"1kg/약 30×33±3ea · 단품 480원 / 세트1 513원 / 세트2 574원 · 24% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 뿌링클 치킨 칩스 세트 오븐 치킨" },
+  { id:1309, name:"맛샘 한글너겟", brand:"맛샘", category:"치킨", emoji:"🐔", price:"339", unit:"1kg/약 19g±2g×51±3ea · 개당 339원 / 봉 17,271원 · 34% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 한글 너겟 국내산 닭고기 오븐" },
+  { id:1310, name:"맛샘 삼계 곰탕 세트", brand:"맛샘", category:"국/탕", emoji:"🫕", price:"40,348", unit:"삼계곰탕2kg+정제수5kg+슈레드치킨1kg · 인분기준 40,348원 / kg 13,449원", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 삼계 곰탕 세트 한우 사골 슈레드 치킨" },
+  { id:1311, name:"맛샘 한우품은 한돈 스테이크 65/110 세트", brand:"맛샘", category:"함박/스테이크", emoji:"🥩", price:"1,298", unit:"65g규격: 1.3kg(65g×20ea) 1,298원/개 · 110g규격: 1.1kg(110g×10ea) 2,180원/개 · 21% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 한우 품은 한돈 스테이크 65g 110g 세트 숯불향" },
+  { id:1312, name:"맛샘 눈꽃치즈 한우한돈 스테이크 65/110 세트", brand:"맛샘", category:"함박/스테이크", emoji:"🧀", price:"1,513", unit:"65g규격: 1.3kg(65g×20ea) 1,513원/개 · 110g규격: 1.1kg(110g×10ea) 2,610원/개 · 28% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 눈꽃치즈 한우한돈 스테이크 65g 110g 세트 치즈" },
+  { id:1313, name:"맛샘 숯불 미니하트 스테이크", brand:"맛샘", category:"스테이크", emoji:"🥩", price:"291", unit:"19g±2g×52±3ea · 개당 291원 / 봉 15,126원 · 25% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 숯불 미니 하트 스테이크 적전류" },
+  { id:1314, name:"맛샘 한 입 쏙 찹스테이크 세트", brand:"맛샘", category:"스테이크", emoji:"🥩", price:"298", unit:"1kg/10g±8g×55±2ea · 개당 298원 · 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 한입쏙 찹스테이크 세트 적전류" },
+  { id:1315, name:"맛샘 BBQ 찹스테이크 세트", brand:"맛샘", category:"스테이크", emoji:"🥩", price:"333", unit:"1kg/18g±8g×55±2ea · 개당 333원 · 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 BBQ 찹스테이크 바베큐 세트 적전류" },
+  { id:1316, name:"맛샘 눈꽃치즈 찹 스테이크 세트", brand:"맛샘", category:"스테이크", emoji:"🧀", price:"376", unit:"1kg/18g±8g×55±2ea · 개당 376원 · 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 눈꽃치즈 찹 스테이크 세트 치즈 적전류" },
+  { id:1317, name:"맛샘 우리밀 소고기 육전", brand:"맛샘", category:"육전", emoji:"🍳", price:"953", unit:"23g±1g×43±5ea · 개당 953원 · 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 우리밀 소고기 육전" },
+  { id:1318, name:"맛샘 명태까스 세트", brand:"맛샘", category:"수산가공", emoji:"🐟", price:"639", unit:"1kg/50g×20ea · 단품 639원 / 세트1 761원 / 세트2 964원 · 26% 할인 · 최소발주5세트", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 명태까스 세트 수산 카츠 칩스앤칩스" },
+  { id:1319, name:"맛샘 청파래 해물까스 세트", brand:"맛샘", category:"수산가공", emoji:"🦑", price:"639", unit:"1kg/50g×20ea · 단품 639원 / 세트1 761원 / 세트2 964원 · 26% 할인 · 최소발주5세트", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 청파래 해물까스 세트 오징어 수산 카츠 칩스앤칩스" },
+  { id:1320, name:"맛샘 칠리 생새우깡 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"204", unit:"1kg/10g생새우×100~120ea · 단품 204원 / 세트 227원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 칠리 생새우깡 세트 수산가공" },
+  { id:1321, name:"맛샘 레몬마요 생새우깡 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"204", unit:"1kg/10g생새우×100~120ea · 단품 204원 / 세트 229원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 레몬마요 생새우깡 세트 수산가공" },
+  { id:1322, name:"맛샘 블랙새우깡 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"204", unit:"1kg/10g생새우×100~120ea · 단품 204원 / 세트 232원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 블랙새우깡 세트 수산가공" },
+  { id:1323, name:"맛샘 오븐 우리밀 칠리 깐쇼새우 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"249", unit:"1kg/약 11g±8g×87±3ea · 단품 249원 / 세트 275원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 오븐 우리밀 칠리 깐쇼새우 세트 수산가공" },
+  { id:1324, name:"맛샘 오븐 우리밀 크림 깐쇼새우 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"249", unit:"1kg/약 11g±8g×87±3ea · 단품 249원 / 세트 277원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 오븐 우리밀 크림 깐쇼새우 세트 수산가공" },
+  { id:1325, name:"맛샘 레몬마요 통새우까스 세트", brand:"맛샘", category:"새우", emoji:"🦐", price:"1,767", unit:"800g/80g×10ea · 단품 1,767원 / 세트 1,889원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 레몬마요 통새우까스 세트 수산가공" },
+  { id:1326, name:"맛샘 블랙타이거 치즈새우", brand:"맛샘", category:"새우", emoji:"🦐", price:"2,590", unit:"450g/45g×10ea · 개당 2,590원", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 블랙타이거 치즈새우 수산가공" },
+  { id:1327, name:"맛샘 슈팅스타 마카롱", brand:"맛샘", category:"디저트", emoji:"🍭", price:"1,380", unit:"690g/23g×30ea · 봉 41,396원 · 28% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 슈팅스타 마카롱 디저트" },
+  { id:1328, name:"맛샘 초코연유 마카롱", brand:"맛샘", category:"디저트", emoji:"🍫", price:"1,276", unit:"725g/29g×25ea · 봉 31,909원 · 28% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 초코연유 마카롱 디저트 초코" },
+  { id:1329, name:"맛샘 바닐라맛 마카롱", brand:"맛샘", category:"디저트", emoji:"🍬", price:"1,050", unit:"690g/23g×30ea · 봉 31,500원 · 30% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 바닐라맛 마카롱 디저트 바닐라" },
+  { id:1330, name:"맛샘 딸기바나나 마카롱", brand:"맛샘", category:"디저트", emoji:"🍓", price:"1,294", unit:"625g/25g×25ea · 봉 32,352원 · 27% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 딸기바나나 마카롱 디저트 딸기" },
+  { id:1331, name:"맛샘 딸기 & 쿠키 마카롱", brand:"맛샘", category:"디저트", emoji:"🍪", price:"1,294", unit:"725g/29g×25ea · 봉 32,352원 · 27% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 딸기 쿠키 마카롱 디저트" },
+  { id:1332, name:"맛샘 어글리바 오레오레", brand:"맛샘", category:"디저트", emoji:"🍰", price:"1,001", unit:"1kg/25g×40ea · 봉 40,040원 · 37% 할인", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"맛샘 어글리바 오레오레 디저트 오레오" },
+  { id:1333, name:"맛샘 바람떡", brand:"맛샘", category:"떡", emoji:"🍡", price:"290", unit:"1kg/25g±2g×37ea · 봉 10,740원 · 24% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 바람떡 디저트 떡" },
+  { id:1334, name:"맛샘 꿀떡", brand:"맛샘", category:"떡", emoji:"🍡", price:"239", unit:"1kg/20g±2g×45ea · 봉 10,740원 · 24% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 꿀떡 디저트 떡" },
+  { id:1335, name:"맛샘 백년초 꿀떡", brand:"맛샘", category:"떡", emoji:"🍡", price:"244", unit:"1kg/20g±2g×45ea · 봉 10,994원 · 24% 할인", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"맛샘 백년초 꿀떡 디저트 떡" },
+  { id:1336, name:"맛샘 우리별 찹쌀떡 2종", brand:"맛샘", category:"떡", emoji:"🍡", price:"1,158", unit:"320g/40g×8ea · 봉 9,265원 · 28% 할인 · 개별포장", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 우리별 찹쌀떡 2종 생크림 팥앙금 개별포장" },
+  { id:1337, name:"맛샘 우리밀 칼슘 슈크림 통통봉어빵", brand:"맛샘", category:"빵/봉어빵", emoji:"🐟", price:"696", unit:"1kg/50g×20ea · 봉 13,912원 · 25% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 우리밀 칼슘 슈크림 통통 봉어빵" },
+  { id:1338, name:"맛샘 우리밀 칼슘 통팥 통통봉어빵", brand:"맛샘", category:"빵/봉어빵", emoji:"🐟", price:"696", unit:"1kg/50g×20ea · 봉 13,912원 · 25% 할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 우리밀 칼슘 통팥 통통 봉어빵" },
+  { id:1339, name:"맛샘 마라크림 소스", brand:"맛샘", category:"소스", emoji:"🌶️", price:"13,032", unit:"15% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 마라크림 소스 소스류" },
+  { id:1340, name:"맛샘 하브 돈까스소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"8,997", unit:"21% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 하브 돈까스 소스 소스류" },
+  { id:1341, name:"맛샘 데리야끼소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"7,259", unit:"할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 데리야끼 소스 소스류" },
+  { id:1342, name:"맛샘 녹인기 소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"8,472", unit:"할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 녹인기 소스 소스류" },
+  { id:1343, name:"맛샘 달콤소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"7,903", unit:"할인", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"맛샘 달콤 소스 소스류" },
+  { id:1344, name:"맛샘 자메이카 바베큐소스", brand:"맛샘", category:"소스", emoji:"🔥", price:"10,672", unit:"할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 자메이카 바베큐 소스 소스류" },
+  { id:1345, name:"맛샘 발사믹 바베큐소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"9,609", unit:"25% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 발사믹 바베큐 소스 소스류" },
+  { id:1346, name:"맛샘 구이비스 스테이크소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"10,857", unit:"할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 구이비스 스테이크 소스 소스류" },
+  { id:1347, name:"맛샘 달달매콤 비비 고추파파소스", brand:"맛샘", category:"소스", emoji:"🌶️", price:"11,317", unit:"할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 달달매콤 비비 고추파파 소스 팝콘 소스류" },
+  { id:1348, name:"맛샘 만능 마리네이드소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"11,955", unit:"할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 만능 마리네이드 소스 소스류" },
+  { id:1349, name:"맛샘 블랙 올리브소스", brand:"맛샘", category:"소스", emoji:"🫒", price:"11,119", unit:"32% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 블랙 올리브 소스 소스류" },
+  { id:1350, name:"맛샘 숯불향 갈비소스", brand:"맛샘", category:"소스", emoji:"🔥", price:"11,531", unit:"할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 숯불향 갈비 소스 소스류" },
+  { id:1351, name:"맛샘 북경식 칠리소스", brand:"맛샘", category:"소스", emoji:"🌶️", price:"11,240", unit:"20% 할인", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛샘 북경식 칠리 소스 소스류" },
+  { id:1352, name:"맛샘 맑은소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"8,858", unit:"할인", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"맛샘 맑은 소스 소스류" },
+  { id:1353, name:"맛샘 요리청 탕수육소스", brand:"맛샘", category:"소스", emoji:"🥫", price:"9,561", unit:"20% 할인", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛샘 요리청 탕수육 소스 소스류" },
+
+  // ===== // 슬로우메이드 (950~966) =====
+{ id:950, name:"찐 애플망고 샤베트", brand:"슬로우메이드", category:"음료", emoji:"🥭", price:"1,273", unit:"3.6L(150ml×24개, 봉당 30,556, kg 8,488)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"찐 애플망고 샤베트" },
+  { id:951, name:"따옴 트위스트 귤파인애플 샤베트", brand:"슬로우메이드", category:"음료", emoji:"🍊", price:"1,706", unit:"3.6L(150ml×24개, 봉당 30,708, kg 8,530)", tags:["NEW"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"따옴 트위스트 귤파인애플 샤베트" },
+  { id:952, name:"달콤목장 밀크스무디", brand:"슬로우메이드", category:"음료", emoji:"🥛", price:"993", unit:"2.4L(100ml×24개, 봉당 18,352, kg 7,647)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"달콤목장 밀크 스무디" },
+  { id:953, name:"쫀득구름 파인칠리 새우탕수 (SET)", brand:"슬로우메이드", category:"탕수육", emoji:"🍤", price:"23,964", unit:"1kg(14g×70개) + 아이파인 스위칠리소스 250g SET", tags:["NEW", "SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"쫀득구름 파인칠리 새우탕수" },
+  { id:954, name:"쫀득구름 레몬크림 새우탕수 (SET)", brand:"슬로우메이드", category:"탕수육", emoji:"🍤", price:"23,964", unit:"1kg(14g×70개) + 맛탕소스 83g + 레몬크림 소스 166g SET", tags:["NEW", "SET"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"쫀득구름 레몬크림 새우탕수" },
+  { id:955, name:"쫀득구름 새우탕수 단품", brand:"슬로우메이드", category:"탕수육", emoji:"🍤", price:"21,700", unit:"1kg(14g×70개)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"쫀득구름 새우 탕수 단품" },
+  { id:956, name:"맛동산 오징어탕수 (SET)", brand:"슬로우메이드", category:"탕수육", emoji:"🦑", price:"21,103", unit:"1kg(17g×60개) + 맛동산 소스 + 만능데리야끼 소스 (각 125g SET)", tags:["NEW", "SET"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"맛동산 오징어 탕수 세트" },
+  { id:957, name:"쫀득구름 오징어탕수 단품", brand:"슬로우메이드", category:"탕수육", emoji:"🦑", price:"19,226", unit:"1kg(17g×60개)", tags:[], color:"#EFEBE9", tcolor:"#5D4037", keywords:"쫀득구름 오징어 탕수 단품" },
+  { id:958, name:"매실 데리야끼 바다장어 + 만능 데리야끼 소스 SET", brand:"슬로우메이드", category:"세트", emoji:"🐟", price:"31,495", unit:"1kg/125g(소스포함)×8개, 22% 할인", tags:["할인", "SET"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"매실 데리야끼 바다장어" },
+  { id:959, name:"청파래 대구 생선까스 + 체리크림 소스 SET", brand:"슬로우메이드", category:"만두/튀김", emoji:"🐟", price:"14,968", unit:"1.2kg/60g×20개, 18,342 → 14,968 (22% 할인)", tags:["할인", "SET"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"청파래 대구 생선까스 체리크림" },
+  { id:960, name:"사천식 동태 강정 + 맛탕소스 + 어향소스 SET", brand:"슬로우메이드", category:"만두/튀김", emoji:"🌶️", price:"18,227", unit:"1kg/15g×64개 + 맛탕소스 + 어향소스 SET, 22% 할인", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"사천식 동태 강정 세트" },
+  { id:961, name:"블랙 타이거 치즈새우", brand:"슬로우메이드", category:"만두/튀김", emoji:"🦐", price:"27,500", unit:"500g/50g×10개, 30,556 → 27,500 (10% 할인)", tags:["할인"], isSale:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"블랙타이거 치즈새우" },
+  { id:962, name:"튜브타는 상어도넛", brand:"슬로우메이드", category:"디저트", emoji:"🍩", price:"1,561", unit:"900g(45g×20개, 봉당 26,010, kg 28,900)", tags:["NEW"], isNew:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"튜브타는 상어 도넛" },
+  { id:963, name:"생일축하 복숭아 도넛", brand:"슬로우메이드", category:"디저트", emoji:"🍑", price:"1,681", unit:"900g(45g×20개, 봉당 25,208, kg 28,009)", tags:["NEW"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"생일축하 복숭아 도넛" },
+  { id:964, name:"샤인 청포도 무스", brand:"슬로우메이드", category:"디저트", emoji:"🍇", price:"1,671", unit:"480g(30g×16개, 봉당 22,873, kg 47,652)", tags:[], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"샤인 청포도 무스" },
+  { id:965, name:"허쉬 브라우니 팝시클", brand:"슬로우메이드", category:"디저트", emoji:"🍫", price:"1,768", unit:"810g(30g×27개, 봉당 39,961, kg 49,334)", tags:["NEW"], isNew:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"허쉬 브라우니 팝시클" },
+  { id:966, name:"허쉬 쿠앤크림 롤케이크", brand:"슬로우메이드", category:"디저트", emoji:"🍰", price:"1,194", unit:"1,056g(약22g×48조각, 봉당 48,698, kg 46,115)", tags:[], color:"#3E2723", tcolor:"#D7CCC8", keywords:"허쉬 쿠앤크림 롤케이크" },
+
+  // ===== // 슬로우메이드 추가 (967+) =====
+{ id:967, name:"구움닭 SET", brand:"슬로우메이드", category:"치킨", emoji:"🍗", price:"26,000", unit:"구움닭 1kg(약100g 내외×10개) + 로스트갈비 소스 150g 증정, 29% 할인", tags:["할인", "SET"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"구움닭 세트 로스트 갈비" },
+  { id:968, name:"마초킹 구움닭 SET", brand:"슬로우메이드", category:"치킨", emoji:"🍗", price:"26,000", unit:"구움닭 1kg + 마초킹 강정 소스 증정", tags:["NEW", "SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"마초킹 구움닭 세트" },
+  { id:969, name:"더 바삭한 소이허니 치킨", brand:"슬로우메이드", category:"치킨", emoji:"🍯", price:"14,017", unit:"1kg(25g 내외×40×5개, 33% 할인)", tags:["할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"바삭한 소이허니 치킨" },
+  { id:970, name:"더 바삭한 레드청양 치킨", brand:"슬로우메이드", category:"치킨", emoji:"🌶️", price:"16,016", unit:"1kg(25g 내외×40×5개, 23% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"바삭한 레드청양 치킨" },
+  { id:971, name:"the스윗 망개잎 수리취떡", brand:"슬로우메이드", category:"떡류", emoji:"🟢", price:"1,100", unit:"360g(36g×10개, 봉 11,000, kg 30,558)", tags:["단오 한정"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"망개잎 수리취떡 단오" },
+  { id:972, name:"the스윗 쿠앤크 수리취떡", brand:"슬로우메이드", category:"떡류", emoji:"🟢", price:"900", unit:"1.12kg(40g×28개, 봉 25,205, kg 22,505)", tags:["단오 한정"], color:"#E8F5E9", tcolor:"#2E7D32", keywords:"쿠앤크 수리취떡" },
+  { id:973, name:"맛동산 탕수육 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🥘", price:"162", unit:"1kg(12g 내외×80개 내외) + 맛탕소스 + 만능데리야끼 소스 각 100g 증정", tags:["SET", "할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"맛동산 탕수육 세트 시그니처" },
+  { id:974, name:"콰트로치즈 함박 80g + 소스증정", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"1,550", unit:"콰트로치즈 함박 80g (800g/80g×10개) + 드미글라스 소스 150g 증정", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"콰트로치즈 함박 80g" },
+  { id:975, name:"콰트로치즈 함박 110g + 소스증정", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"2,170", unit:"콰트로치즈 함박 110g (1.1kg/110g×10개) + 드미글라스 소스 250g 증정", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"콰트로치즈 함박 110g" },
+  { id:976, name:"소스코팅 등심카츠", brand:"슬로우메이드", category:"만두/튀김", emoji:"🍖", price:"2,270", unit:"1kg(100g×10개, 41% 행사), 슐티소이 소스 코팅", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"소스코팅 등심카츠 슐티소이" },
+  { id:977, name:"치즈 돈까스", brand:"슬로우메이드", category:"만두/튀김", emoji:"🧀", price:"1,335", unit:"800g(80g×10개) + 오무라이스 소스 200g SET", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"치즈 돈까스 오무라이스" },
+  { id:978, name:"홀그레인 머스타드 미트볼 SET", brand:"슬로우메이드", category:"전/부침", emoji:"🍖", price:"488", unit:"1kg(25g×40개) + 로스트갈릭 소스 SET, 20% 할인", tags:["할인", "SET"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"홀그레인 머스타드 미트볼" },
+  { id:979, name:"마초킹 깐풍새우 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"225", unit:"1kg(약10g×100개 내외) + 마초킹 강정소스 SET, 33% 할인", tags:["NEW", "할인", "SET"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"마초킹 깐풍새우 세트" },
+  { id:980, name:"골든 크리스피 깐쇼새우 + 마초킹 강정소스 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"1,128", unit:"1kg(10g×100개) + 마초킹 강정소스 SET", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"골든 크리스피 깐쇼새우" },
+  { id:981, name:"카다이프 새우튀김 + 충하칠리 소스 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"1,040", unit:"300g(30g×10개) + 충하칠리 소스 100g SET, 21% 할인", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"카다이프 새우튀김 충하칠리" },
+  { id:982, name:"오징어먹물 고르곤졸라 피자", brand:"슬로우메이드", category:"피자", emoji:"🍕", price:"10,718", unit:"580g(72.5g×8조각, 30% 할인)", tags:["할인"], isSale:true, color:"#3E2723", tcolor:"#D7CCC8", keywords:"오징어먹물 고르곤졸라 피자" },
+  { id:983, name:"토마토 콰트로치즈 아란치니 SET", brand:"슬로우메이드", category:"세트", emoji:"🍅", price:"934", unit:"600g(60g×10개) + 오무라이스 소스 100g 증정", tags:["할인", "SET"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"토마토 콰트로치즈 아란치니" },
+  { id:984, name:"토마토 콰트로치즈 아란치니 오믈렛 SET", brand:"슬로우메이드", category:"세트", emoji:"🍳", price:"2,226", unit:"60인분 8.6kg, 토마토 콰트로치즈 아란치니 1봉(600g) + 소르크림 오믈렛 본체 30g×20개 + 오무라이스 소스 330g", tags:["SET", "할인"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"토마토 콰트로치즈 아란치니 오믈렛" },
+  { id:985, name:"the스윗 HBD 반짝해/사랑해 케이크", brand:"슬로우메이드", category:"디저트", emoji:"🎂", price:"1,450", unit:"920g(40g×23개, 봉 33,360, kg 36,261, 23% 할인)", tags:["할인"], isSale:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"HBD 반짝해 사랑해 케이크" },
+  { id:986, name:"직화 후쿠오카 미트볼", brand:"슬로우메이드", category:"전/부침", emoji:"🍖", price:"360", unit:"1kg(약20±2g×48±3개, 봉 17,260, kg 17,260, 29% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"직화 후쿠오카 미트볼" },
+  { id:987, name:"조선 고매 미트볼", brand:"슬로우메이드", category:"전/부침", emoji:"🍖", price:"390", unit:"1kg(약20g×48±3개, 봉 18,700, kg 18,700, 28% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"조선 고매 미트볼" },
+  { id:988, name:"알싸한 청양고추 떡갈비", brand:"슬로우메이드", category:"불고기/스테이크", emoji:"🌶️", price:"1,698", unit:"1kg(약100g×10개, 봉 16,978, kg 16,978, 20-30% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"알싸한 청양고추 떡갈비" },
+  { id:989, name:"매콤 두부함박", brand:"슬로우메이드", category:"전/부침", emoji:"🌶️", price:"1,440", unit:"1kg(100g 내외×8.5×15g 내외×10×7개, 봉 18,762, kg 18,762, 23% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"매콤 두부함박" },
+  { id:990, name:"깐풍 풍미두부", brand:"슬로우메이드", category:"탕수육", emoji:"🥘", price:"160", unit:"1kg(15g 내외×64±2개, 봉 11,990, kg 10,215)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"깐풍 풍미두부" },
+  { id:991, name:"쫀득구름 새우탕수 단품", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"310", unit:"1kg(약14g 내외×70개 이상, 봉 30,139, kg 30,139, 28% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"쫀득구름 새우 탕수 단품" },
+  { id:992, name:"골든 크리스피 깐쇼새우 단품", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"210", unit:"1kg(약10g×100개 내외, 봉 21,000, kg 21,000, 33% 할인)", tags:["NEW", "할인"], isNew:true, isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"골든 크리스피 깐쇼새우 단품" },
+  { id:993, name:"카다이프 새우튀김 단품", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"1,040", unit:"300g(30g×10개, 봉 10,400, kg 34,666)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"카다이프 새우튀김 단품" },
+  { id:994, name:"새우살가득 코코넛 왕 새우튀김", brand:"슬로우메이드", category:"만두/튀김", emoji:"🥥", price:"756", unit:"1kg(25g×40개, 봉 30,250, kg 30,250)", tags:[], color:"#FFF8E1", tcolor:"#F57F17", keywords:"새우살가득 코코넛 왕 새우튀김" },
+  { id:995, name:"6마리 통새우 꼬치", brand:"슬로우메이드", category:"만두/튀김", emoji:"🦐", price:"1,935", unit:"750g(75g×10개, 봉 19,350, kg 25,799)", tags:[], color:"#FFEBEE", tcolor:"#C62828", keywords:"6마리 통새우 꼬치" },
+  { id:996, name:"블랙 타이거 치즈새우 단품", brand:"슬로우메이드", category:"만두/튀김", emoji:"🦐", price:"2,750", unit:"500g(50g×10개, 봉 27,500, kg 55,000)", tags:[], color:"#E3F2FD", tcolor:"#1565C0", keywords:"블랙 타이거 치즈새우 단품" },
+  { id:997, name:"갈릭크림 시카고 피자", brand:"슬로우메이드", category:"피자", emoji:"🍕", price:"7,800", unit:"356g(6인분/약 15cm/두께 35mm, BEST)", tags:["BEST"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"갈릭크림 시카고 피자" },
+  { id:998, name:"스윗고구마 시카고 피자", brand:"슬로우메이드", category:"피자", emoji:"🍕", price:"8,158", unit:"400g(6인분/약 15cm/두께 35mm)", tags:[], color:"#FFF3E0", tcolor:"#E65100", keywords:"스윗고구마 시카고 피자" },
+  { id:999, name:"오징어먹물 콤비네이션 피자", brand:"슬로우메이드", category:"피자", emoji:"🍕", price:"11,900", unit:"720g(90g×8조각, BEST)", tags:["BEST"], color:"#3E2723", tcolor:"#D7CCC8", keywords:"오징어먹물 콤비네이션 피자" },
+
+  // ===== 슬로우메이드 신제품 (26년 7~8월) =====
+  // page_11: 든든하게 채우는 치킨 3종
+  { id:1051, name:"the꼬꼬킷 커틀렛 SET", brand:"슬로우메이드", category:"치킨", emoji:"🍗", price:"18,636", unit:"1kg(약100g×10개) + 학교소스 200g SET", tags:["BEST", "SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"꼬꼬킷 커틀렛 학교소스 슬로우메이드 시그니처" },
+  { id:1052, name:"고추빠삭 소보루치킨", brand:"슬로우메이드", category:"치킨", emoji:"🌶️", price:"15,217", unit:"1kg(25±3g×39±4개) + 할라피뇨 갈릭마요 소스 150g 증정", tags:["SET"], color:"#FFEBEE", tcolor:"#C62828", keywords:"고추빠삭 소보루치킨 할라피뇨 갈릭마요" },
+  { id:1053, name:"순살 뉴린기치킨", brand:"슬로우메이드", category:"치킨", emoji:"🍗", price:"17,236", unit:"1kg(약30g×33개) + 유린기 소스 200g 증정", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"순살 뉴린기치킨 유린기소스" },
+  // page_12: 이열치열 마라세트 (NEW)
+  { id:1054, name:"이열치열 깐풍두부 마라 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🌶️", price:"12,832", unit:"깐풍 풍미두부 1kg(15g×64개) + 만능마라소스 250g 4SET", tags:["NEW", "SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"이열치열 깐풍두부 마라 마라소스 세트" },
+  { id:1055, name:"이열치열 새우탕수 마라 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🦐", price:"24,317", unit:"쫀득구름 새우탕수 1kg(14g×70개) + 만능마라소스 250g 4SET", tags:["NEW", "SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"이열치열 새우탕수 마라 마라소스 세트" },
+  // page_13: 데리야끼연어 & 사골곰탕
+  { id:1056, name:"리얼촉촉 데리야끼 연어 소스 SET", brand:"슬로우메이드", category:"불고기/스테이크", emoji:"🐟", price:"41,390", unit:"1kg(50g×20개) + 만능데리야끼소스 200g SET (23% 할인)", tags:["할인", "SET"], isSale:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"리얼촉촉 데리야끼 연어 소스 세트" },
+  { id:1057, name:"데리야끼 연어 통대강정 SET", brand:"슬로우메이드", category:"세트", emoji:"🐟", price:"119,977", unit:"연어 1kg + 통대강정 1kg + 만능데리야끼소스 (40인분)", tags:["NEW", "SET"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"데리야끼 연어 통대강정 세트 40인분" },
+  { id:1058, name:"일품 한우 사골곰탕", brand:"슬로우메이드", category:"국/탕", emoji:"🍲", price:"7,900", unit:"2kg, kg당 15,800원 (41% 할인)", tags:["할인"], isSale:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"일품 한우 사골곰탕 국내산" },
+  // page_14: 쫀득구름 탕수육 & 동태강정 SET (NEW)
+  { id:1059, name:"쫀득구름 크림탕수육 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🧀", price:"13,820", unit:"탕수육 1kg(13g×75개) + 맛소스 66g + 4가지 치즈크림소스 132g SET", tags:["NEW", "SET"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"쫀득구름 크림탕수육 치즈크림소스 세트" },
+  { id:1060, name:"쫀득구름 마초킹 탕수육 SET", brand:"슬로우메이드", category:"탕수육", emoji:"🌶️", price:"13,820", unit:"탕수육 1kg(13g×75개) + 마초킹 강정소스 200g SET", tags:["NEW", "SET"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"쫀득구름 마초킹 탕수육 강정소스 세트" },
+  { id:1061, name:"쫀득구름 깐풍 동태강정 SET", brand:"슬로우메이드", category:"만두/튀김", emoji:"🐟", price:"19,136", unit:"동태강정 1kg(15g×64+3ea) + 어향소스 200g SET", tags:["NEW", "SET"], isNew:true, color:"#E3F2FD", tcolor:"#1565C0", keywords:"쫀득구름 깐풍 동태강정 어향소스 세트" },
+  // page_16: 직화 후쿠오카 미트볼 SET (id:986은 기존 등록)
+  { id:1062, name:"직화 후쿠오카 미트볼 트러플화이트크림 SET", brand:"슬로우메이드", category:"전/부침", emoji:"🍖", price:"20,756", unit:"미트볼 1kg + 트러플 화이트크림소스 330g SET", tags:["SET"], color:"#FFEBEE", tcolor:"#C62828", keywords:"직화 후쿠오카 미트볼 트러플 화이트크림소스 세트" },
+  { id:1063, name:"직화 후쿠오카 미트볼 오믈렛 SET", brand:"슬로우메이드", category:"전/부침", emoji:"🍳", price:"21,304", unit:"미트볼 + 소프트크림오믈렛 + 트러플스테이크소스 500g SET", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"직화 후쿠오카 미트볼 오믈렛 트러플스테이크소스" },
+  // page_17: 직화 후쿠오카 함바그
+  { id:1064, name:"직화 후쿠오카 함바그 83g", brand:"슬로우메이드", category:"전/부침", emoji:"🍔", price:"16,200", unit:"1kg(83g×13개, 28% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"직화 후쿠오카 함바그 83g" },
+  { id:1065, name:"직화 후쿠오카 함바그 110g", brand:"슬로우메이드", category:"전/부침", emoji:"🍔", price:"15,909", unit:"1.1kg(110g×10개, 33% 할인)", tags:["할인"], isSale:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"직화 후쿠오카 함바그 110g" },
+  { id:1066, name:"직화 후쿠오카 함바그 트러플스테이크 소스 SET (83g)", brand:"슬로우메이드", category:"전/부침", emoji:"🍔", price:"19,510", unit:"함바그 83g 1kg + 트러플스테이크소스 325g SET", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"직화 후쿠오카 함바그 트러플스테이크소스 83g 세트" },
+  { id:1067, name:"직화 후쿠오카 함바그 트러플스테이크 소스 SET (110g)", brand:"슬로우메이드", category:"전/부침", emoji:"🍔", price:"18,687", unit:"함바그 110g 1.1kg + 트러플스테이크소스 300g SET", tags:["SET"], color:"#EFEBE9", tcolor:"#5D4037", keywords:"직화 후쿠오카 함바그 트러플스테이크소스 110g 세트" },
+  { id:1068, name:"체다 눈꽃치즈 직화 후쿠오카 함바그 SET (83g)", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"21,993", unit:"함바그 83g 1kg + 트러플스테이크소스 + 체다눈꽃치즈 SET", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"체다 눈꽃치즈 직화 후쿠오카 함바그 83g 세트" },
+  { id:1069, name:"체다 눈꽃치즈 직화 후쿠오카 함바그 SET (110g)", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"20,423", unit:"함바그 110g 1.1kg + 트러플스테이크소스 + 체다눈꽃치즈 SET", tags:["SET"], color:"#FFF8E1", tcolor:"#F57F17", keywords:"체다 눈꽃치즈 직화 후쿠오카 함바그 110g 세트" },
+  // page_18: 트러플 타워함박 SET (NEW)
+  { id:1070, name:"오믈렛 콰트로치즈타워함박 SET", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"21,538", unit:"오믈렛함박 80g×10개 + 콰트로치즈함박 + 트러플스테이크소스 250g (40인분)", tags:["NEW", "SET"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"오믈렛 콰트로치즈 타워함박 트러플스테이크 세트" },
+  { id:1071, name:"치즈링 화분 타워함박 SET", brand:"슬로우메이드", category:"전/부침", emoji:"🧀", price:"20,880", unit:"화분타워함박 83g×13개 + 치즈링 + 트러플스테이크소스 400g (64인분)", tags:["NEW", "SET"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"치즈링 화분 타워함박 트러플스테이크 세트" },
+
+  // ===== 안심찬 추가 신제품 (26년 7~8월) =====
+  { id:1037, name:"꼬꼬바로우 1Kg", brand:"안심찬", category:"치킨/닭강정", emoji:"🐔", price:"16,000", unit:"1Kg(25g×40ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"꼬꼬바로우 닭안심 치킨 바로우 바삭 전분피" },
+  { id:1038, name:"한돈 단짠단짠 등뼈찜 4Kg", brand:"안심찬", category:"찜/조림", emoji:"🍖", price:"48,000", unit:"4Kg(약40조각,부정형)", tags:["신제품","D-7전발주"], isNew:true, color:"#EFEBE9", tcolor:"#5D4037", keywords:"한돈 등뼈찜 국내산 단짠 찜 조림" },
+  { id:1039, name:"허니 고르곤졸라 피자 1.04Kg", brand:"안심찬", category:"피자", emoji:"🍕", price:"32,000", unit:"1.04Kg(65g×16조각)", tags:["리뉴얼"], color:"#FFF9C4", tcolor:"#F57F17", keywords:"고르곤졸라 피자 허니 꿀 리뉴얼 사양벌꿀" },
+  { id:1040, name:"신라제면소 쌀소면 2Kg", brand:"안심찬", category:"면류", emoji:"🍜", price:"18,000", unit:"2Kg", tags:["신제품"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"신라제면소 쌀소면 소면 쌀 면류" },
+  { id:1041, name:"신라제면소 칼국수면 2Kg", brand:"안심찬", category:"면류", emoji:"🍜", price:"18,000", unit:"2Kg", tags:["신제품"], isNew:true, color:"#FFF8E1", tcolor:"#F57F17", keywords:"신라제면소 칼국수면 칼국수 면류" },
+  { id:1042, name:"신라제면소 옥수수면 1Kg", brand:"안심찬", category:"면류", emoji:"🌽", price:"8,000", unit:"1Kg", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"신라제면소 옥수수면 옥수수 마라탕 면류" },
+
+  // ===== 아워밀 추가 신제품 (26년 7월) =====
+  { id:1043, name:"아워밀 비법소스 쭈꾸미볶음 순한맛 1Kg", brand:"아워밀", category:"볶음/조림", emoji:"🦑", price:"28,000", unit:"1Kg", tags:["신제품","7월신제품"], isNew:true, color:"#FCE4EC", tcolor:"#AD1457", keywords:"쭈꾸미볶음 순한맛 아워밀 쭈꾸미 볶음 비법소스 초등" },
+  { id:1044, name:"아워밀 비법소스 쭈꾸미볶음 보통맛 1Kg", brand:"아워밀", category:"볶음/조림", emoji:"🦑", price:"28,000", unit:"1Kg", tags:["신제품","7월신제품"], isNew:true, color:"#FFEBEE", tcolor:"#C62828", keywords:"쭈꾸미볶음 보통맛 아워밀 쭈꾸미 볶음 비법소스 중고등" },
+
+];
+
+let currentKeyword = '';
+let currentFilter = '전체';
+let currentSort = 'default';
+
+function parsePrice(str) {
+  return parseInt((str || '0').replace(/,/g, ''), 10);
+}
+
+// unit 문자열에서 kg당 단가 추출
+function extractKgPrice(unit, price) {
+  if (!unit) return null;
+  // "kg당 7,065" / "kg 7,065" / "kg단가 7,065" 패턴
+  let m = unit.match(/kg\s*(?:당|단가)?\s*([\d,]+)\s*(?:원)?/i);
+  if (m) return m[1];
+  // unit에 "kg" 자체가 단위로 들어가있고 (예: "1kg", "2kg") kg단가 별도 없음
+  // 이 경우 봉단가/kg = kg단가 가능 (1kg면 동일)
+  const m2 = unit.match(/^([\d.]+)\s*(?:k|K)g/);
+  if (m2) {
+    const kg = parseFloat(m2[1]);
+    if (kg > 0 && price) {
+      const p = parsePrice(price);
+      if (p > 0) return Math.round(p / kg).toLocaleString();
+    }
+  }
+  // 그램 단위 (예: 500g, 800g)
+  const m3 = unit.match(/^([\d,]+)\s*g/i);
+  if (m3) {
+    const g = parseInt(m3[1].replace(/,/g, ''), 10);
+    if (g > 0 && price) {
+      const p = parsePrice(price);
+      if (p > 0) return Math.round(p * 1000 / g).toLocaleString();
+    }
+  }
+  return null;
+}
+
+// unit 문자열에서 "kg당 X" 같은 단가 정보 제거하여 깔끔하게
+function cleanUnit(unit) {
+  if (!unit) return '';
+  return unit
+    .replace(/,?\s*kg\s*(?:당|단가)?\s*[\d,]+\s*(?:원)?/gi, '')
+    .replace(/,?\s*봉\s*[\d,]+\s*(?:원)?/gi, '')
+    .replace(/,?\s*\d+%\s*할인/g, '')
+    .replace(/\s*\(\s*\)\s*/g, '')
+    .replace(/,\s*,/g, ',')
+    .replace(/\(\s*,/g, '(')
+    .replace(/,\s*\)/g, ')')
+    .trim().replace(/^,|,$/g, '').trim();
+}
+
+function doSearch(kw) {
+  currentKeyword = kw || document.getElementById('main-input').value.trim();
+  if (!currentKeyword) return;
+  document.getElementById('header-input').value = currentKeyword;
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('search-page').style.display = 'block';
+  currentFilter = '전체';
+  currentSort = 'default';
+  document.getElementById('sort-select').value = 'default';
+  renderResults();
+}
+
+function goMain() {
+  document.getElementById('main-page').style.display = 'block';
+  document.getElementById('search-page').style.display = 'none';
+  document.getElementById('main-input').value = '';
+  currentFilter = '전체';
+  currentSort = 'default';
+}
+
+function setSortAndRender() {
+  currentSort = document.getElementById('sort-select').value;
+  renderResults();
+}
+
+function renderResults() {
+  const kw = currentKeyword;
+  let filtered = PRODUCTS.filter(p =>
+    p.name.includes(kw) ||
+    p.category.includes(kw) ||
+    p.brand.includes(kw) ||
+    p.tags.some(t => t.includes(kw)) ||
+    (p.keywords && p.keywords.includes(kw))
+  );
+
+  document.getElementById('result-meta').innerHTML =
+    `<span class="result-keyword">"${kw}"</span> 검색결과 · 총 ${filtered.length}개 제품 (냠냐미·안심찬·올바른·아워밀·설빙 외 2026년 5~8월 기준)`;
+
+  const cats = ['전체', ...new Set(filtered.map(p => p.category))];
+  document.getElementById('filter-row').innerHTML = cats.map(c =>
+    `<button class="filter-btn ${currentFilter === c ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`
+  ).join('');
+
+  if (currentFilter !== '전체') filtered = filtered.filter(p => p.category === currentFilter);
+
+  if (currentSort === 'price-asc') {
+    filtered = [...filtered].sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+  } else if (currentSort === 'price-desc') {
+    filtered = [...filtered].sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+  } else if (currentSort === 'name-asc') {
+    filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+  }
+
+  if (filtered.length === 0) {
+    document.getElementById('product-grid').innerHTML = `<div class="empty">검색된 제품이 없습니다.<br><span style="font-size:12px;color:#ccc;margin-top:8px;display:block;">다른 검색어로 시도해보세요</span></div>`;
+    return;
+  }
+
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = '';
+  filtered.map(p => {
+    const imgPath = IMG_MAP[p.id];
+    const hasImg = !!imgPath;
+    const card = document.createElement('div');
+    card.className = 'product-card' + (hasImg ? ' has-img' : '');
+    if (hasImg) {
+      card.dataset.img = imgPath;
+      card.dataset.name = p.name;
+      card.addEventListener('click', function() { showPage(this.dataset.img, this.dataset.name); });
+    }
+    const hasPhoto = PHOTO_IDS.has(p.id);
+    card.innerHTML = `
+      <div class="product-img" style="background:${p.color}22">
+        ${hasPhoto
+          ? `<img class="product-photo" src="products_clean/${p.id}.jpg" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<span class=\\'product-img-inner\\'>${p.emoji}</span>'">`
+          : `<span class="product-img-inner">${p.emoji}</span>`}
+        <span class="brand-badge" style="background:${p.color};color:${p.tcolor}">${p.brand}</span>
+        ${p.isNew ? '<span class="new-badge">NEW</span>' : ''}
+        ${p.isSale && !p.isNew ? '<span class="sale-badge">SALE</span>' : ''}
+        ${hasImg ? '<span class="view-img-hint">🔍 행사지 보기</span>' : ''}
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-brand">${p.category}</div>
+        <div class="product-price">${p.price}원 <span class="product-unit">/ ${p.unit}</span></div>
+        <div class="product-tags">
+          ${p.tags.map(t => `<span class="ptag" style="background:${p.color};color:${p.tcolor}">${t}</span>`).join('')}
+        </div>
+      </div>`;
+    return card;
+  }).forEach(el => grid.appendChild(el));
+}
+
+function setFilter(c) {
+  currentFilter = c;
+  renderResults();
+}
+
+// ===== 제품 사진 화이트리스트 (PDF에서 자동 추출 + 검수 완료) =====
+const PHOTO_IDS = new Set([1,2,3,4,5,6,7,8,9,10,11,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,300,301,302,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,800,801,802,803,804,805,806,807,808,809,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023,1024,1025,1026,1027,1028,1029,1030,1031,1032,1033,1034,1035,1036,194]);
+
+// ===== 이미지 매핑 (id → 행사지 페이지 경로) =====
+const BASE = 'images/';
+const AW = BASE + '아워밀(설빙)/images/';
+const NY = BASE + '냠냐미/images/';
+const AS = BASE + '안심찬/images/';
+const OB = BASE + '올바른/images/';
+const MS = BASE + '면사랑/images/';
+const SM = BASE + '세미원/images/';
+const WJ = BASE + '웅진 어니스트/images/';
+const SK = BASE + '식탁요정/images/';
+const CH = BASE + '착한치킨/images/';
+const FC = BASE + '푸드쿠키/images/';
+const MT = BASE + '맛샘/images/';
+const SL = BASE + '슬로우메이드/images/';
+const DB = BASE + '단비/images/';
+const BR = BASE + '비락/images/';
+const PN = BASE + '푸르나이/images/';
+const KJ = BASE + '코주부/images/';
+const JD = BASE + '자담선/images/';
+
+const IMG_MAP = {
+  // ===== 아워밀 & 설빙 26년 7~8월 행사지 매핑 =====
+  200: AW+'page_02.jpg', 201: AW+'page_02.jpg', 202: AW+'page_02.jpg', 203: AW+'page_02.jpg', // 짜먹는 설빙 빙수맛 4종
+  204: AW+'page_03.jpg', 205: AW+'page_03.jpg', 206: AW+'page_03.jpg', 207: AW+'page_03.jpg', 208: AW+'page_03.jpg', // 설빙 구슬아이스/컵아이스 5종
+  209: AW+'page_07.jpg',                                                // 설빙 인절미토스트(미니)
+  210: AW+'page_04.jpg', 211: AW+'page_04.jpg', 212: AW+'page_04.jpg', 213: AW+'page_04.jpg', 214: AW+'page_04.jpg', // 망고 시리즈 5종
+  215: AW+'page_05.jpg', 216: AW+'page_05.jpg', 217: AW+'page_05.jpg', // 별콕쿡 떡볶이 2종 + 별튀김
+  218: AW+'page_09.jpg',                                                // 설빙 두바이 쫀득볼
+  219: AW+'page_06.jpg',                                                // 설빙 마이리틀 소다팝
+  220: AW+'page_13.jpg', 221: AW+'page_13.jpg',                        // 설빙 딸기청 / 초코몬스터 스모어
+  222: AW+'page_14.jpg', 223: AW+'page_14.jpg', 224: AW+'page_14.jpg', 225: AW+'page_14.jpg', // 찹쌀꽃약과/꽈배기/고기산적/어묵구이
+  226: AW+'page_16.jpg', 227: AW+'page_16.jpg', 228: AW+'page_16.jpg', 229: AW+'page_16.jpg', // 너츠 2종 / 크리스피롤 2종
+  230: AW+'page_10.jpg', 231: AW+'page_10.jpg', 232: AW+'page_10.jpg', // 리얼딸기쇼트케이크 / 미니비스켓슈 2종
+  233: AW+'page_11.jpg', 234: AW+'page_11.jpg', 235: AW+'page_11.jpg', // 홍게그라탕 단품/치즈세트 / 독도홍게레그
+  236: AW+'page_12.jpg', 237: AW+'page_12.jpg',                        // 칼슘플러스 한돈 츠쿠네 / 한우스테이크
+  238: AW+'page_08.jpg', 239: AW+'page_08.jpg', 240: AW+'page_08.jpg', 241: AW+'page_08.jpg', 242: AW+'page_08.jpg', // 아워밀떡집 5종
+  243: AW+'page_19.jpg', 244: AW+'page_19.jpg', 245: AW+'page_19.jpg', // 지코바st 양념치킨 3종
+  246: AW+'page_20.jpg', 247: AW+'page_20.jpg',                        // 홍만당 쫀득 버터떡 2종
+  248: AW+'page_17.jpg', 249: AW+'page_17.jpg', 250: AW+'page_17.jpg', // 먹킨 딸기/바바리안 / 알룰로스 페스츄리
+  251: AW+'page_18.jpg', 252: AW+'page_18.jpg',                        // 페스츄리봉어빵 팥/치즈
+  253: AW+'page_15.jpg', 254: AW+'page_15.jpg', 255: AW+'page_15.jpg', 256: AW+'page_15.jpg', 257: AW+'page_15.jpg', // 츄러스 2종/미숫가루/돼지갈비/브라우니
+  1043: AW+'page_01.jpg', 1044: AW+'page_01.jpg',                 // 쭈꾸미볶음 순한맛/보통맛 (신제품)
+
+  // ===== 냠냐미 (5~6월) =====
+  72:  NY+'page_02.jpg',                                          // 두쫀쿠 Dubai Chewy Cookie
+  60:  NY+'page_03.jpg', 61:  NY+'page_03.jpg',                  // 딸기소르베 / 팥빙큐브
+  73:  NY+'page_04.jpg',                                          // 행운팡팡 포춘쿠키
+  1:   NY+'page_05.jpg', 2:   NY+'page_05.jpg', 3:   NY+'page_05.jpg',  // 소떡소떡 3종
+  4:   NY+'page_06.jpg', 5:   NY+'page_06.jpg',                  // 맛도리쏘갈비/갈떡꼬치
+  6:   NY+'page_07.jpg', 7:   NY+'page_07.jpg',                  // 문어닮은소떡 / 회오리베이컨떡말이
+  28:  NY+'page_08.jpg', 31:  NY+'page_08.jpg', 32:  NY+'page_08.jpg',  // 생오리/연잎훈제/라즈베리훈제
+  29:  NY+'page_09.jpg', 30:  NY+'page_09.jpg',                  // 간장/고추장 오리주물럭
+  16:  NY+'page_10.jpg', 17:  NY+'page_10.jpg',                  // 대한민국밀/찹쌀 등심탕수육
+  18:  NY+'page_11.jpg',                                          // 대한민국찹쌀 등심꿔바로우
+  19:  NY+'page_12.jpg', 20:  NY+'page_12.jpg',                  // 대파탕수육 / 우리쌀숙성탕수육
+  21:  NY+'page_13.jpg',                                          // 뚸룽지탕수육
+  22:  NY+'page_14.jpg', 23:  NY+'page_14.jpg',                  // 탐라도통살탕수육 / 제주찹쌀탕수육
+  15:  NY+'page_15.jpg',                                          // 찹쌀꿔바로우
+  8:   NY+'page_16.jpg', 9:   NY+'page_16.jpg', 10:  NY+'page_16.jpg',  // 남산통등심돈까스 3종
+  11:  NY+'page_17.jpg',                                          // 두물머리연근함박스테이크
+  12:  NY+'page_12.jpg', 13:  NY+'page_13.jpg', 14:  NY+'page_13.jpg',   // 냠냐미 탕수육 추가 제품
+  56:  NY+'page_19.jpg', 57:  NY+'page_19.jpg', 58:  NY+'page_19.jpg', 59: NY+'page_19.jpg', // 미트볼/떡산적/갈릭떡갈비/한돈生떡갈비
+  48:  NY+'page_20.jpg', 49:  NY+'page_20.jpg', 50:  NY+'page_20.jpg', 51: NY+'page_20.jpg', // 고추튀김/연근튀김/찰김말이/야채튀김
+  52:  NY+'page_21.jpg', 53:  NY+'page_21.jpg', 54:  NY+'page_21.jpg', 55: NY+'page_21.jpg', // 국밥 4종
+  41:  NY+'page_22.jpg',                                          // 홍야오징어짬뽕탕
+  33:  NY+'page_24.jpg', 34:  NY+'page_24.jpg', 38:  NY+'page_24.jpg',  // 깐쇼새우/오곡대왕깐쇼/오징어바
+  35:  NY+'page_25.jpg', 36:  NY+'page_25.jpg',                  // 브래디드쉬림프 / 통살버터플라이새우
+  37:  NY+'page_26.jpg',                                          // 새우에비카츠
+  39:  NY+'page_27.jpg', 40:  NY+'page_27.jpg',                  // 꼬치어묵 / 10종해물모음
+  46:  NY+'page_28.jpg', 47:  NY+'page_28.jpg',                  // 소시지회오리감자 / 회오리감자(단품)
+  74:  NY+'page_29.jpg', 75:  NY+'page_29.jpg', 76:  NY+'page_29.jpg',  // 성북당 십원빵 3종
+  79:  NY+'page_30.jpg', 80:  NY+'page_30.jpg', 81:  NY+'page_30.jpg',  // 유과크런처/초코유과크런처/식혜
+  82:  NY+'page_31.jpg', 83:  NY+'page_31.jpg',                  // 서종호박약과 / 서종브라우니약과
+  77:  NY+'page_32.jpg', 78:  NY+'page_32.jpg',                  // 돼지핑크마카롱 / 레드벨벳마카롱
+  84:  NY+'page_33.jpg', 85:  NY+'page_33.jpg',                  // 삼색샌드위치(NEW) / 트리플베리샌드(NEW)
+  86:  NY+'page_34.jpg', 87:  NY+'page_34.jpg',                  // 딸기로쉐밀크볼(NEW) / 감귤로쉐밀크볼(NEW)
+  88:  NY+'page_35.jpg', 89:  NY+'page_35.jpg',                  // 우리쌀링츄러스 / 찰츄러스
+  90:  NY+'page_36.jpg', 91:  NY+'page_36.jpg',                  // 우리쌀도깨비핫도그 / 모짜쫀득치즈볼
+  92:  NY+'page_37.jpg',                                          // 퓨어포커스 브레인음료
+  42:  NY+'page_38.jpg', 43:  NY+'page_38.jpg', 44:  NY+'page_38.jpg', 45: NY+'page_38.jpg', // 프렌치프라이 4종
+  24:  NY+'page_39.jpg', 25:  NY+'page_39.jpg', 26:  NY+'page_39.jpg', 27: NY+'page_39.jpg', // 만두 4종
+  65:  NY+'page_40.jpg', 66:  NY+'page_40.jpg', 67:  NY+'page_40.jpg', 68: NY+'page_40.jpg', 69: NY+'page_40.jpg', // 과일컵 5종
+  70:  NY+'page_41.jpg', 71:  NY+'page_41.jpg',                  // 골드파인조각벌크/그린키위벌크
+  62:  NY+'page_42.jpg', 63:  NY+'page_42.jpg',                  // 냉동망고슬라이스 / 냉동망고스틱바
+  64:  NY+'page_43.jpg',                                          // 냉동망고청크(다이스)
+
+  // ===== 안심찬 26년 7~8월 행사지 매핑 =====
+  93:  AS+'page_03.jpg', 94:  AS+'page_03.jpg',                  // 초코티라미슈케이크 / 당근케이크
+  95:  AS+'page_13.jpg', 96:  AS+'page_13.jpg',                  // 바질순살가자미까스 2종
+  97:  AS+'page_11.jpg', 98:  AS+'page_11.jpg',                  // 원조소떡소떡SET / 깻잎솜솜고기완자전
+  99:  AS+'page_15.jpg', 100: AS+'page_15.jpg', 101: AS+'page_15.jpg', 102: AS+'page_15.jpg', // 맛쇼킹 4종
+  103: AS+'page_12.jpg',                                          // 델리큐브치즈 인 스노우 파닭순살치킨 SET
+  104: AS+'page_23.jpg', 105: AS+'page_23.jpg', 106: AS+'page_23.jpg', 107: AS+'page_23.jpg', // 돌코리아 주스 4종
+  108: AS+'page_22.jpg', 109: AS+'page_22.jpg',                  // Dole POP 3종 / 후룻볼 2종
+  110: AS+'page_24.jpg', 111: AS+'page_24.jpg',                  // 파스튀르 요구르트 2종
+  112: AS+'page_24.jpg', 113: AS+'page_24.jpg', 114: AS+'page_24.jpg', 115: AS+'page_24.jpg', 116: AS+'page_24.jpg', // 동서식품 시리얼 5종
+  117: AS+'page_24.jpg',                                          // 델리큐브치즈(판)
+  1037: AS+'page_02.jpg',                                         // 꼬꼬바로우 (신제품)
+  1038: AS+'page_04.jpg',                                         // 한돈 단짠단짠 등뼈찜 (신제품)
+  1039: AS+'page_06.jpg',                                         // 허니 고르곤졸라 피자
+  1040: AS+'page_08.jpg', 1041: AS+'page_08.jpg', 1042: AS+'page_08.jpg', // 신라제면소 면 3종
+
+  // ===== 올바른 (6월) =====
+  // ===== 올바른 26년 7~8월 행사지 매핑 =====
+  194: OB+'page_01.jpg',                                          // 보라빛 우베 롤케익 (신제품)
+  119: OB+'page_02.jpg',                                          // K-말차 크림 쿠키슈
+  126: OB+'page_03.jpg', 127: OB+'page_03.jpg', 128: OB+'page_03.jpg',  // 딸기 과일찹쌀떡/통째로 딸기모찌/홍시찹쌀떡
+  118: OB+'page_04.jpg', 120: OB+'page_04.jpg',                  // 강릉쫀득시리즈 / 상하이 왕홍밤 버터떡
+  189: OB+'page_06.jpg',                                          // 사각사각 과일주스
+  140: OB+'page_07.jpg', 141: OB+'page_07.jpg', 142: OB+'page_07.jpg', // 핫도그 3종
+  129: OB+'page_08.jpg', 130: OB+'page_08.jpg', 131: OB+'page_08.jpg', 132: OB+'page_08.jpg', 133: OB+'page_08.jpg', // 케이크 5종
+  136: OB+'page_09.jpg', 137: OB+'page_09.jpg', 138: OB+'page_09.jpg', 139: OB+'page_09.jpg', // 마카롱 4종
+  181: OB+'page_10.jpg',                                          // 영국식 인도풍 탄두리 닭세트
+  182: OB+'page_11.jpg',                                          // 돈꼬츠라멘 세트
+  156: OB+'page_12.jpg', 157: OB+'page_12.jpg',                  // 토치생오리 / 오리불고기
+  158: OB+'page_13.jpg', 159: OB+'page_13.jpg',                  // 치폴레오리훈제 / 9無어니언훈제오리
+  160: OB+'page_14.jpg', 161: OB+'page_14.jpg',                  // 마늘간장닭꼬치 / 숯불매콤닭꼬치
+  162: OB+'page_15.jpg', 163: OB+'page_15.jpg',                  // 파닭꼬치 / 누드닭꼬치
+  134: OB+'page_17.jpg', 135: OB+'page_17.jpg', 151: OB+'page_17.jpg', 152: OB+'page_17.jpg', // 컵케익/크림슈/치킨텐더/꿔바로우
+  175: OB+'page_18.jpg', 176: OB+'page_18.jpg', 177: OB+'page_18.jpg', 178: OB+'page_18.jpg', // 생선까스/오징어링/새우링/타코야끼
+  153: OB+'page_19.jpg', 154: OB+'page_19.jpg', 155: OB+'page_19.jpg', // 피카피카부떡갈비/갈비살스테이크/치즈카츠
+  145: OB+'page_20.jpg', 146: OB+'page_20.jpg', 147: OB+'page_20.jpg', 148: OB+'page_20.jpg', // 버터크로플/소금빵/머핀샌드/갈릭스틱
+  173: OB+'page_21.jpg', 174: OB+'page_21.jpg',                    // 소고기찹쌀육전 / 닭가슴살 두부전
+  149: OB+'page_22.jpg', 150: OB+'page_22.jpg',                  // 파니바오 샌드위치 2종
+  143: OB+'page_25.jpg', 144: OB+'page_25.jpg',                  // 글레이즈 도넛 / 다크초코 퐁당 도넛
+  192: OB+'page_26.jpg',                                          // 요거트 파르페 세트
+  193: OB+'page_27.jpg',                                          // 망고 요거트 세트
+  179: OB+'page_29.jpg', 180: OB+'page_29.jpg',                  // 떡볶이 세트 2종
+  166: OB+'page_31.jpg', 167: OB+'page_31.jpg',                  // 포시즌하가우/모듬딤섬
+  164: OB+'page_32.jpg', 165: OB+'page_32.jpg', 168: OB+'page_32.jpg', // 대구납작만두/통새우수정만두/비건채식만두
+  184: OB+'page_33.jpg', 185: OB+'page_33.jpg',                  // 베트남쌀국수 / 태국팟타이
+  186: OB+'page_34.jpg', 187: OB+'page_34.jpg', 188: OB+'page_34.jpg', // 호떡 3종
+  169: OB+'page_35.jpg', 170: OB+'page_35.jpg', 171: OB+'page_35.jpg', 172: OB+'page_35.jpg', // 어묵 4종
+  183: OB+'page_36.jpg',                                          // 인도 난&마카니 커리세트
+  121: OB+'page_38.jpg', 122: OB+'page_38.jpg', 123: OB+'page_38.jpg', 124: OB+'page_38.jpg', 125: OB+'page_38.jpg', // 떡류 5종
+  190: OB+'page_39.jpg', 191: OB+'page_39.jpg',                  // 청귤/레몬라임자몽유자
+
+  // ===== 면사랑 =====
+  300: MS+'page_01.jpg', 301: MS+'page_01.jpg', 302: MS+'page_01.jpg', 303: MS+'page_01.jpg',
+  304: MS+'page_02.jpg', 305: MS+'page_02.jpg',
+  306: MS+'page_03.jpg', 307: MS+'page_03.jpg', 308: MS+'page_03.jpg', 309: MS+'page_03.jpg', 310: MS+'page_03.jpg', 311: MS+'page_03.jpg',
+  312: MS+'page_04.jpg', 313: MS+'page_04.jpg', 314: MS+'page_04.jpg', 315: MS+'page_04.jpg',
+  316: MS+'page_05.jpg', 317: MS+'page_05.jpg', 347: MS+'page_05.jpg',
+  318: MS+'page_06.jpg', 319: MS+'page_06.jpg', 320: MS+'page_06.jpg', 321: MS+'page_06.jpg',
+  322: MS+'page_07.jpg', 323: MS+'page_07.jpg', 324: MS+'page_07.jpg',
+  325: MS+'page_08.jpg', 326: MS+'page_08.jpg', 327: MS+'page_08.jpg', 328: MS+'page_08.jpg',
+  329: MS+'page_09.jpg', 330: MS+'page_09.jpg', 331: MS+'page_09.jpg', 332: MS+'page_09.jpg',
+  348: MS+'page_00.jpg', 349: MS+'page_00.jpg', 350: MS+'page_00.jpg', // 딱! 간편한 세트 추천 (새 페이지)
+  333: MS+'page_10.jpg', 334: MS+'page_10.jpg', 335: MS+'page_10.jpg',
+  336: MS+'page_11.jpg', 337: MS+'page_11.jpg',
+  338: MS+'page_12.jpg',
+  339: MS+'page_13.jpg', 340: MS+'page_13.jpg', 341: MS+'page_13.jpg', 342: MS+'page_13.jpg',
+  343: MS+'page_15.jpg', 344: MS+'page_15.jpg', 345: MS+'page_15.jpg', 346: MS+'page_15.jpg',
+
+  // ===== 세미원 =====
+500: SM+'page_01.jpg', 501: SM+'page_01.jpg', 502: SM+'page_01.jpg', 503: SM+'page_01.jpg', 504: SM+'page_01.jpg', 505: SM+'page_01.jpg',
+  506: SM+'page_02.jpg', 507: SM+'page_02.jpg', 508: SM+'page_02.jpg', 509: SM+'page_02.jpg', 510: SM+'page_02.jpg', 511: SM+'page_02.jpg', 512: SM+'page_02.jpg', 513: SM+'page_02.jpg', 514: SM+'page_02.jpg',
+  515: SM+'page_03.jpg', 516: SM+'page_03.jpg', 517: SM+'page_03.jpg', 518: SM+'page_03.jpg', 519: SM+'page_03.jpg', 520: SM+'page_03.jpg', 521: SM+'page_03.jpg', 522: SM+'page_03.jpg', 523: SM+'page_03.jpg',
+  524: SM+'page_04.jpg', 525: SM+'page_04.jpg', 526: SM+'page_04.jpg', 527: SM+'page_04.jpg', 528: SM+'page_04.jpg', 529: SM+'page_04.jpg', 530: SM+'page_04.jpg', 531: SM+'page_04.jpg', 532: SM+'page_04.jpg',
+  533: SM+'page_05.jpg', 534: SM+'page_05.jpg', 535: SM+'page_05.jpg', 536: SM+'page_05.jpg', 537: SM+'page_05.jpg', 538: SM+'page_05.jpg', 539: SM+'page_05.jpg',
+  540: SM+'page_06.jpg', 541: SM+'page_06.jpg', 542: SM+'page_06.jpg', 543: SM+'page_06.jpg', 544: SM+'page_06.jpg', 545: SM+'page_06.jpg', 546: SM+'page_06.jpg', 547: SM+'page_06.jpg', 548: SM+'page_06.jpg',
+  549: SM+'page_07.jpg', 550: SM+'page_07.jpg', 551: SM+'page_07.jpg',
+  552: SM+'page_08.jpg', 553: SM+'page_08.jpg', 554: SM+'page_08.jpg',
+
+  // ===== 웅진어니스트 7~8월 전체 재매핑 =====
+  750: WJ+'page_06.jpg',
+  751: WJ+'page_03.jpg',
+  752: WJ+'page_01.jpg', 753: WJ+'page_01.jpg', 754: WJ+'page_01.jpg', 755: WJ+'page_01.jpg', 756: WJ+'page_01.jpg', 757: WJ+'page_01.jpg', 758: WJ+'page_01.jpg',
+  759: WJ+'page_00.jpg', 760: WJ+'page_00.jpg', 761: WJ+'page_00.jpg', 762: WJ+'page_00.jpg', 763: WJ+'page_00.jpg', 764: WJ+'page_00.jpg',
+  765: WJ+'page_04.jpg', 766: WJ+'page_04.jpg', 767: WJ+'page_04.jpg', 768: WJ+'page_04.jpg', 769: WJ+'page_04.jpg', 770: WJ+'page_04.jpg', 771: WJ+'page_04.jpg',
+  772: WJ+'page_05.jpg', 773: WJ+'page_05.jpg', 774: WJ+'page_05.jpg', 775: WJ+'page_05.jpg', 776: WJ+'page_05.jpg', 777: WJ+'page_05.jpg', 778: WJ+'page_05.jpg', 779: WJ+'page_05.jpg', 780: WJ+'page_05.jpg', 781: WJ+'page_05.jpg', 782: WJ+'page_05.jpg', 783: WJ+'page_05.jpg', 784: WJ+'page_05.jpg',
+
+  // ===== 식탁요정 7~8월 전체 재매핑 =====
+  1072: SK+'page_00.jpg',
+  721: SK+'page_01.jpg', 1073: SK+'page_01.jpg',
+  1074: SK+'page_03.jpg', 1075: SK+'page_03.jpg', 1076: SK+'page_03.jpg', 1077: SK+'page_03.jpg',
+  709: SK+'page_04.jpg', 713: SK+'page_04.jpg', 1078: SK+'page_04.jpg', 1079: SK+'page_04.jpg',
+  710: SK+'page_05.jpg', 1080: SK+'page_05.jpg', 1081: SK+'page_05.jpg', 1082: SK+'page_05.jpg', 1083: SK+'page_05.jpg',
+  1084: SK+'page_06.jpg', 1085: SK+'page_06.jpg', 1086: SK+'page_06.jpg', 1087: SK+'page_06.jpg',
+  714: SK+'page_07.jpg', 1088: SK+'page_07.jpg', 1089: SK+'page_07.jpg', 1090: SK+'page_07.jpg', 1091: SK+'page_07.jpg',
+  715: SK+'page_08.jpg', 716: SK+'page_08.jpg', 1092: SK+'page_08.jpg', 1093: SK+'page_08.jpg', 1094: SK+'page_08.jpg',
+  1095: SK+'page_09.jpg', 1096: SK+'page_09.jpg',
+  1097: SK+'page_10.jpg',
+  711: SK+'page_11.jpg', 718: SK+'page_11.jpg', 1098: SK+'page_11.jpg', 1099: SK+'page_11.jpg', 1100: SK+'page_11.jpg',
+  703: SK+'page_13.jpg', 719: SK+'page_13.jpg', 720: SK+'page_13.jpg', 1101: SK+'page_13.jpg', 1102: SK+'page_13.jpg', 1103: SK+'page_13.jpg', 1104: SK+'page_13.jpg',
+  712: SK+'page_14.jpg', 717: SK+'page_14.jpg', 1087: SK+'page_14.jpg', 1105: SK+'page_14.jpg', 1106: SK+'page_14.jpg', 1107: SK+'page_14.jpg', 1108: SK+'page_14.jpg', 1090: SK+'page_14.jpg',
+  700: SK+'page_15.jpg', 701: SK+'page_15.jpg', 702: SK+'page_15.jpg', 704: SK+'page_15.jpg', 705: SK+'page_15.jpg', 706: SK+'page_15.jpg', 707: SK+'page_15.jpg', 708: SK+'page_15.jpg',
+  722: SK+'page_15.jpg', 723: SK+'page_15.jpg', 724: SK+'page_15.jpg', 725: SK+'page_15.jpg', 726: SK+'page_15.jpg', 727: SK+'page_15.jpg',
+  1099: SK+'page_15.jpg', 1109: SK+'page_15.jpg', 1110: SK+'page_15.jpg', 1111: SK+'page_15.jpg', 1112: SK+'page_15.jpg',
+
+  // ===== 착한치킨 7~8월 (푸드쿠키 PDF page_02~12) =====
+  800: FC+'page_02.jpg',
+  801: FC+'page_03.jpg',
+  802: FC+'page_04.jpg',
+  803: FC+'page_05.jpg',
+  804: FC+'page_06.jpg',
+  805: FC+'page_07.jpg',
+  806: FC+'page_08.jpg',
+  807: FC+'page_09.jpg',
+  808: FC+'page_10.jpg',
+  809: FC+'page_11.jpg',
+  810: FC+'page_12.jpg',
+
+  // ===== 푸드쿠키 7~8월 전체 재매핑 =====
+  857: FC+'page_00.jpg', 858: FC+'page_00.jpg',
+  851: FC+'page_01.jpg', 852: FC+'page_01.jpg', 853: FC+'page_01.jpg', 854: FC+'page_01.jpg', 855: FC+'page_01.jpg', 856: FC+'page_01.jpg',
+  850: FC+'page_13.jpg',
+  861: FC+'page_14.jpg', 862: FC+'page_14.jpg',
+  859: FC+'page_15.jpg', 860: FC+'page_15.jpg',
+  863: FC+'page_16.jpg', 864: FC+'page_16.jpg', 865: FC+'page_16.jpg',
+  866: FC+'page_17.jpg', 867: FC+'page_17.jpg',
+  868: FC+'page_18.jpg', 869: FC+'page_18.jpg', 870: FC+'page_18.jpg', 871: FC+'page_18.jpg', 872: FC+'page_18.jpg',
+  873: FC+'page_19.jpg', 874: FC+'page_19.jpg', 875: FC+'page_19.jpg',
+  1113: FC+'page_20.jpg', 1114: FC+'page_20.jpg', 1115: FC+'page_20.jpg',
+  876: FC+'page_21.jpg', 877: FC+'page_21.jpg', 878: FC+'page_21.jpg',
+  1116: FC+'page_22.jpg', 1117: FC+'page_22.jpg', 1118: FC+'page_22.jpg',
+  1119: FC+'page_23.jpg',
+
+  // ===== 단비 7~8월 행사지 매핑 =====
+  1120: DB+'page_00.jpg',
+  1301: DB+'page_01.jpg', 1302: DB+'page_01.jpg',
+  1121: DB+'page_02.jpg',
+  1122: DB+'page_03.jpg', 1123: DB+'page_03.jpg', 1124: DB+'page_03.jpg',
+  1125: DB+'page_04.jpg',
+  1126: DB+'page_05.jpg',
+  1127: DB+'page_06.jpg',
+  1128: DB+'page_07.jpg',
+
+  // ===== 비락 7~8월 행사지 매핑 =====
+  1129: BR+'page_00.jpg',
+  1130: BR+'page_01.jpg',
+  1131: BR+'page_02.jpg',
+  1132: BR+'page_03.jpg',
+  1133: BR+'page_04.jpg',
+  1134: BR+'page_05.jpg',
+  1135: BR+'page_06.jpg',
+  1136: BR+'page_07.jpg',
+
+  // ===== 푸르나이 7~8월 행사지 매핑 =====
+  1137: PN+'page_00.jpg', 1138: PN+'page_00.jpg',
+  1139: PN+'page_01.jpg', 1140: PN+'page_01.jpg',
+  1141: PN+'page_02.jpg', 1142: PN+'page_02.jpg',
+  1143: PN+'page_03.jpg', 1144: PN+'page_03.jpg',
+  1145: PN+'page_04.jpg',
+  1146: PN+'page_05.jpg',
+  1147: PN+'page_06.jpg',
+  1148: PN+'page_07.jpg',
+
+  // ===== 코주부 7~8월 행사지 매핑 =====
+  1149: KJ+'page_00.jpg',
+  1150: KJ+'page_01.jpg',
+  1151: KJ+'page_02.jpg',
+  1152: KJ+'page_03.jpg',
+  1153: KJ+'page_04.jpg',
+  1154: KJ+'page_05.jpg',
+  1155: KJ+'page_06.jpg',
+  1156: KJ+'page_07.jpg',
+  1157: KJ+'page_08.jpg',
+  1158: KJ+'page_09.jpg',
+  1159: KJ+'page_10.jpg',
+  1160: KJ+'page_11.jpg',
+  1161: KJ+'page_12.jpg',
+  1162: KJ+'page_13.jpg',
+  1163: KJ+'page_15.jpg',
+
+  // ===== 코주부 신제품 IMG_MAP (1287~1300) =====
+  1287: KJ+'page_14.jpg', 1288: KJ+'page_14.jpg', 1289: KJ+'page_14.jpg', 1290: KJ+'page_14.jpg', 1291: KJ+'page_14.jpg',
+  1292: KJ+'page_16.jpg', 1293: KJ+'page_16.jpg', 1294: KJ+'page_16.jpg', 1295: KJ+'page_16.jpg', 1296: KJ+'page_16.jpg', 1297: KJ+'page_16.jpg', 1298: KJ+'page_16.jpg',
+  1299: KJ+'page_17.jpg', 1300: KJ+'page_17.jpg',
+
+  // ===== 자담선 7~8월 행사지 매핑 =====
+  1164: JD+'page_01.jpg',
+  1165: JD+'page_03.jpg',
+  1166: JD+'page_04.jpg',
+  1167: JD+'page_05.jpg',
+  1168: JD+'page_06.jpg',
+  1169: JD+'page_07.jpg',
+  1170: JD+'page_08.jpg',
+  1171: JD+'page_09.jpg',
+  1172: JD+'page_10.jpg',
+  1173: JD+'page_13.jpg',
+  1174: JD+'page_14.jpg',
+  1175: JD+'page_16.jpg',
+  1176: JD+'page_18.jpg',
+  1177: JD+'page_22.jpg',
+  1178: JD+'page_25.jpg',
+  1179: JD+'page_30.jpg',
+  1180: JD+'page_32.jpg',
+
+  // ===== 자담선 7~8월 신제품 IMG_MAP (1218~1286) =====
+  1218: JD+'page_02.jpg',
+  1219: JD+'page_11.jpg', 1220: JD+'page_11.jpg', 1221: JD+'page_11.jpg', 1222: JD+'page_11.jpg',
+  1223: JD+'page_12.jpg', 1224: JD+'page_12.jpg',
+  1225: JD+'page_15.jpg', 1226: JD+'page_15.jpg', 1227: JD+'page_15.jpg',
+  1228: JD+'page_17.jpg', 1229: JD+'page_17.jpg',
+  1230: JD+'page_19.jpg', 1231: JD+'page_19.jpg', 1232: JD+'page_19.jpg', 1233: JD+'page_19.jpg', 1234: JD+'page_19.jpg',
+  1235: JD+'page_20.jpg', 1236: JD+'page_20.jpg', 1237: JD+'page_20.jpg', 1238: JD+'page_20.jpg',
+  1239: JD+'page_21.jpg', 1240: JD+'page_21.jpg', 1241: JD+'page_21.jpg', 1242: JD+'page_21.jpg', 1243: JD+'page_21.jpg', 1244: JD+'page_21.jpg',
+  1245: JD+'page_23.jpg', 1246: JD+'page_23.jpg', 1247: JD+'page_23.jpg', 1248: JD+'page_23.jpg',
+  1249: JD+'page_24.jpg', 1250: JD+'page_24.jpg', 1251: JD+'page_24.jpg', 1252: JD+'page_24.jpg', 1253: JD+'page_24.jpg', 1254: JD+'page_24.jpg', 1255: JD+'page_24.jpg', 1256: JD+'page_24.jpg',
+  1257: JD+'page_26.jpg', 1258: JD+'page_26.jpg',
+  1259: JD+'page_27.jpg', 1260: JD+'page_27.jpg', 1261: JD+'page_27.jpg',
+  1262: JD+'page_28.jpg', 1263: JD+'page_28.jpg', 1264: JD+'page_28.jpg', 1265: JD+'page_28.jpg',
+  1266: JD+'page_29.jpg', 1267: JD+'page_29.jpg', 1268: JD+'page_29.jpg', 1269: JD+'page_29.jpg', 1270: JD+'page_29.jpg', 1271: JD+'page_29.jpg', 1272: JD+'page_29.jpg',
+  1273: JD+'page_31.jpg', 1274: JD+'page_31.jpg', 1275: JD+'page_31.jpg',
+  1276: JD+'page_33.jpg', 1277: JD+'page_33.jpg', 1278: JD+'page_33.jpg',
+  1279: JD+'page_34.jpg', 1280: JD+'page_34.jpg', 1281: JD+'page_34.jpg', 1282: JD+'page_34.jpg',
+  1283: JD+'page_35.jpg', 1284: JD+'page_35.jpg', 1285: JD+'page_35.jpg', 1286: JD+'page_35.jpg',
+
+  // ===== 냠냐미 6~8월 행사지 매핑 =====
+  1181: NY+'page_01.jpg',
+  1182: NY+'page_02.jpg',
+  1183: NY+'page_03.jpg',
+  1184: NY+'page_04.jpg',
+  1185: NY+'page_05.jpg',
+  1186: NY+'page_06.jpg',
+  1187: NY+'page_07.jpg',
+  1188: NY+'page_08.jpg',
+  1189: NY+'page_09.jpg',
+  1190: NY+'page_10.jpg',
+  1191: NY+'page_11.jpg',
+  1192: NY+'page_12.jpg',
+  1193: NY+'page_13.jpg',
+  1194: NY+'page_14.jpg',
+  1195: NY+'page_15.jpg',
+  1196: NY+'page_17.jpg',
+  1197: NY+'page_18.jpg',
+  1198: NY+'page_21.jpg',
+  1199: NY+'page_22.jpg',
+  1200: NY+'page_23.jpg',
+  1201: NY+'page_24.jpg',
+  1202: NY+'page_26.jpg',
+  1203: NY+'page_27.jpg',
+  1204: NY+'page_29.jpg',
+  1205: NY+'page_30.jpg',
+  1206: NY+'page_31.jpg',
+  1207: NY+'page_32.jpg',
+  1208: NY+'page_33.jpg',
+  1209: NY+'page_34.jpg',
+  1210: NY+'page_35.jpg',
+  1211: NY+'page_36.jpg',
+  1212: NY+'page_37.jpg',
+  1213: NY+'page_38.jpg',
+  1214: NY+'page_39.jpg',
+  1215: NY+'page_40.jpg',
+  1216: NY+'page_41.jpg',
+  1217: NY+'page_42.jpg',
+
+  // ===== 맛샘 26년 7~8월 행사지 매핑 =====
+  900: MT+'page_05.jpg', 901: MT+'page_05.jpg',                                                                        // 수박마카롱 / 쿠&크 마카롱
+  902: MT+'page_06.jpg', 903: MT+'page_06.jpg',                                                                        // 허쉬 초코앤쿠키 / 쿠키앤크림 미니컵
+  904: MT+'page_47.jpg', 905: MT+'page_47.jpg', 906: MT+'page_47.jpg',                                               // 포켓 웨하스 초코 / 허니버터와플 / 젤리인젤리
+  907: MT+'page_23.jpg', 908: MT+'page_23.jpg',                                                                        // 브리오슈 통새우버거 / 통새우 미니버거
+  909: MT+'page_13.jpg', 910: MT+'page_13.jpg',                                                                        // 통안심 꼬치커틀렛 / 치킨 바사삭 꼬치커틀렛
+  911: MT+'page_35.jpg', 912: MT+'page_35.jpg',                                                                        // 마제 라구 / 북성로 간장 직화불고기
+  913: MT+'page_18.jpg', 914: MT+'page_18.jpg', 915: MT+'page_18.jpg', 916: MT+'page_18.jpg',                       // 리얼딸기 요거트 / 마법의딸기 / 비요뜨 / 요거트3종
+  917: MT+'page_07.jpg',                                                                                                // 초계국수구나 세트
+  918: MT+'page_15.jpg', 919: MT+'page_15.jpg',                                                                        // 청포도 한모금 / 자두 한모금
+  920: MT+'page_15.jpg', 921: MT+'page_15.jpg', 922: MT+'page_15.jpg', 923: MT+'page_15.jpg', 924: MT+'page_15.jpg', // 아올다 미니수박/배/메론 + 쁘띠엘 밀크/초코쉐이크
+  925: MT+'page_17.jpg',                                                                                                // 마라크림 크런치 새우볼
+  926: MT+'page_52.jpg',                                                                                                // 레모나
+  927: MT+'page_08.jpg',                                                                                                // 우리쌀 큐브 선동 동태강정 세트
+  928: MT+'page_20.jpg',                                                                                                // 스파이시 상하이 치킨버거 세트
+  929: MT+'page_21.jpg', 930: MT+'page_21.jpg',                                                                        // 브리오슈 마라크림 통새우버거 / 브리오슈 떡갈비 치즈버거
+  931: MT+'page_22.jpg', 932: MT+'page_22.jpg',                                                                        // 쁘띠 한우치즈버거 / 브리오슈 한우품은 치즈버거
+  933: MT+'page_24.jpg',                                                                                                // 상하이 치킨텐더 스낵랩 세트
+  934: MT+'page_25.jpg', 935: MT+'page_25.jpg', 936: MT+'page_25.jpg',                                               // 멕시칸 바베큐 치킨타코 / 치킨 퀘사디아 / 북성로 직화 불고기 타코
+  937: MT+'page_12.jpg', 938: MT+'page_12.jpg',                                                                        // 별별 자이언트 꼬치닭 / 별별 순살 꼬치닭
+  939: MT+'page_11.jpg', 940: MT+'page_11.jpg',                                                                        // 자이언트 순살 꼬치닭 / 순살 꼬치닭
+  941: MT+'page_09.jpg', 942: MT+'page_09.jpg',                                                                        // 오븐구이 바베큐 하프치킨 / 자메이카 통다리닭
+  943: MT+'page_53.jpg',                                                                                                // 이슬촌 레몬에이드
+  944: MT+'page_10.jpg', 945: MT+'page_10.jpg', 946: MT+'page_10.jpg',                                               // 저크 부메랑 치킨 / 그릴 자메이카 / 그릴 숯불갈비맛
+  947: MT+'page_27.jpg', 948: MT+'page_27.jpg',                                                                        // 바삭쫄깃 유린기 세트 / 순살에 레몬크림 뿌링닭강정
+  949: MT+'page_26.jpg',                                                                                                // 칠리 닭강정 세트
+  1000: MT+'page_30.jpg', 1001: MT+'page_30.jpg', 1002: MT+'page_30.jpg',                                            // 뿌링클 지파이 / 지파이 / 허브 치킨 커틀렛
+  1003: MT+'page_33.jpg', 1004: MT+'page_33.jpg',                                                                      // 숯불한돈 떡갈비 / 매콤 고추마요 한돈 떡갈비
+  1005: MT+'page_36.jpg', 1006: MT+'page_37.jpg',                                                                      // 별이내린 맛동산 탕수육 / 맛동산 탕수육
+  1007: MT+'page_55.jpg',                                                                                               // 단종리스트 제품
+  1008: MT+'page_38.jpg', 1009: MT+'page_38.jpg',                                                                      // 대구 가라아게+카사바칩 / 눈꽃치즈 레몬데리야끼 연어스테이크
+  1010: MT+'page_41.jpg', 1011: MT+'page_41.jpg',                                                                      // 통살 청대구까스 / 통살 연어까스
+  1012: MT+'page_43.jpg', 1013: MT+'page_43.jpg', 1014: MT+'page_43.jpg',                                            // 칠리 깐쇼새우 / 얇은피 크림깐쇼새우 / 마라크림 깐쇼새우
+  1015: MT+'page_39.jpg',                                                                                               // 주꾸미 볶음 세트
+  1016: MT+'page_45.jpg', 1017: MT+'page_45.jpg', 1018: MT+'page_45.jpg',                                            // 불고기 수제화덕피자 / 꿀 고르곤졸라 피자 / 슈프림 쁘띠피자
+  1019: MT+'page_55.jpg',                                                                                               // 단종리스트 제품
+  1020: MT+'page_46.jpg', 1021: MT+'page_46.jpg',                                                                      // 감자튀김 웨지 / 달콤허니 오븐구이 콘립
+  1022: MT+'page_49.jpg', 1023: MT+'page_49.jpg', 1024: MT+'page_49.jpg',                                            // 체다치즈 뿌링클 찰도그 / 야채잡채 미니호떡 / 치즈감자 도깨비방망이
+  1025: MT+'page_50.jpg', 1026: MT+'page_50.jpg', 1027: MT+'page_50.jpg',                                            // 우리밀 바스크 치즈케이크 / 미니 바스크 치즈케이크49 / 수제 가나초코 케이크
+  1028: MT+'page_19.jpg', 1029: MT+'page_19.jpg', 1030: MT+'page_19.jpg',                                            // 크리미 크로칸슈 / 바나나슈 크림 / 딸기크림 크로칸슈
+  1031: MT+'page_50.jpg', 1032: MT+'page_47.jpg',                                                                      // 햄&치즈 샌드위치 / 수제 초코 브라우니 타르트
+  1033: MT+'page_53.jpg', 1034: MT+'page_53.jpg', 1035: MT+'page_53.jpg', 1036: MT+'page_53.jpg',                   // 이슬촌 제주감귤/우리매실 / 모구모구 복숭아/리치
+  // 신제품 (26년 7~8월)
+  1045: MT+'page_02.jpg',                                                                                               // 자메이카 펼친 닭다리(북채)
+  1046: MT+'page_03.jpg', 1047: MT+'page_03.jpg',                                                                      // 버팔로 치킨봉 / 버팔로 치킨윙
+  1048: MT+'page_04.jpg', 1049: MT+'page_04.jpg',                                                                      // 상하이 초코 버터떡 / 나주배+열대과일 선물세트
+  1050: MT+'page_08.jpg',                                                                                               // 맛샘 매운 떡볶이세트
+
+  // ===== 맛샘 신제품 IMG_MAP (1303~1353) =====
+  1303: MT+'page_14.jpg',
+  1304: MT+'page_16.jpg', 1305: MT+'page_16.jpg', 1306: MT+'page_16.jpg',
+  1307: MT+'page_28.jpg', 1308: MT+'page_28.jpg',
+  1309: MT+'page_29.jpg',
+  1310: MT+'page_31.jpg',
+  1311: MT+'page_32.jpg', 1312: MT+'page_32.jpg',
+  1313: MT+'page_34.jpg', 1314: MT+'page_34.jpg', 1315: MT+'page_34.jpg', 1316: MT+'page_34.jpg', 1317: MT+'page_34.jpg',
+  1318: MT+'page_40.jpg', 1319: MT+'page_40.jpg',
+  1320: MT+'page_42.jpg', 1321: MT+'page_42.jpg', 1322: MT+'page_42.jpg',
+  1323: MT+'page_44.jpg', 1324: MT+'page_44.jpg', 1325: MT+'page_44.jpg', 1326: MT+'page_44.jpg',
+  1327: MT+'page_48.jpg', 1328: MT+'page_48.jpg', 1329: MT+'page_48.jpg', 1330: MT+'page_48.jpg', 1331: MT+'page_48.jpg', 1332: MT+'page_48.jpg',
+  1333: MT+'page_51.jpg', 1334: MT+'page_51.jpg', 1335: MT+'page_51.jpg', 1336: MT+'page_51.jpg', 1337: MT+'page_51.jpg', 1338: MT+'page_51.jpg',
+  1339: MT+'page_54.jpg', 1340: MT+'page_54.jpg', 1341: MT+'page_54.jpg', 1342: MT+'page_54.jpg', 1343: MT+'page_54.jpg',
+  1344: MT+'page_54.jpg', 1345: MT+'page_54.jpg', 1346: MT+'page_54.jpg', 1347: MT+'page_54.jpg', 1348: MT+'page_54.jpg',
+  1349: MT+'page_54.jpg', 1350: MT+'page_54.jpg', 1351: MT+'page_54.jpg', 1352: MT+'page_54.jpg', 1353: MT+'page_54.jpg',
+
+  // ===== 슬로우메이드 =====
+950: SL+'page_05.jpg', 951: SL+'page_05.jpg', 952: SL+'page_05.jpg',
+  953: SL+'page_15.jpg', 954: SL+'page_15.jpg', 955: SL+'page_15.jpg', 956: SL+'page_15.jpg', 957: SL+'page_15.jpg',
+  958: SL+'page_30.jpg', 959: SL+'page_30.jpg', 960: SL+'page_30.jpg', 961: SL+'page_30.jpg',
+  962: SL+'page_50.jpg', 963: SL+'page_50.jpg', 964: SL+'page_50.jpg', 965: SL+'page_50.jpg', 966: SL+'page_50.jpg',
+
+  // ===== 슬로우메이드 추가 =====
+967: SL+'page_10.jpg', 968: SL+'page_10.jpg', 969: SL+'page_10.jpg', 970: SL+'page_10.jpg',
+  971: SL+'page_20.jpg', 972: SL+'page_20.jpg',
+  973: SL+'page_26.jpg', 974: SL+'page_26.jpg', 975: SL+'page_26.jpg',
+  976: SL+'page_27.jpg', 977: SL+'page_27.jpg',
+  978: SL+'page_28.jpg', 979: SL+'page_28.jpg', 980: SL+'page_28.jpg', 981: SL+'page_28.jpg',
+  982: SL+'page_29.jpg', 983: SL+'page_29.jpg', 984: SL+'page_29.jpg',
+  985: SL+'page_35.jpg',
+  986: SL+'page_40.jpg', 987: SL+'page_40.jpg', 988: SL+'page_40.jpg', 989: SL+'page_40.jpg', 990: SL+'page_40.jpg',
+  991: SL+'page_45.jpg', 992: SL+'page_45.jpg', 993: SL+'page_45.jpg', 994: SL+'page_45.jpg', 995: SL+'page_45.jpg', 996: SL+'page_45.jpg',
+  997: SL+'page_55.jpg', 998: SL+'page_55.jpg', 999: SL+'page_55.jpg',
+  // ===== 슬로우메이드 7~8월 신규 페이지 매핑 =====
+  1051: SL+'page_11.jpg', 1052: SL+'page_11.jpg', 1053: SL+'page_11.jpg',                                     // 치킨 3종
+  1054: SL+'page_12.jpg', 1055: SL+'page_12.jpg',                                                              // 이열치열 마라세트
+  1056: SL+'page_13.jpg', 1057: SL+'page_13.jpg', 1058: SL+'page_13.jpg',                                     // 데리야끼연어 & 사골곰탕
+  1059: SL+'page_14.jpg', 1060: SL+'page_14.jpg', 1061: SL+'page_14.jpg',                                     // 쫀득구름 탕수육 & 동태강정 SET
+  986: SL+'page_16.jpg',                                                                                        // 직화 후쿠오카 미트볼 (page_16 override)
+  1062: SL+'page_16.jpg', 1063: SL+'page_16.jpg',                                                              // 미트볼 트러플크림/오믈렛 SET
+  1064: SL+'page_17.jpg', 1065: SL+'page_17.jpg', 1066: SL+'page_17.jpg', 1067: SL+'page_17.jpg', 1068: SL+'page_17.jpg', 1069: SL+'page_17.jpg',  // 함바그 6종
+  1070: SL+'page_18.jpg', 1071: SL+'page_18.jpg',                                                              // 트러플 타워함박 SET
+
+
+
+
+
+
+
+
+
+  // (착한치킨·푸드쿠키 중복 블록 제거됨 — 위 단일 블록 사용)
+
+  // ===== 맛샘 ID 충돌 fix (SL 추가 블록이 1000~1003 덮어쓰는 것 방지) =====
+  1000: MT+'page_30.jpg', 1001: MT+'page_30.jpg', 1002: MT+'page_30.jpg', // 뿌링클 지파이 / 지파이 / 허브 치킨 커틀렛
+  1003: MT+'page_33.jpg', // 숯불한돈 떡갈비세트
+};
+
+function showPage(path, name) {
+  const encoded = path.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+  const img = document.getElementById('img-popup-img');
+  img.src = encoded;
+  img.onerror = function() {
+    img.onerror = null;
+    img.src = path;
+  };
+  document.getElementById('img-popup-label').textContent = name;
+  document.getElementById('img-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImgPopup(e) {
+  const overlay = document.getElementById('img-overlay');
+  if (e && e.target !== overlay && !e.target.classList.contains('img-popup-close')) return;
+  overlay.classList.remove('active');
+  document.getElementById('img-popup-img').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { document.getElementById('img-overlay').classList.remove('active'); document.body.style.overflow=''; }
+});
+
+document.getElementById('main-search-btn').onclick = () => doSearch();
+document.getElementById('main-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+document.getElementById('header-search-btn').onclick = () => {
+  currentKeyword = document.getElementById('header-input').value.trim();
+  currentFilter = '전체';
+  currentSort = 'default';
+  document.getElementById('sort-select').value = 'default';
+  if (currentKeyword) renderResults();
+};
+document.getElementById('header-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    currentKeyword = e.target.value.trim();
+    currentFilter = '전체';
+    currentSort = 'default';
+    document.getElementById('sort-select').value = 'default';
+    if (currentKeyword) renderResults();
+  }
+});
+
