@@ -167,6 +167,30 @@
     }
     .sort-select:focus { box-shadow: 0 0 0 3px rgba(216,90,48,0.1); }
 
+    /* 급식사진 배너 */
+    .meal-photo-banner {
+      margin: 0 20px 20px;
+      border: 1.5px solid #f0ddd6;
+      border-radius: 14px;
+      background: #fff8f5;
+      padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; transition: all 0.15s; text-decoration: none;
+      color: inherit;
+    }
+    .meal-photo-banner:hover {
+      border-color: #D85A30; background: #fff2ec;
+      box-shadow: 0 2px 10px rgba(216,90,48,0.1);
+    }
+    .meal-photo-banner-left { display: flex; align-items: center; gap: 10px; }
+    .meal-photo-banner-icon { font-size: 22px; }
+    .meal-photo-banner-text { font-size: 13px; color: #555; line-height: 1.5; }
+    .meal-photo-banner-kw { font-weight: 700; color: #D85A30; }
+    .meal-photo-banner-sub { font-size: 11px; color: #aaa; }
+    .meal-photo-banner-arrow {
+      font-size: 18px; color: #D85A30; font-weight: 300; flex-shrink: 0;
+    }
+
     /* 이미지 팝업 */
     .img-overlay {
       display: none; position: fixed; inset: 0;
@@ -349,6 +373,7 @@
     </select>
   </div>
   <div class="product-grid" id="product-grid"></div>
+  <div id="meal-photo-banner-wrap"></div>
 </div>
 
 <script>
@@ -1983,6 +2008,21 @@ function renderResults() {
       </div>`;
     return card;
   }).forEach(el => grid.appendChild(el));
+
+  // 급식사진 배너
+  const bannerWrap = document.getElementById('meal-photo-banner-wrap');
+  const viewerUrl = `school_photo_viewer_standalone.html#${encodeURIComponent(kw)}`;
+  bannerWrap.innerHTML = `
+    <a class="meal-photo-banner" href="${viewerUrl}" target="_blank">
+      <div class="meal-photo-banner-left">
+        <span class="meal-photo-banner-icon">📸</span>
+        <div class="meal-photo-banner-text">
+          <span class="meal-photo-banner-kw">"${kw}"</span> 나온 학교 급식사진 보기
+          <div class="meal-photo-banner-sub">다른 학교는 어떻게 나올까요?</div>
+        </div>
+      </div>
+      <span class="meal-photo-banner-arrow">›</span>
+    </a>`;
 }
 
 function setFilter(c) {

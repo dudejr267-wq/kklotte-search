@@ -420,6 +420,16 @@ function escHtml(s) {
 }
 
 loadData();
+
+// URL 해시로 자동 검색 (#돈까스 형태)
+const initKw = decodeURIComponent(location.hash.slice(1));
+if (initKw) {
+  const inp = document.getElementById('searchInput');
+  if (inp) {
+    inp.value = initKw;
+    doSearch();
+  }
+}
 </script>
 </body>
 </html>
