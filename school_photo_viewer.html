@@ -197,7 +197,30 @@ function canSearch(m) {
   return false;
 }
 
-function goToSearch(kw) {
+function getSearchKw(m) {
+  if (!m) return m;
+  if (PRODUCT_KW.has(m)) return m;
+  // 한국어 음식명은 끝 단어가 핵심(갈릭허니치킨→치킨, 냉동피자→피자)
+  // suffix 매칭 우선, 그 중 가장 긴 것
+  let suffixBest = null;
+  for (const kw of PRODUCT_KW) {
+    if (kw.length >= 2 && m.endsWith(kw)) {
+      if (!suffixBest || kw.length > suffixBest.length) suffixBest = kw;
+    }
+  }
+  if (suffixBest) return suffixBest;
+  // suffix 없으면 포함 매칭 중 가장 긴 것
+  let best = null;
+  for (const kw of PRODUCT_KW) {
+    if (kw.length >= 2 && m.includes(kw)) {
+      if (!best || kw.length > best.length) best = kw;
+    }
+  }
+  return best || m;
+}
+
+function goToSearch(menuName) {
+  const kw = getSearchKw(menuName);
   window.open('검색기.html#' + encodeURIComponent(kw), '_blank');
 }
 
