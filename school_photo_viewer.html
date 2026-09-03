@@ -199,7 +199,6 @@ function canSearch(m) {
 
 function getSearchKw(m) {
   if (!m) return m;
-  if (PRODUCT_KW.has(m)) return m;
   // 한국어 음식명은 끝 단어가 핵심(갈릭허니치킨→치킨, 냉동피자→피자, 치즈돈까스→돈까스)
   // kw !== m: 자기 자신을 suffix로 매칭하는 것 방지
   let suffixBest = null;
