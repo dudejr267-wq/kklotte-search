@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>학교 급식사진 검색기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F7FA;--surface:#fff;--border:#E0E5EE;--text:#1A2235;--muted:#6B748A;
+  --brand:#1B4B8A;--brand-lt:#EBF2FC;--brand-mid:#2860C0;
+  --green:#2EA06A;--green-lt:#E5F7EF;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,.08);
+}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
+
+/* ── 헤더 ── */
+.header{background:var(--brand);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.logo{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.header-text h1{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.header-text p{font-size:11px;opacity:.75;margin-top:1px}
+.header-badge{margin-left:auto;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+
+/* ── 검색 영역 ── */
+.search-wrap{background:var(--brand);padding:0 24px 20px}
+.search-box{background:#fff;border-radius:12px;display:flex;align-items:center;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.search-box input{flex:1;padding:14px 16px;border:none;outline:none;font-family:inherit;font-size:15px;color:var(--text)}
+.search-box input::placeholder{color:#A0A8BC}
+.search-btn{padding:0 20px;height:52px;background:var(--brand);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;transition:.15s}
+.search-btn:hover{background:var(--brand-mid)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{padding:5px 12px;border-radius:20px;background:rgba(255,255,255,.18);color:#fff;font-size:12px;font-weight:500;cursor:pointer;border:none;transition:.15s}
+.chip:hover{background:rgba(255,255,255,.28)}
+
+/* ── 필터 바 ── */
+.filter-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-label{font-size:12px;font-weight:600;color:var(--muted)}
+.filter-btn{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg);font-size:12px;font-weight:500;cursor:pointer;transition:.15s;color:var(--text)}
+.filter-btn.active,.filter-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.result-count{margin-left:auto;font-size:12px;color:var(--muted);font-weight:500}
+
+/* ── 레이아웃 ── */
+.content{max-width:1200px;margin:0 auto;padding:20px 24px}
+
+/* ── 결과 없음 ── */
+.empty{display:flex;flex-direction:column;align-items:center;gap:16px;padding:80px 20px;text-align:center;color:var(--muted)}
+.empty-icon{width:80px;height:80px;background:var(--surface);border:2px solid var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px}
+.empty h2{font-size:18px;font-weight:600;color:var(--text)}
+.empty p{font-size:13px;line-height:1.8;max-width:320px}
+
+/* ── 학교 카드 그룹 ── */
+.school-group{margin-bottom:28px}
+.school-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--brand-lt)}
+.school-badge{width:36px;height:36px;background:var(--brand-lt);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.school-info h2{font-size:15px;font-weight:700}
+.school-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.school-link{margin-left:auto;font-size:11px;color:var(--brand);text-decoration:none;font-weight:600;padding:4px 10px;border:1px solid var(--brand-lt);border-radius:6px}
+.school-link:hover{background:var(--brand-lt)}
+
+/* ── 식판 카드 그리드 ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.tray-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.2s}
+.tray-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,.12);border-color:var(--brand)}
+.tray-img{aspect-ratio:4/3;overflow:hidden;background:#EEF0F5;position:relative}
+.tray-img img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+.tray-card:hover .tray-img img{transform:scale(1.05)}
+.tray-img .no-img{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:32px;color:var(--border)}
+.tray-body{padding:10px 12px}
+.tray-date{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.tray-menus{display:flex;flex-direction:column;gap:2px}
+.menu-item{font-size:12px;color:var(--text);line-height:1.4}
+.menu-item.highlight{color:var(--brand);font-weight:600}
+.more-menus{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── 라이트박스 ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lb-content{background:var(--surface);border-radius:14px;overflow:hidden;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.lb-img-wrap{background:#000;position:relative}
+.lb-img-wrap img{width:100%;max-height:420px;object-fit:contain;display:block}
+.lb-arrows{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 10px;pointer-events:none}
+.lb-arrow{width:36px;height:36px;background:rgba(0,0,0,.5);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;pointer-events:all;display:flex;align-items:center;justify-content:center;transition:.15s}
+.lb-arrow:hover{background:rgba(0,0,0,.8)}
+.lb-info{padding:16px 20px}
+.lb-school{font-size:13px;color:var(--brand);font-weight:700;margin-bottom:6px}
+.lb-date{font-size:12px;color:var(--muted);margin-bottom:10px}
+.lb-menus{display:flex;flex-direction:column;gap:3px}
+.lb-menu-item{font-size:13px;display:flex;align-items:center;gap:6px}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:var(--brand);flex-shrink:0}
+.lb-menu-item.hl .lb-dot{background:var(--green)}
+.lb-menu-item.hl{color:var(--green);font-weight:600}
+.lb-close{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);border:none;color:#fff;border-radius:50%;width:32px;height:32px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10}
+.lb-source{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted)}
+.lb-source a{color:var(--brand);text-decoration:none}
+
+/* ── 로딩 ── */
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,.7);z-index:500;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+.loading-overlay.show{display:flex}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── 반응형 ── */
+@media(max-width:600px){
+  .header{padding:12px 16px}
+  .search-wrap{padding:0 16px 16px}
+  .content{padding:16px}
+  .cards-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <span style="font-size:14px;font-weight:500;color:#1A2235">데이터 로딩 중...</span>
+</div>
+
+<header class="header">
+  <div class="logo">경</div>
+  <div class="header-text">
+    <h1>학교 급식사진 검색</h1>
+    <p>경기도 학교 급식 식판 사진 검색 서비스</p>
+  </div>
+  <span class="header-badge" id="totalBadge">로딩 중...</span>
+</header>
+
+<div class="search-wrap">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="반찬명 검색 (예: 고르곤졸라 피자, 제육볶음, 순두부찌개...)" autocomplete="off">
+    <button class="search-btn" onclick="doSearch()">🔍</button>
+  </div>
+  <div class="chips" id="suggestChips"></div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">학교 구분</span>
+  <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
+  <button class="filter-btn" onclick="setFilter('초등학교',this)">초등학교</button>
+  <button class="filter-btn" onclick="setFilter('중학교',this)">중학교</button>
+  <button class="filter-btn" onclick="setFilter('고등학교',this)">고등학교</button>
+  <button class="filter-btn" onclick="setFilter('특수학교',this)">특수학교</button>
+  <span class="result-count" id="resultCount"></span>
+</div>
+
+<main class="content" id="mainContent">
+  <div class="empty">
+    <div class="empty-icon">🍽️</div>
+    <h2>반찬명을 검색해보세요</h2>
+    <p>경기도 학교 급식사진을 검색할 수 있어요.<br>예: "제육볶음", "순두부찌개", "돈까스"</p>
+  </div>
+</main>
+
+<!-- 라이트박스 -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lb-content" onclick="event.stopPropagation()">
+    <div class="lb-img-wrap">
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+      <img id="lbImg" src="" alt="급식 사진">
+      <div class="lb-arrows">
+        <button class="lb-arrow" id="lbPrev" onclick="lbNav(-1)">‹</button>
+        <button class="lb-arrow" id="lbNext" onclick="lbNav(1)">›</button>
+      </div>
+    </div>
+    <div class="lb-info">
+      <div class="lb-school" id="lbSchool"></div>
+      <div class="lb-date" id="lbDate"></div>
+      <div class="lb-menus" id="lbMenus"></div>
+      <div class="lb-source"><a id="lbLink" href="#" target="_blank">학교 홈페이지 바로가기 →</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let DB = [];          // 전체 데이터
+let filtered = [];    // 필터 후 데이터
+let currentQuery = '';
+let currentFilter = 'all';
+let lbItems = [];     // 라이트박스용 flat 리스트
+let lbIdx = 0;
+
+const SUGGEST_KEYWORDS = [
+  '미역국', '잡채', '매운돼지갈비찜', '콩나물무침', '쇠고기미역국',
+  '맑은콩나물국', '청포묵무침', '단무지', '돈까스', '순두부찌개', '계란말이', '제육볶음'
+];
+
+// ── 데이터 로드 ──
+async function loadData() {
+  document.getElementById('loadingOverlay').classList.add('show');
+  try {
+    const res = await fetch('school_meal_photos.json');
+    if (!res.ok) throw new Error('파일 없음');
+    DB = await res.json();
+    document.getElementById('totalBadge').textContent =
+      `${DB.length}개교 · ${DB.reduce((s,d)=>s+d.entries.length,0)}일치 데이터`;
+  } catch(e) {
+    document.getElementById('totalBadge').textContent = '데이터 없음';
+    document.getElementById('mainContent').innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">⚠️</div>
+        <h2>데이터 파일을 찾을 수 없어요</h2>
+        <p>school_meal_photos.json 파일이 같은 폴더에 있는지 확인해주세요.<br>
+        스크래퍼를 먼저 실행해야 합니다.</p>
+      </div>`;
+    document.getElementById('loadingOverlay').classList.remove('show');
+    return;
+  }
+
+  document.getElementById('loadingOverlay').classList.remove('show');
+
+  // 추천 검색어 칩
+  const chips = document.getElementById('suggestChips');
+  SUGGEST_KEYWORDS.forEach(kw => {
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.textContent = kw;
+    b.onclick = () => { document.getElementById('searchInput').value = kw; doSearch(); };
+    chips.appendChild(b);
+  });
+
+  // Enter 키
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if(e.key === 'Enter') doSearch();
+  });
+
+  showLanding();
+}
+
+function showLanding() {
+  // 최신 사진 20장 무작위 표시
+  const recent = [];
+  for(const school of DB) {
+    for(const entry of school.entries) {
+      if(entry.photos.length) {
+        recent.push({ school, entry });
+      }
+    }
+  }
+  recent.sort((a,b) => b.entry.date.localeCompare(a.entry.date));
+  const sample = recent.slice(0, 40);
+
+  lbItems = sample.map(x => ({
+    school: x.school,
+    entry: x.entry,
+    photoIdx: 0,
+  }));
+
+  document.getElementById('resultCount').textContent = `최근 ${sample.length}건 표시 중`;
+  renderBySchool(groupBySample(sample), '');
+}
+
+function groupBySample(sample) {
+  const map = {};
+  for(const {school, entry} of sample) {
+    const k = school.school_name;
+    if(!map[k]) map[k] = { school, entries: [] };
+    map[k].entries.push(entry);
+  }
+  return Object.values(map);
+}
+
+// ── 검색 ──
+function doSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  if(!q) { showLanding(); return; }
+  currentQuery = q;
+  applyFilter();
+}
+
+function setFilter(type, el) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if(currentQuery) applyFilter();
+}
+
+function applyFilter() {
+  const q = currentQuery.toLowerCase();
+  const results = [];
+
+  for(const school of DB) {
+    if(currentFilter !== 'all' && school.school_type !== currentFilter) continue;
+
+    const matchEntries = [];
+    for(const entry of school.entries) {
+      if(!entry.photos.length) continue;
+      const menuStr = entry.menus.join(' ').toLowerCase();
+      if(menuStr.includes(q)) {
+        matchEntries.push(entry);
+      }
+    }
+    if(matchEntries.length) {
+      results.push({ school, entries: matchEntries });
+    }
+  }
+
+  // 라이트박스용 flat
+  lbItems = [];
+  for(const r of results) {
+    for(const entry of r.entries) {
+      lbItems.push({ school: r.school, entry, photoIdx: 0 });
+    }
+  }
+
+  const totalCards = results.reduce((s,r)=>s+r.entries.length,0);
+  document.getElementById('resultCount').textContent =
+    `"${currentQuery}" 검색 결과: ${results.length}개교 · ${totalCards}건`;
+
+  renderBySchool(results, q);
+}
+
+// ── 렌더링 ──
+function renderBySchool(groups, query) {
+  const content = document.getElementById('mainContent');
+
+  if(!groups.length) {
+    content.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">🔍</div>
+        <h2>검색 결과가 없어요</h2>
+        <p>"${query}"이(가) 포함된 급식사진을 찾지 못했어요.<br>다른 반찬명으로 검색해보세요.</p>
+      </div>`;
+    return;
+  }
+
+  const schoolTypeEmoji = { '초등학교': '🏫', '중학교': '🏫', '고등학교': '🏛️', '특수학교': '🌟' };
+
+  let html = '';
+  let flatIdx = 0;
+
+  for(const { school, entries } of groups) {
+    const emoji = schoolTypeEmoji[school.school_type] || '🏫';
+    html += `
+    <div class="school-group">
+      <div class="school-header">
+        <div class="school-badge">${emoji}</div>
+        <div class="school-info">
+          <h2>${school.school_name}</h2>
+          <div class="school-meta">${school.school_type} · ${school.location}</div>
+        </div>
+        <a class="school-link" href="${school.food_photo_url}" target="_blank">급식사진 바로가기</a>
+      </div>
+      <div class="cards-grid">`;
+
+    for(const entry of entries) {
+      const idx = flatIdx++;
+      const highlightMenus = entry.menus.map(m => {
+        const isHL = query && m.toLowerCase().includes(query.toLowerCase());
+        return `<div class="menu-item ${isHL?'highlight':''}">${isHL?'★ ':''} ${escHtml(m)}</div>`;
+      });
+      const moreCount = entry.menus.length > 5 ? entry.menus.length - 5 : 0;
+      const displayMenus = highlightMenus.slice(0, 5).join('');
+      const moreLine = moreCount ? `<div class="more-menus">+${moreCount}개 더보기</div>` : '';
+
+      html += `
+        <div class="tray-card" onclick="openLightbox(${idx})">
+          <div class="tray-img">
+            ${entry.photos[0]
+              ? `<img src="${entry.photos[0]}" alt="급식 사진" loading="lazy" onerror="this.parentElement.innerHTML='<div class=no-img>📷</div>'">`
+              : '<div class="no-img">📷</div>'}
+          </div>
+          <div class="tray-body">
+            <div class="tray-date">${formatDate(entry.date)}</div>
+            <div class="tray-menus">${displayMenus}${moreLine}</div>
+          </div>
+        </div>`;
+    }
+
+    html += `</div></div>`;
+  }
+
+  content.innerHTML = html;
+}
+
+// ── 라이트박스 ──
+function openLightbox(idx) {
+  lbIdx = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if(e && e.target !== document.getElementById('lightbox')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  if(!lbItems.length) return;
+  const item = lbItems[lbIdx];
+  const { school, entry } = item;
+
+  const photos = entry.photos;
+  // 사진 여러 장이면 첫번째
+  document.getElementById('lbImg').src = photos[0] || '';
+  document.getElementById('lbSchool').textContent = `${school.school_name} (${school.school_type})`;
+  document.getElementById('lbDate').textContent = `${formatDate(entry.date)} · ${school.location}`;
+  document.getElementById('lbLink').href = school.food_photo_url;
+
+  const q = currentQuery.toLowerCase();
+  const menusHtml = entry.menus.map(m => {
+    const isHL = q && m.toLowerCase().includes(q);
+    return `<div class="lb-menu-item${isHL?' hl':''}">
+      <div class="lb-dot"></div>
+      <span>${escHtml(m)}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('lbMenus').innerHTML = menusHtml || '<span style="color:var(--muted);font-size:12px">메뉴 정보 없음</span>';
+
+  document.getElementById('lbPrev').style.display = lbItems.length > 1 ? '' : 'none';
+  document.getElementById('lbNext').style.display = lbItems.length > 1 ? '' : 'none';
+}
+
+document.addEventListener('keydown', e => {
+  if(document.getElementById('lightbox').classList.contains('open')) {
+    if(e.key === 'ArrowLeft') lbNav(-1);
+    if(e.key === 'ArrowRight') lbNav(1);
+    if(e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
+  }
+});
+
+// ── 유틸 ──
+function formatDate(iso) {
+  const d = new Date(iso);
+  const wd = ['일','월','화','수','목','금','토'];
+  return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 (${wd[d.getDay()]})`;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+loadData();
+</script>
+</body>
+</html>
