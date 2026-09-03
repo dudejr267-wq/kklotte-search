@@ -224,7 +224,10 @@ def scrape_school(row):
 def main():
     import os
     base = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(base, 'school_photos_top100.csv')
+    # 전체 목록 우선, 없으면 top100 사용
+    csv_path = os.path.join(base, 'school_photos_all.csv')
+    if not os.path.exists(csv_path):
+        csv_path = os.path.join(base, 'school_photos_top100.csv')
     out_path = os.path.join(base, 'school_meal_photos.json')
 
     with open(csv_path, encoding='utf-8-sig') as f:
