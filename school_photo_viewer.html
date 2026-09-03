@@ -72,7 +72,12 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);co
 .tray-menus{display:flex;flex-direction:column;gap:2px}
 .menu-item{font-size:12px;color:var(--text);line-height:1.4}
 .menu-item.highlight{color:var(--brand);font-weight:600}
+.menu-item.searchable{cursor:pointer;border-radius:4px;padding:1px 3px;margin:-1px -3px;transition:background .12s,color .12s;display:inline-block}
+.menu-item.searchable:hover{background:#D85A30;color:#fff !important}
+.menu-item.highlight.searchable:hover{background:#D85A30;color:#fff !important}
 .more-menus{font-size:11px;color:var(--muted);margin-top:2px}
+.lb-menu-item.searchable{cursor:pointer;border-radius:6px;padding:3px 6px;margin:-3px -6px;transition:background .12s}
+.lb-menu-item.searchable:hover{background:rgba(216,90,48,.1)}
 
 /* ── 라이트박스 ── */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:20px}
@@ -179,6 +184,22 @@ let currentQuery = '';
 let currentFilter = 'all';
 let lbItems = [];     // 라이트박스용 flat 리스트
 let lbIdx = 0;
+
+// 경기롯데 제품 키워드 (build_viewer.py가 자동 주입)
+const PRODUCT_KW = new Set(); // __PRODUCT_KW_PLACEHOLDER__
+
+function canSearch(m) {
+  if (!m || !PRODUCT_KW.size) return false;
+  if (PRODUCT_KW.has(m)) return true;
+  for (const kw of PRODUCT_KW) {
+    if (kw.length >= 2 && m.includes(kw)) return true;
+  }
+  return false;
+}
+
+function goToSearch(kw) {
+  window.open('검색기.html#' + encodeURIComponent(kw), '_blank');
+}
 
 const SUGGEST_KEYWORDS = [
   '미역국', '잡채', '매운돼지갈비찜', '콩나물무침', '쇠고기미역국',
@@ -347,7 +368,9 @@ function renderBySchool(groups, query) {
       const idx = flatIdx++;
       const highlightMenus = entry.menus.map(m => {
         const isHL = query && m.toLowerCase().includes(query.toLowerCase());
-        return `<div class="menu-item ${isHL?'highlight':''}">${isHL?'★ ':''} ${escHtml(m)}</div>`;
+        const srch = canSearch(m);
+        const attrs = srch ? ` data-menu="${escHtml(m)}" onclick="event.stopPropagation();goToSearch(this.dataset.menu)" title="경기롯데 제품 검색"` : '';
+        return `<div class="menu-item ${isHL?'highlight':''} ${srch?'searchable':''}"${attrs}>${isHL?'★ ':''} ${escHtml(m)}</div>`;
       });
       const moreCount = entry.menus.length > 5 ? entry.menus.length - 5 : 0;
       const displayMenus = highlightMenus.slice(0, 5).join('');
@@ -407,9 +430,12 @@ function updateLightbox() {
   const q = currentQuery.toLowerCase();
   const menusHtml = entry.menus.map(m => {
     const isHL = q && m.toLowerCase().includes(q);
-    return `<div class="lb-menu-item${isHL?' hl':''}">
+    const srch = canSearch(m);
+    const attrs = srch ? ` data-menu="${escHtml(m)}" onclick="goToSearch(this.dataset.menu)" title="경기롯데 제품 검색"` : '';
+    return `<div class="lb-menu-item${isHL?' hl':''}${srch?' searchable':''}"${attrs}>
       <div class="lb-dot"></div>
       <span>${escHtml(m)}</span>
+      ${srch ? '<span style="font-size:10px;color:var(--muted);margin-left:auto">경기롯데→</span>' : ''}
     </div>`;
   }).join('');
   document.getElementById('lbMenus').innerHTML = menusHtml || '<span style="color:var(--muted);font-size:12px">메뉴 정보 없음</span>';
