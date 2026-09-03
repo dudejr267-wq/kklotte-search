@@ -70,8 +70,12 @@ body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);co
 .tray-body{padding:10px 12px}
 .tray-date{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:4px}
 .tray-menus{display:flex;flex-direction:column;gap:2px}
-.menu-item{font-size:12px;color:var(--text);line-height:1.4}
+.menu-item{font-size:12px;color:var(--text);line-height:1.4;cursor:pointer;border-radius:4px;padding:1px 3px;margin:-1px -3px;transition:background .12s,color .12s;display:inline-block}
+.menu-item:hover{background:#D85A30;color:#fff}
 .menu-item.highlight{color:var(--brand);font-weight:600}
+.menu-item.highlight:hover{background:#D85A30;color:#fff}
+.lb-menu-item{cursor:pointer;border-radius:6px;padding:3px 6px;margin:-3px -6px;transition:background .12s}
+.lb-menu-item:hover{background:rgba(216,90,48,.1)}
 .more-menus{font-size:11px;color:var(--muted);margin-top:2px}
 
 /* ── 라이트박스 ── */
@@ -329,7 +333,7 @@ function renderBySchool(groups, query) {
       const idx = flatIdx++;
       const highlightMenus = entry.menus.map(m => {
         const isHL = query && m.toLowerCase().includes(query.toLowerCase());
-        return `<div class="menu-item ${isHL?'highlight':''}">${isHL?'★ ':''} ${escHtml(m)}</div>`;
+        return `<div class="menu-item ${isHL?'highlight':''}" data-menu="${escHtml(m)}" onclick="event.stopPropagation();goToSearch(this.dataset.menu)" title="경기롯데 제품 검색">${isHL?'★ ':''} ${escHtml(m)}</div>`;
       });
       const moreCount = entry.menus.length > 5 ? entry.menus.length - 5 : 0;
       const displayMenus = highlightMenus.slice(0, 5).join('');
@@ -389,9 +393,10 @@ function updateLightbox() {
   const q = currentQuery.toLowerCase();
   const menusHtml = entry.menus.map(m => {
     const isHL = q && m.toLowerCase().includes(q);
-    return `<div class="lb-menu-item${isHL?' hl':''}">
+    return `<div class="lb-menu-item${isHL?' hl':''}" data-menu="${escHtml(m)}" onclick="goToSearch(this.dataset.menu)" title="경기롯데 제품 검색">
       <div class="lb-dot"></div>
       <span>${escHtml(m)}</span>
+      <span style="font-size:10px;color:var(--muted);margin-left:auto">경기롯데 →</span>
     </div>`;
   }).join('');
   document.getElementById('lbMenus').innerHTML = menusHtml || '<span style="color:var(--muted);font-size:12px">메뉴 정보 없음</span>';
@@ -417,6 +422,10 @@ function formatDate(iso) {
 
 function escHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function goToSearch(kw) {
+  window.open('검색기.html#' + encodeURIComponent(kw), '_blank');
 }
 
 loadData();
