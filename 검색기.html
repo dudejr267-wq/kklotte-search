@@ -281,6 +281,104 @@
       text-decoration: none; transition: background 0.15s;
     }
     .call-btn:hover { background: #c04e28; }
+
+    /* ── 장바구니 담기 버튼 (카드 내) ── */
+    .cart-add-btn {
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+      width: 100%; margin-top: 7px; padding: 7px;
+      border: 1.5px solid #D85A30; border-radius: 9px;
+      background: #fff; font-size: 12px; font-weight: 700; color: #D85A30;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .cart-add-btn:hover { background: #D85A30; color: #fff; }
+    .cart-add-btn.in-cart { background: #D85A30; color: #fff; }
+    .cart-add-btn.in-cart:hover { background: #c04e28; }
+
+    /* ── 헤더 장바구니 아이콘 ── */
+    .cart-header-btn {
+      position: relative; width: 38px; height: 38px;
+      border: 1.5px solid #e0e0e0; border-radius: 10px;
+      background: #fff; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .cart-header-btn:hover { border-color: #D85A30; }
+    .cart-header-btn svg { width: 20px; height: 20px; stroke: #555; fill: none; stroke-width: 1.8; }
+    .cart-header-btn:hover svg { stroke: #D85A30; }
+    .cart-badge {
+      position: absolute; top: -7px; right: -7px;
+      min-width: 18px; height: 18px; background: #D85A30;
+      color: #fff; font-size: 11px; font-weight: 700; border-radius: 9px;
+      align-items: center; justify-content: center;
+      padding: 0 4px; display: none;
+    }
+    .cart-badge.show { display: flex; }
+
+    /* ── 장바구니 패널 ── */
+    .cart-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4); z-index: 2000;
+    }
+    .cart-overlay.active { display: block; }
+    .cart-panel {
+      position: fixed; top: 0; right: -400px; width: 360px; max-width: 100vw;
+      height: 100vh; background: #fff; z-index: 2001;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      transition: right 0.28s cubic-bezier(0.4,0,0.2,1);
+      display: flex; flex-direction: column;
+    }
+    .cart-panel.open { right: 0; }
+    .cart-panel-header {
+      padding: 18px 20px 14px; border-bottom: 1px solid #eee;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .cart-panel-title { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+    .cart-panel-close {
+      background: none; border: none; font-size: 22px;
+      color: #aaa; cursor: pointer; line-height: 1; padding: 4px;
+    }
+    .cart-panel-close:hover { color: #555; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 8px 16px; }
+    .cart-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid #f5f5f5;
+    }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-img {
+      width: 52px; height: 52px; border-radius: 8px;
+      background: #f5f5f5; overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 12.5px; font-weight: 600; color: #1a1a1a; line-height: 1.4; }
+    .cart-item-brand { font-size: 11px; color: #aaa; margin-top: 2px; }
+    .cart-item-price { font-size: 13px; font-weight: 700; color: #D85A30; margin-top: 4px; }
+    .cart-item-remove {
+      background: none; border: none; cursor: pointer;
+      color: #ccc; font-size: 18px; padding: 4px; line-height: 1;
+      flex-shrink: 0; transition: color 0.12s;
+    }
+    .cart-item-remove:hover { color: #e74c3c; }
+    .cart-empty { text-align: center; padding: 3rem 1rem; color: #bbb; }
+    .cart-empty-icon { font-size: 42px; margin-bottom: 10px; }
+    .cart-empty-text { font-size: 14px; }
+    .cart-panel-footer { padding: 14px 16px; border-top: 1px solid #eee; flex-shrink: 0; }
+    .cart-count-line { font-size: 13px; color: #888; margin-bottom: 10px; text-align: center; }
+    .cart-count-line b { color: #D85A30; }
+    .cart-actions { display: flex; gap: 8px; }
+    .cart-action-btn {
+      flex: 1; padding: 10px; border-radius: 10px;
+      border: 1.5px solid #e0e0e0; background: #fff;
+      font-size: 12px; font-weight: 600; color: #555;
+      cursor: pointer; transition: all 0.15s; text-align: center;
+    }
+    .cart-action-btn:hover { border-color: #D85A30; color: #D85A30; background: #fff5f2; }
+    .cart-action-btn.primary { background: #D85A30; color: #fff; border-color: #D85A30; }
+    .cart-action-btn.primary:hover { background: #c04e28; }
+    .cart-action-btn.danger:hover { border-color: #e74c3c; color: #e74c3c; background: #fff5f5; }
   </style>
 </head>
 <body>
@@ -360,6 +458,10 @@
     <button class="search-btn-sm" id="header-search-btn">
       <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
     </button>
+    <button class="cart-header-btn" onclick="openCart()" title="관심 상품 목록">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge" id="cart-badge">0</span>
+    </button>
   </div>
   <div class="result-meta" id="result-meta"></div>
   <div class="filter-row" id="filter-row"></div>
@@ -376,7 +478,185 @@
   <div id="meal-photo-banner-wrap"></div>
 </div>
 
+<!-- ── 장바구니 패널 ── -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-panel-header">
+    <span class="cart-panel-title">🛒 장바구니</span>
+    <button class="cart-panel-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-text">마음에 드는 상품을 담아보세요</div>
+    </div>
+  </div>
+  <div class="cart-panel-footer" id="cart-panel-footer" style="display:none">
+    <div class="cart-count-line" id="cart-count-line"></div>
+    <div class="cart-actions">
+      <button class="cart-action-btn danger" onclick="clearCart()">🗑 전체삭제</button>
+      <button class="cart-action-btn" onclick="copyCartList()">📋 목록복사</button>
+      <button class="cart-action-btn primary" onclick="printCart()">🖨 출력</button>
+    </div>
+  </div>
+</div>
+
 <script>
+// ── 장바구니 ──
+let CART = {};
+try { CART = JSON.parse(localStorage.getItem('kklotte_cart') || '{}'); } catch(e) { CART = {}; }
+
+function saveCart() {
+  try { localStorage.setItem('kklotte_cart', JSON.stringify(CART)); } catch(e) {}
+}
+
+function cartCount() { return Object.keys(CART).length; }
+
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  if (!badge) return;
+  const n = cartCount();
+  badge.textContent = n;
+  badge.classList.toggle('show', n > 0);
+}
+
+function toggleCart(id, ev) {
+  if (ev) ev.stopPropagation();
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  if (CART[id]) {
+    delete CART[id];
+  } else {
+    const hasPhoto = PHOTO_IDS.has(id);
+    const imgPath = IMG_MAP[id];
+    CART[id] = {
+      id, name: p.name, brand: p.brand, category: p.category,
+      price: p.price, unit: p.unit, emoji: p.emoji,
+      img: hasPhoto ? `products_clean/${id}.jpg` : (imgPath || null)
+    };
+  }
+  saveCart();
+  updateCartBadge();
+  document.querySelectorAll(`.cart-add-btn[data-id="${id}"]`).forEach(btn => {
+    const inCart = !!CART[id];
+    btn.classList.toggle('in-cart', inCart);
+    btn.textContent = inCart ? '✓ 담겼어요' : '+ 장바구니 담기';
+  });
+  if (document.getElementById('cart-panel').classList.contains('open')) {
+    renderCartPanel();
+  }
+}
+
+function renderCartPanel() {
+  const items = Object.values(CART);
+  const container = document.getElementById('cart-items');
+  const footer = document.getElementById('cart-panel-footer');
+  if (!container) return;
+  if (items.length === 0) {
+    container.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div class="cart-empty-text">마음에 드는 상품을 담아보세요</div></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  document.getElementById('cart-count-line').innerHTML = `총 <b>${items.length}개</b> 상품이 담겨있어요`;
+  container.innerHTML = items.map(item => {
+    const imgHtml = item.img
+      ? `<img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='${item.emoji}'">`
+      : item.emoji;
+    return `<div class="cart-item">
+      <div class="cart-item-img">${imgHtml}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-brand">${item.brand} · ${item.category}</div>
+        <div class="cart-item-price">${item.price}원 <span style="font-size:10px;color:#aaa;font-weight:400">/ ${item.unit}</span></div>
+      </div>
+      <button class="cart-item-remove" onclick="toggleCart(${item.id}, event)" title="제거">×</button>
+    </div>`;
+  }).join('');
+}
+
+function openCart() {
+  renderCartPanel();
+  document.getElementById('cart-overlay').classList.add('active');
+  document.getElementById('cart-panel').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('active');
+  document.getElementById('cart-panel').classList.remove('open');
+}
+
+function clearCart() {
+  const n = cartCount();
+  if (!n) return;
+  if (!confirm(`담긴 상품 ${n}개를 모두 지울까요?`)) return;
+  CART = {};
+  saveCart();
+  updateCartBadge();
+  document.querySelectorAll('.cart-add-btn.in-cart').forEach(btn => {
+    btn.classList.remove('in-cart');
+    btn.textContent = '+ 장바구니 담기';
+  });
+  renderCartPanel();
+}
+
+function copyCartList() {
+  const items = Object.values(CART);
+  if (!items.length) return;
+  const text = items.map((item, i) =>
+    `${i+1}. ${item.name} (${item.brand}) - ${item.price}원 / ${item.unit}`
+  ).join('\n');
+  const doAlert = () => alert('목록이 클립보드에 복사됐어요!');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(doAlert).catch(() => fallbackCopy(text, doAlert));
+  } else {
+    fallbackCopy(text, doAlert);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); if (cb) cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function printCart() {
+  const items = Object.values(CART);
+  if (!items.length) { alert('담긴 상품이 없어요.'); return; }
+  const rows = items.map((item, i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td style="font-weight:600">${item.name}</td>
+      <td>${item.brand}</td>
+      <td>${item.category}</td>
+      <td style="color:#D85A30;font-weight:700">${item.price}원</td>
+      <td style="color:#888">${item.unit}</td>
+    </tr>`).join('');
+  const win = window.open('', '_blank', 'width=700,height=600');
+  win.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+    <title>경기롯데 관심 상품 목록</title>
+    <style>
+      body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;padding:28px;font-size:13px;color:#1a1a1a}
+      h2{font-size:20px;margin-bottom:6px;font-weight:700}
+      .sub{color:#888;font-size:12px;margin-bottom:22px}
+      table{width:100%;border-collapse:collapse}
+      th,td{border:1px solid #e0e0e0;padding:9px 11px;text-align:left;vertical-align:middle}
+      th{background:#f7f7f7;font-weight:600;font-size:12px;color:#555}
+      tr:hover td{background:#fff8f5}
+    </style></head><body>
+    <h2>경기롯데 관심 상품 목록</h2>
+    <div class="sub">출력일: ${new Date().toLocaleDateString('ko-KR')} · 총 ${items.length}개</div>
+    <table>
+      <thead><tr><th>#</th><th>상품명</th><th>브랜드</th><th>카테고리</th><th>가격</th><th>용량/단위</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <script>window.onload=function(){window.print()}<\/script>
+    </body></html>`);
+  win.document.close();
+}
+
 const PRODUCTS = [
   // ===== 냠냐미 =====
   { id:1,  name:"남나미 소떡소떡 800g (소시지2+떡2)", brand:"냠냐미", category:"소떡/떡꼬치", emoji:"🍢", price:"12,000", unit:"800g(80g×10ea)", tags:["신제품"], isNew:true, color:"#FFF3E0", tcolor:"#E65100", keywords:"소떡 떡 소시지" },
@@ -2005,6 +2285,7 @@ function renderResults() {
           ${p.tags.map(t => `<span class="ptag" style="background:${p.color};color:${p.tcolor}">${t}</span>`).join('')}
         </div>
         ${CONTACTS[p.brand] ? `<button class="contact-btn" onclick="event.stopPropagation();showContact('${p.brand}')">📞 담당자 문의</button>` : ''}
+        <button class="cart-add-btn ${CART[p.id] ? 'in-cart' : ''}" data-id="${p.id}" onclick="toggleCart(${p.id}, event)">${CART[p.id] ? '✓ 담겼어요' : '+ 장바구니 담기'}</button>
       </div>`;
     return card;
   }).forEach(el => grid.appendChild(el));
@@ -2755,6 +3036,9 @@ document.getElementById('header-input').addEventListener('keydown', e => {
     if (currentKeyword) renderResults();
   }
 });
+
+// 장바구니 뱃지 초기화
+updateCartBadge();
 
 // 급식사진 검색기에서 넘어온 경우 해시로 자동 검색
 (function() {
