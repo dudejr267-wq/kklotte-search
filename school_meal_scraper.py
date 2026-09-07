@@ -249,6 +249,11 @@ def main():
 
     results.sort(key=lambda x: x['rank'])
 
+    # 결과가 0이면 기존 JSON 보존
+    if len(results) == 0:
+        print('\n⚠️  스크래핑 결과 0개 — 기존 JSON 파일 유지 (덮어쓰지 않음)')
+        return
+
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
 

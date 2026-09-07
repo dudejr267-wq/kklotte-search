@@ -207,6 +207,11 @@ def main():
     import os
     base = os.path.dirname(os.path.abspath(__file__))
 
+    # 결과가 0이면 기존 CSV 보존 (NEIS API 장애 또는 네트워크 문제)
+    if len(results) == 0:
+        print("⚠️  결과 0개 — 기존 CSV 파일 유지 (덮어쓰지 않음)")
+        return results
+
     # 전체 저장
     output_all = os.path.join(base, "school_photos_all.csv")
     fields = ["rank", "school_name", "school_type", "location", "school_code", "homepage", "food_photo_url", "estimated_posts"]
