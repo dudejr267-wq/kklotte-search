@@ -233,7 +233,7 @@ def main():
 
     print("=== 상위 20개교 ===")
     for i, s in enumerate(top100[:20], 1):
-        print(f"  {i:2}. {s['school_name']} ({s['school_type']}) — 추정 {s['estimated_posts']}건")
+        print(f"  {i:2}. {s['school_name']} ({s['school_type']}) - 추정 {s['estimated_posts']}건")
 
     return results
 
