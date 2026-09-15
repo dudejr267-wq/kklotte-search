@@ -254,12 +254,51 @@ def main():
         print('\n⚠️  스크래핑 결과 0개 — 기존 JSON 파일 유지 (덮어쓰지 않음)')
         return
 
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+    # ── 기존 데이터와 병합 (이전 급식사진 보존) ──
+    existing = {}  # food_photo_url → school dict
+    if os.path.exists(out_path):
+        try:
+            with open(out_path, encoding='utf-8') as f:
+                old_db = json.load(f)
+            for s in old_db:
+                existing[s['food_photo_url']] = s
+            print(f'[병합] 기존 {len(existing)}개교 데이터 로드')
+        except Exception:
+            pass
 
-    total_photos = sum(len(e['photos']) for s in results for e in s['entries'])
-    total_entries = sum(len(s['entries']) for s in results)
-    print(f'\n[완료] {len(results)}개교, {total_entries}일, 사진 {total_photos}장')
+    merged = {}  # food_photo_url → merged school dict
+    new_photos_added = 0
+
+    for school in results:
+        url = school['food_photo_url']
+        if url in existing:
+            old = existing[url]
+            # 기존 날짜 set
+            old_dates = {e['date'] for e in old['entries']}
+            # 새로 추가된 날짜만 병합
+            added = [e for e in school['entries'] if e['date'] not in old_dates]
+            new_photos_added += sum(len(e['photos']) for e in added)
+            merged_entries = old['entries'] + added
+            # 날짜 내림차순 정렬
+            merged_entries.sort(key=lambda x: x['date'], reverse=True)
+            merged[url] = {**old, 'entries': merged_entries, 'rank': school['rank']}
+        else:
+            merged[url] = school
+            new_photos_added += sum(len(e['photos']) for e in school['entries'])
+
+    # 이번 스크래핑에 없던 기존 학교도 보존
+    for url, s in existing.items():
+        if url not in merged:
+            merged[url] = s
+
+    final = sorted(merged.values(), key=lambda x: x['rank'])
+
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(final, f, ensure_ascii=False, indent=2)
+
+    total_photos = sum(len(e['photos']) for s in final for e in s['entries'])
+    total_entries = sum(len(s['entries']) for s in final)
+    print(f'\n[완료] {len(final)}개교, {total_entries}일, 사진 {total_photos}장 (신규 {new_photos_added}장 추가)')
     print(f'저장: {out_path}')
 
     print('\n=== 샘플 ===')
