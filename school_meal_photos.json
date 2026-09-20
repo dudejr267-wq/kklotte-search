@@ -1,5 +1,47 @@
 [
   {
+    "school_name": "통일초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 파주시 탄현면 사슴벌레로 14",
+    "homepage": "https://tongil-e.goepj.kr",
+    "food_photo_url": "https://tongil-e.goepj.kr/tongil-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=4027",
+    "rank": 1,
+    "entries": [
+      {
+        "date": "2026-09-25",
+        "menus": [
+          "♥추석♥"
+        ],
+        "photos": [
+          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_3c44d01b-1e6a-4ad8-8a62-6180668b68471787801769263.png"
+        ]
+      },
+      {
+        "date": "2026-09-24",
+        "menus": [
+          "♥추석♥"
+        ],
+        "photos": [
+          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_a11fd5cf-0028-43bf-a949-48999ea2255a1787801760610.png"
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "찰기장밥(공)",
+          "뿌링감자츄러스(공)",
+          "짬뽕국(공)",
+          "분모자찜닭(공)",
+          "비름나물무침(공)",
+          "백김치(공)"
+        ],
+        "photos": [
+          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_1aa45c2f-7864-4d09-b6a2-26d6887e99411789354107915.jpg"
+        ]
+      }
+    ]
+  },
+  {
     "school_name": "가곡초등학교",
     "school_type": "초등학교",
     "location": "경기도 남양주시 화도읍 비룡로379번길 3",
@@ -1398,31 +1440,6 @@
         ],
         "photos": [
           "http://dapnae-e.goegn.kr/upload/common/fm/images/dapnae-e/img_96568f99-7a44-49b5-8a4c-4f3c337f25fb1789354713787.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "대광초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 연천군 신서면 연신로 1127-1",
-    "homepage": "https://daegwang-em.goeyc.kr",
-    "food_photo_url": "https://daegwang-em.goeyc.kr/daegwang-em/ad/fm/foodmenu/selectFoodMenuView.do?mi=3267",
-    "rank": 60,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "차조밥",
-          "청국장찌개",
-          "돼지갈비묵은지찜",
-          "애호박새우젓볶음",
-          "오이김치",
-          "짜먹는요구르트",
-          "우유"
-        ],
-        "photos": [
-          "https://daegwang-em.goeyc.kr/upload/common/fm/images/daegwang-em/img_627fdd80-5529-4ffd-856d-f56dae42be031789351958749.jpg"
         ]
       }
     ]
@@ -5538,30 +5555,6 @@
         ],
         "photos": [
           "https://taejang-e.goesw.kr/upload/common/fm/images/taejang-e/img_01245b1b-2d77-4b51-ab13-2bc80369c824d2d7a2820e5c05c49477.jpeg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "통일초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 파주시 탄현면 사슴벌레로 14",
-    "homepage": "https://tongil-e.goepj.kr",
-    "food_photo_url": "https://tongil-e.goepj.kr/tongil-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=4027",
-    "rank": 233,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "찰기장밥(공)",
-          "뿌링감자츄러스(공)",
-          "짬뽕국(공)",
-          "분모자찜닭(공)",
-          "비름나물무침(공)",
-          "백김치(공)"
-        ],
-        "photos": [
-          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_1aa45c2f-7864-4d09-b6a2-26d6887e99411789354107915.jpg"
         ]
       }
     ]
