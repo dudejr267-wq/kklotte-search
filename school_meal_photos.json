@@ -1,12 +1,209 @@
 [
   {
+    "school_name": "물향기초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 파주시 물향기1로 15",
+    "homepage": "https://mulhyanggi-e.goepj.kr/mulhyanggi-e/main.do",
+    "food_photo_url": "https://mulhyanggi-e.goepj.kr/mulhyanggi-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=13659",
+    "rank": 1,
+    "entries": [
+      {
+        "date": "2026-10-09",
+        "menus": [
+          "한글날"
+        ],
+        "photos": [
+          "https://mulhyanggi-e.goepj.kr/upload/common/fm/images/mulhyanggi-e/img_16b5539a-47ab-42b7-b626-b311891152fb1790144394382.jpg"
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "menus": [
+          "대체휴일"
+        ],
+        "photos": [
+          "https://mulhyanggi-e.goepj.kr/upload/common/fm/images/mulhyanggi-e/img_b7e7a36f-a474-4622-a0b2-7964234f088c1790144382747.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "찰보리밥",
+          "시래기된장국 5,",
+          "블랙소이오리볶음",
+          "콩나물무침",
+          "총각김치"
+        ],
+        "photos": [
+          "https://mulhyanggi-e.goepj.kr/upload/common/fm/images/mulhyanggi-e/img_307a8363-e78e-4783-8dd2-0c48f0a94e731789354904246.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "가곡초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 남양주시 화도읍 비룡로379번길 3",
+    "homepage": "https://gagok-e.goegn.kr",
+    "food_photo_url": "https://gagok-e.goegn.kr/gagok-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=5025",
+    "rank": 1,
+    "entries": [
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "찰옥수수밥",
+          "동태순살찌개",
+          "간장찜닭",
+          "오이부추무침",
+          "백김치"
+        ],
+        "photos": [
+          "https://gagok-e.goegn.kr/upload/common/fm/images/gagok-e/img_385c35c3-598e-449b-8566-7bb4b2e15e611789350819510.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "안양서중학교",
+    "school_type": "중학교",
+    "location": "경기도 안양시 만안구 창박로 26",
+    "homepage": "https://anyangseo-m.goeay.kr",
+    "food_photo_url": "https://anyangseo-m.goeay.kr/anyangseo-m/ad/fm/foodmenu/selectFoodMenuView.do?mi=10834",
+    "rank": 2,
+    "entries": [
+      {
+        "date": "2026-10-09",
+        "menus": [
+          "한글날"
+        ],
+        "photos": [
+          "https://anyangseo-m.goeay.kr/upload/common/fm/images/anyangseo-m/img_8acf4e16-2444-466e-8781-8c7b6bbdabc750251a6a91a175a53974.png"
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "menus": [
+          "개천절 대체휴일"
+        ],
+        "photos": [
+          "https://anyangseo-m.goeay.kr/upload/common/fm/images/anyangseo-m/img_bc0146ad-c9ee-48d6-b387-14995473c24a7b39585d3749501d5512.png"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "가양초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 남양주시 수동면 비룡로1243번길 7",
+    "homepage": "http://gayang-e.goegn.kr",
+    "food_photo_url": "http://gayang-e.goegn.kr/gayang-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=5162",
+    "rank": 2,
+    "entries": [
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "쇠고기무국",
+          "시금치달걀말이",
+          "옛날통닭",
+          "깍두기",
+          "바나나"
+        ],
+        "photos": [
+          "http://gayang-e.goegn.kr/upload/common/fm/images/gayang-e/img_bf95c0a2-fb03-40d9-aeec-f344c0d7a66e1789352819297.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "청평중학교",
+    "school_type": "중학교",
+    "location": "경기도 가평군 청평면 골안길 7",
+    "homepage": "https://chungpyung-m.goegp.kr",
+    "food_photo_url": "https://chungpyung-m.goegp.kr/chungpyung-m/ad/fm/foodmenu/selectFoodMenuView.do?mi=3767",
+    "rank": 3,
+    "entries": [
+      {
+        "date": "2026-10-09",
+        "menus": [],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_b7502478-1838-42be-9852-5dc5c1c70f531790915466059.png"
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "menus": [
+          "◐대체휴일"
+        ],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_247da24d-2b10-482b-a5f4-ec70b42967a81790915537428.png"
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "친환경쌀발아현미밥*",
+          "물만두계란국(김가루)",
+          "참나물무침*",
+          "불향주꾸미돈육볶음",
+          "배추김치",
+          "미니바이트소금우유아이스크림(40g)"
+        ],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_86d940f4-fcf6-4b81-ac45-8353ddafc5461789356676960.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "가림초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 광명시 금당로 11-7",
+    "homepage": "https://karim-e.goegm.kr",
+    "food_photo_url": "https://karim-e.goegm.kr/karim-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=2666",
+    "rank": 3,
+    "entries": [
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "완두콩밥*",
+          "맛짱~짬뽕해물순두부국(초)",
+          "스크램블에그(초)",
+          "고사리쇠고기들깨볶음",
+          "김구이.",
+          "배추김치*"
+        ],
+        "photos": [
+          "https://karim-e.goegm.kr/upload/common/fm/images/karim-e/img_4ab1b6d3-1130-430f-8ebb-87e925af5f6d1789355351580.jpg"
+        ]
+      }
+    ]
+  },
+  {
     "school_name": "통일초등학교",
     "school_type": "초등학교",
     "location": "경기도 파주시 탄현면 사슴벌레로 14",
     "homepage": "https://tongil-e.goepj.kr",
     "food_photo_url": "https://tongil-e.goepj.kr/tongil-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=4027",
-    "rank": 1,
+    "rank": 4,
     "entries": [
+      {
+        "date": "2026-10-09",
+        "menus": [
+          "♥한글날♥"
+        ],
+        "photos": [
+          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_ec637a75-67ed-47a0-b6a6-f22c81597a441789438635641.png"
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "menus": [
+          "♥대체공휴일♥"
+        ],
+        "photos": [
+          "https://tongil-e.goepj.kr/upload/common/fm/images/tongil-e/img_6eb533bd-52ee-416f-bec2-f7b77fac15011789438625755.png"
+        ]
+      },
       {
         "date": "2026-09-25",
         "menus": [
@@ -42,76 +239,6 @@
     ]
   },
   {
-    "school_name": "가곡초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 남양주시 화도읍 비룡로379번길 3",
-    "homepage": "https://gagok-e.goegn.kr",
-    "food_photo_url": "https://gagok-e.goegn.kr/gagok-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=5025",
-    "rank": 1,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "찰옥수수밥",
-          "동태순살찌개",
-          "간장찜닭",
-          "오이부추무침",
-          "백김치"
-        ],
-        "photos": [
-          "https://gagok-e.goegn.kr/upload/common/fm/images/gagok-e/img_385c35c3-598e-449b-8566-7bb4b2e15e611789350819510.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "가양초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 남양주시 수동면 비룡로1243번길 7",
-    "homepage": "http://gayang-e.goegn.kr",
-    "food_photo_url": "http://gayang-e.goegn.kr/gayang-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=5162",
-    "rank": 2,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "쇠고기무국",
-          "시금치달걀말이",
-          "옛날통닭",
-          "깍두기",
-          "바나나"
-        ],
-        "photos": [
-          "http://gayang-e.goegn.kr/upload/common/fm/images/gayang-e/img_bf95c0a2-fb03-40d9-aeec-f344c0d7a66e1789352819297.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "가림초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 광명시 금당로 11-7",
-    "homepage": "https://karim-e.goegm.kr",
-    "food_photo_url": "https://karim-e.goegm.kr/karim-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=2666",
-    "rank": 3,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "완두콩밥*",
-          "맛짱~짬뽕해물순두부국(초)",
-          "스크램블에그(초)",
-          "고사리쇠고기들깨볶음",
-          "김구이.",
-          "배추김치*"
-        ],
-        "photos": [
-          "https://karim-e.goegm.kr/upload/common/fm/images/karim-e/img_4ab1b6d3-1130-430f-8ebb-87e925af5f6d1789355351580.jpg"
-        ]
-      }
-    ]
-  },
-  {
     "school_name": "갈매중학교",
     "school_type": "중학교",
     "location": "경기도 구리시 갈매순환로 121",
@@ -129,6 +256,45 @@
         ],
         "photos": [
           "http://galmae-m.goegn.kr/upload/common/fm/images/galmae-m/img_3cc12823-31bd-4b46-a136-388c76c98d2c1789356289108.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "school_name": "도덕초등학교",
+    "school_type": "초등학교",
+    "location": "경기도 광명시 가마산로 28",
+    "homepage": "https://dodeok-e.goegm.kr",
+    "food_photo_url": "https://dodeok-e.goegm.kr/dodeok-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=2721",
+    "rank": 5,
+    "entries": [
+      {
+        "date": "2026-10-06",
+        "menus": [
+          "기장밥(수)",
+          "들깨무채국(수)/",
+          "돼지갈비찜(문)/",
+          "가마보꼬볼어묵 조림(도)/",
+          "총각김치(수)",
+          "샤인머스캣"
+        ],
+        "photos": [
+          "https://dodeok-e.goegm.kr/upload/common/fm/images/dodeok-e/img_0572d6eb-fe0b-4cb6-be47-992f077eecd11790823268222.jpg"
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "찹쌀밥(수)",
+          "오믈렛....",
+          "북어감자국(문)",
+          "수육(문)",
+          "콩나물파채무침.(문)..",
+          "상추/쌈장(자율)/",
+          "보쌈김치"
+        ],
+        "photos": [
+          "https://dodeok-e.goegm.kr/upload/common/fm/images/dodeok-e/img_ec14f2e4-af8e-4e4b-bc26-b0d19f5691dc1789352270938.jpeg"
         ]
       }
     ]
@@ -1658,31 +1824,6 @@
     ]
   },
   {
-    "school_name": "도덕초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 광명시 가마산로 28",
-    "homepage": "https://dodeok-e.goegm.kr",
-    "food_photo_url": "https://dodeok-e.goegm.kr/dodeok-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=2721",
-    "rank": 70,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "찹쌀밥(수)",
-          "오믈렛....",
-          "북어감자국(문)",
-          "수육(문)",
-          "콩나물파채무침.(문)..",
-          "상추/쌈장(자율)/",
-          "보쌈김치"
-        ],
-        "photos": [
-          "https://dodeok-e.goegm.kr/upload/common/fm/images/dodeok-e/img_ec14f2e4-af8e-4e4b-bc26-b0d19f5691dc1789352270938.jpeg"
-        ]
-      }
-    ]
-  },
-  {
     "school_name": "도래울고등학교",
     "school_type": "고등학교",
     "location": "경기도 고양시 덕양구 도래울1로 67",
@@ -2250,29 +2391,6 @@
         ],
         "photos": [
           "https://e-munchon-e.goegy.kr/upload/common/fm/images/e-munchon-e/img_b87d4973-c790-4691-9bf6-0ac390e9a8551789351339051.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "물향기초등학교",
-    "school_type": "초등학교",
-    "location": "경기도 파주시 물향기1로 15",
-    "homepage": "https://mulhyanggi-e.goepj.kr/mulhyanggi-e/main.do",
-    "food_photo_url": "https://mulhyanggi-e.goepj.kr/mulhyanggi-e/ad/fm/foodmenu/selectFoodMenuView.do?mi=13659",
-    "rank": 95,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "찰보리밥",
-          "시래기된장국 5,",
-          "블랙소이오리볶음",
-          "콩나물무침",
-          "총각김치"
-        ],
-        "photos": [
-          "https://mulhyanggi-e.goepj.kr/upload/common/fm/images/mulhyanggi-e/img_307a8363-e78e-4783-8dd2-0c48f0a94e731789354904246.jpg"
         ]
       }
     ]
@@ -5482,30 +5600,6 @@
         ],
         "photos": [
           "https://www.goepj.kr/upload/common/fm/images/cheongseok-e/img_870c1df6-2ea6-492f-89a3-15900bce5ceb1789352815327.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "청평중학교",
-    "school_type": "중학교",
-    "location": "경기도 가평군 청평면 골안길 7",
-    "homepage": "https://chungpyung-m.goegp.kr",
-    "food_photo_url": "https://chungpyung-m.goegp.kr/chungpyung-m/ad/fm/foodmenu/selectFoodMenuView.do?mi=3767",
-    "rank": 230,
-    "entries": [
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "친환경쌀발아현미밥*",
-          "물만두계란국(김가루)",
-          "참나물무침*",
-          "불향주꾸미돈육볶음",
-          "배추김치",
-          "미니바이트소금우유아이스크림(40g)"
-        ],
-        "photos": [
-          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_86d940f4-fcf6-4b81-ac45-8353ddafc5461789356676960.jpg"
         ]
       }
     ]
