@@ -1,5 +1,59 @@
 [
   {
+    "school_name": "청평중학교",
+    "school_type": "중학교",
+    "location": "경기도 가평군 청평면 골안길 7",
+    "homepage": "https://chungpyung-m.goegp.kr",
+    "food_photo_url": "https://chungpyung-m.goegp.kr/chungpyung-m/ad/fm/foodmenu/selectFoodMenuView.do?mi=3767",
+    "rank": 1,
+    "entries": [
+      {
+        "date": "2026-10-21",
+        "menus": [],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_8a031f35-f729-401f-9de2-112b07716ca51790915496300.png"
+        ]
+      },
+      {
+        "date": "2026-10-20",
+        "menus": [],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_bd9fe29f-8909-4edc-b61a-af8df3c09f711790915484350.png"
+        ]
+      },
+      {
+        "date": "2026-10-09",
+        "menus": [],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_b7502478-1838-42be-9852-5dc5c1c70f531790915466059.png"
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "menus": [
+          "◐대체휴일"
+        ],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_247da24d-2b10-482b-a5f4-ec70b42967a81790915537428.png"
+        ]
+      },
+      {
+        "date": "2026-09-14",
+        "menus": [
+          "친환경쌀발아현미밥*",
+          "물만두계란국(김가루)",
+          "참나물무침*",
+          "불향주꾸미돈육볶음",
+          "배추김치",
+          "미니바이트소금우유아이스크림(40g)"
+        ],
+        "photos": [
+          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_86d940f4-fcf6-4b81-ac45-8353ddafc5461789356676960.jpg"
+        ]
+      }
+    ]
+  },
+  {
     "school_name": "물향기초등학교",
     "school_type": "초등학교",
     "location": "경기도 파주시 물향기1로 15",
@@ -110,46 +164,6 @@
         ],
         "photos": [
           "http://gayang-e.goegn.kr/upload/common/fm/images/gayang-e/img_bf95c0a2-fb03-40d9-aeec-f344c0d7a66e1789352819297.jpg"
-        ]
-      }
-    ]
-  },
-  {
-    "school_name": "청평중학교",
-    "school_type": "중학교",
-    "location": "경기도 가평군 청평면 골안길 7",
-    "homepage": "https://chungpyung-m.goegp.kr",
-    "food_photo_url": "https://chungpyung-m.goegp.kr/chungpyung-m/ad/fm/foodmenu/selectFoodMenuView.do?mi=3767",
-    "rank": 3,
-    "entries": [
-      {
-        "date": "2026-10-09",
-        "menus": [],
-        "photos": [
-          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_b7502478-1838-42be-9852-5dc5c1c70f531790915466059.png"
-        ]
-      },
-      {
-        "date": "2026-10-05",
-        "menus": [
-          "◐대체휴일"
-        ],
-        "photos": [
-          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_247da24d-2b10-482b-a5f4-ec70b42967a81790915537428.png"
-        ]
-      },
-      {
-        "date": "2026-09-14",
-        "menus": [
-          "친환경쌀발아현미밥*",
-          "물만두계란국(김가루)",
-          "참나물무침*",
-          "불향주꾸미돈육볶음",
-          "배추김치",
-          "미니바이트소금우유아이스크림(40g)"
-        ],
-        "photos": [
-          "https://chungpyung-m.goegp.kr/upload/common/fm/images/chungpyung-m/img_86d940f4-fcf6-4b81-ac45-8353ddafc5461789356676960.jpg"
         ]
       }
     ]
